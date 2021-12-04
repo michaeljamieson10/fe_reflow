@@ -22,6 +22,8 @@ import Login from "./Login";
 import ClientForm from "./ClientForm";
 import ClientManagement from "./ClientManagement";
 import Header from "../components/ui/Header";
+import Footer from "../components/ui/Footer";
+import LandingPage from "../components/LandingPage";
 
 
 function App(props) {
@@ -38,19 +40,7 @@ function App(props) {
       props.pollLoggedInUser()
   }},[]); //  empty array will cause a render only once
 
-    const isIosSafari = () => {
-      const userAgent = window.navigator.userAgent.toLowerCase()
-      console.log(userAgent)
-      return /iphone|ipad|ipod/.test(userAgent) && userAgent.includes("safari")
-    }
-    // Detects if device is in standalone mode
-    const isInStandaloneMode = () => "standalone" in window.navigator && window.navigator.standalone
 
-    // Checks if should display install popup notification:
-    if (isIosSafari() && !isInStandaloneMode()) {
-      this.setState({ showInstallMessage: true })
-    }
-  // }
     useEffect( (newProps) => {
       if(!isMount) {
         if (
@@ -88,10 +78,12 @@ function App(props) {
           <Switch>
 
             {/*<Route path="/" component={SignUp}/>*/}
+            <Route path="/" component={LandingPage} />
             <Route path="/login" component={Login} />
             <Route path="/client" component={ClientManagement} />
             <Route path="/signup" component={SignUp} />
           </Switch>
+              {/*<Footer setValue={setValue} setSelectedIndex={setSelectedIndex} />*/}
             </BrowserRouter>
           </ThemeProvider>
         </React.Fragment>
