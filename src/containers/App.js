@@ -16,7 +16,7 @@ import SignUp from "./SignUp"
 // import Login from "./Login"
 import Notification from "../components/Notification"
 
-import { getLoggedInUser, getLoggedInUserId } from "../selectors/userSelectors"
+import {getLoggedInUser, getLoggedInUserId} from "../selectors/userSelectors";
 import Login from "./Login";
 import ClientForm from "./ClientForm";
 import ClientManagement from "./ClientManagement";

@@ -7,7 +7,7 @@ import { Card, CardHeader, CardContent } from "@material-ui/core";
 import { attemptLogin } from "../actions/oauthActions";
 import { clearErrorMessage } from "../actions/apiUIHelperActions";
 
-import { getLoggedInUser } from "../selectors/userSelectors";
+import { getLoggedInUser} from "../selectors/userSelectors";
 import { getError } from "../selectors/errorSelector";
 
 import { history } from "../index.js";
