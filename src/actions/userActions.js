@@ -58,3 +58,21 @@ export const createNewUser = (user) => (dispatch, getState) => {
     return dispatch(getAppAccessToken())
         .then(() => dispatch(createUser(user)))
 };
+
+export const GET_SPECIFIC_USER = 'GET_SPECIFIC_USER';
+export const GET_SPECIFIC_USER_SUCCESS = 'GET_SPECIFIC_USER_SUCCESS';
+export const GET_SPECIFIC_USER_FAILURE = 'GET_SPECIFIC_USER_FAILURE';
+
+const specificUser = (userId) => ({
+    [CALL_API]: {
+        httpAction: 'GET',
+        types: [GET_SPECIFIC_USER, GET_SPECIFIC_USER_SUCCESS, GET_SPECIFIC_USER_FAILURE],
+        endPoint: `user/${userId}`,
+        schema: Schemas.USER
+    }
+});
+
+export const getSpecificUser = (userId) => (dispatch) => {
+    return dispatch(specificUser(userId));
+};
+

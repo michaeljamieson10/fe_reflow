@@ -3,6 +3,11 @@ import {PRELOAD_ACCESS_TOKEN_FROM_LOCAL_STORAGE, GET_APP_ACCESS_TOKEN_SUCCESS, L
 import {
     LOGGED_IN_USER_INFO_SUCCESS, CREATE_NEW_USER_FAILURE,
 } from '../actions/userActions';
+import {
+    GET_CLIENT,
+    GET_CLIENT_SUCCESS,
+    GET_CLIENT_FAILURE, CREATE_CLIENT, CREATE_CLIENT_SUCCESS, CREATE_CLIENT_FAILURE
+} from '../actions/clientActions';
 
 import {CLEAR_API_ERROR_MESSAGE} from '../actions/apiUIHelperActions';
 import merge from 'lodash/merge';
@@ -36,6 +41,12 @@ export default (state = initialState, action) => {
             return merge({}, newState, {entities: entitiesReducer(state.entities, action)});
         case CLEAR_API_ERROR_MESSAGE:
             return {...state, errorMessage: ''};
+        case GET_CLIENT:
+        case GET_CLIENT_SUCCESS:
+        case GET_CLIENT_FAILURE:
+        case CREATE_CLIENT:
+        case CREATE_CLIENT_SUCCESS:
+        case CREATE_CLIENT_FAILURE:
 
         default:
             return state;

@@ -18,6 +18,8 @@ import Notification from "../components/Notification"
 
 import { getLoggedInUser, getLoggedInUserId } from "../selectors/userSelectors"
 import Login from "./Login";
+import ClientForm from "./ClientForm";
+import ClientManagement from "./ClientManagement";
 
 const theme = createMuiTheme({
   overrides: {
@@ -103,6 +105,7 @@ class App extends Component {
           <Switch>
             {/*<Route path="/" component={SignUp}/>*/}
             <Route path="/login" component={Login} />
+            <Route path="/client" component={ClientManagement} />
             <Route path="/signup" component={SignUp} />
           </Switch>
         </React.Fragment>

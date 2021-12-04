@@ -12,8 +12,6 @@ export const API_HOST = process.env.REACT_APP_API_URL;
 
 const API_ROOT = API_HOST + 'v1/';
 
-
-
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
 const callApi = (httpAction, endpoint, schema, accessToken,
@@ -65,10 +63,15 @@ const userSchema = new Schema('users', {
     idAttribute: user => user.id
 });
 
+const clientSchema = new Schema('clients', {
+    idAttribute: client => client.id
+});
+
 
 // Schemas for Grassp API responses.
 export const Schemas = {
     USER: userSchema,
+    CLIENT: clientSchema,
     // USER_ARRAY: arrayOf(userSchema),
 };
 
