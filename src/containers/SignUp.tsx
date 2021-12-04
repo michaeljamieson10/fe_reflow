@@ -32,18 +32,13 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
             });
         }
     }
-    // handleSubmit = userLoginValues => {
-    //     this.setState({ enableButton: false }, () => {
-    //         this.props.attemptLogin(userLoginValues.email.trim(), userLoginValues.password)
-    //             .then(() => this.pollLoggedInUser());
-    //     })
-    // }
+
 
     handleSubmit = userSignUpValues => {
         const responseFunc = response => {
             if (!response.error) {
                 // window.ca("send", "signup_button_clicked", "sign_up_page", "Signup", "click", "sign_up");
-                this.props.attemptLogin(userSignUpValues.email.trim(), userSignUpValues.password, "/signup");
+                this.props.attemptLogin(userSignUpValues.email.trim(), userSignUpValues.password, "/agentOrNo");
             } else {
                 const emailAlreadyUsedExceptionRegularExpression = /Email '.*' is already used./;
                 if (response.error.match(emailAlreadyUsedExceptionRegularExpression) !== null) {

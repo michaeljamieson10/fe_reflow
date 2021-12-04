@@ -65,18 +65,7 @@ class App extends Component {
     if (this.props.loggedInUserId > 0) {
       this.pollLoggedInUser()
     }
-    const isIosSafari = () => {
-      const userAgent = window.navigator.userAgent.toLowerCase()
-      console.log(userAgent)
-      return /iphone|ipad|ipod/.test(userAgent) && userAgent.includes("safari")
-    }
-    // Detects if device is in standalone mode
-    const isInStandaloneMode = () => "standalone" in window.navigator && window.navigator.standalone
 
-    // Checks if should display install popup notification:
-    if (isIosSafari() && !isInStandaloneMode()) {
-      this.setState({ showInstallMessage: true })
-    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -91,7 +80,6 @@ class App extends Component {
 
   pollLoggedInUser = () => {
     this.props.updateLoggedInUserInfo()
-    //TODO: parametrize this timeout
     this.timeout = setTimeout(this.pollLoggedInUser, 60000)
   }
 
