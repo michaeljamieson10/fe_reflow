@@ -17,6 +17,7 @@ import SignUp from "./SignUp"
 import Notification from "../components/Notification"
 
 import { getLoggedInUser, getLoggedInUserId } from "../selectors/userSelectors"
+import Login from "./Login";
 
 const theme = createMuiTheme({
   overrides: {
@@ -100,8 +101,8 @@ class App extends Component {
           <CssBaseline />
           {/*<Header loggedInUser={loggedInUser} />*/}
           <Switch>
-            {/*<Route path="/" component={Login} />*/}
-            {/*<Route path="/login" component={Login} />*/}
+            <Route path="/" component={SignUp}/>
+            <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
           </Switch>
         </React.Fragment>

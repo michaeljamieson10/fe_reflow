@@ -71,8 +71,6 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
             } else {
                 this.props.createNewUser(userSignUpValues).then(response => {
                     if (!response.error) {
-                        this.props.getAllDSPRServicingZipCode(userSignUpValues.signupZipCode)
-                            .then(() => responseFunc(response));
                     } else {
                         this.setState({ enableButton: true });
                         return;
