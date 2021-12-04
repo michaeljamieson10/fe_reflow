@@ -24,17 +24,11 @@ import ClientManagement from "./ClientManagement";
 import Header from "../components/ui/Header";
 
 
-// class App extends Component {
 function App(props) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [showInstallMessage, setShowInstallMessage] = useState(false);
   const [value, setValue] = useState(0);
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       showInstallMessage: false,
-//     }
-//   }
+
   const isMount = useIsMount();
   useEffect(() =>{
     if (props.accessToken === "") {
@@ -43,13 +37,7 @@ function App(props) {
     if (props.loggedInUserId > 0) {
       props.pollLoggedInUser()
   }},[]); //  empty array will cause a render only once
-  // componentDidMount() {
-  //   if (this.props.accessToken === "") {
-  //     this.props.getAppAccessToken()
-  //   }
-  //   if (this.props.loggedInUserId > 0) {
-  //     this.pollLoggedInUser()
-  //   }
+
     const isIosSafari = () => {
       const userAgent = window.navigator.userAgent.toLowerCase()
       console.log(userAgent)
@@ -73,21 +61,10 @@ function App(props) {
           pollLoggedInUser()
         }
       }
-      // console.log("IM A PROPS ", props)
-      // if(props.accessToken){}
-      // if(newProps !== "") {pollLoggedInUser()
-      //   console.log("lol")}
+
     }, [props.accessToken])
 
-  // componentWillReceiveProps(newProps) {
-  //   if (
-  //     newProps.accessToken !== "" &&
-  //     newProps.accessToken !== this.props.accessToken &&
-  //     getAccessTokenType() === ACCESS_TOKEN_TYPES.user
-  //   ) {
-  //     this.pollLoggedInUser()
-  //   }
-  // }
+
 
   const pollLoggedInUser = () => {
     // this.props.updateLoggedInUserInfo()
