@@ -23,6 +23,7 @@ import Login from "./Login";
 import ClientForm from "./ClientForm";
 import ClientManagement from "./ClientManagement";
 import Header from "../components/ui/Header";
+import {useIsMount} from "../hooks/useIsMount";
 
 // const theme = createMuiTheme({
 //   overrides: {
@@ -74,7 +75,13 @@ class App extends Component {
   //     selectedIndex: idx
   //   })
   // }
-
+  const isMount = useIsMount();
+  useEffect(() =>{
+  if (props.accessToken === "") {
+@@ -37,7 +43,13 @@ function App(props) {
+  if (props.loggedInUserId > 0) {
+    props.pollLoggedInUser()
+  }},[]); //  empty array will cause a render only once
   componentDidMount() {
     if (this.props.accessToken === "") {
       this.props.getAppAccessToken()
