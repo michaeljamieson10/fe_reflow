@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardHeader, CardContent, Grid, useMediaQuery, Typography, Button } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import {Link} from "react-router-dom";
+import { Link  } from 'react-router-dom';
 import openHouse from "../assets/openhouse.jpeg"
 
 const useStyles = makeStyles(theme => ({
@@ -107,73 +107,73 @@ const Home: React.FC<{}> = () => {
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
-  return (
-      <Grid container direction="column" className={classes.mainContainer}>
-        <Grid item>
-          {" "}
-          {/*-----Hero Block-----*/}
-          <Grid container justify="flex-end" alignItems="center" direction="row">
-            <Grid sm item className={classes.heroTextContainer}>
-              <Typography variant="h2" align="center">
-                The new way of doing
-                <br />
-                real estate
-              </Typography>
-              <Typography style={{fontWeight: "bold"}} variant="subtitle1" align="center" className={classes.subtitle}>
-                Let us help drive the home buying process from pre-approval to close.
-              </Typography>
-              {/*<Grid*/}
-              {/*    container*/}
-              {/*    justify="center"*/}
-              {/*    className={classes.buttonContainer}*/}
-              {/*    direction={"column"}*/}
-              {/*>*/}
-              <Grid
-                  container
-                  spacing={0}
-                  direction="column"
-                  alignItems="center"
-                  justifyContent="center"
-                  style={{marginBottom:"3em"}}
-              >
-                <Grid item style={{marginBottom: "1em"}}>
-                  <Button component={Link} to="/about"  variant={"contained"} color={"primary"} style={{paddingLeft: "2.9em",paddingRight: "2.9em"}}className={classes.learnButton}> Get Started</Button>
-                </Grid>
-                <Grid item>
-                  <Button variant={"outlined"} color={"primary"} >Request Demo</Button>
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid container
-                  spacing={0}
-                  direction="column"
-                  alignItems="center"
-                  justifyContent="center"
-            >
-              <Grid item
-
-              >
-                <img
-                    className={classes.icon}
-                    alt="Real estate people"
-                    src={openHouse}
-                    style={{
-                      height: matchesXS ? "23em" : matchesSM ? "25em" : "35em",
-                      width: matchesXS ? "30em" : matchesSM ? "40em" : "50em"
-
-                      // [theme.breakpoints.down("md")]: {
-                      //   height: "15em",
-                      //   maxWidth: "5em",
-                      //   width: "5em",
-                      // }
-                    }}
-                />
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-
-      </Grid>
+  return (<div>Im a home page</div>
+      // <Grid container direction="column" className={classes.mainContainer}>
+      //   <Grid item>
+      //     {" "}
+      //     {/*-----Hero Block-----*/}
+      //     <Grid container justify="flex-end" alignItems="center" direction="row">
+      //       <Grid sm item className={classes.heroTextContainer}>
+      //         <Typography variant="h2" align="center">
+      //           The new way of doing
+      //           <br />
+      //           real estate
+      //         </Typography>
+      //         <Typography style={{fontWeight: "bold"}} variant="subtitle1" align="center" className={classes.subtitle}>
+      //           Let us help drive the home buying process from pre-approval to close.
+      //         </Typography>
+      //         {/*<Grid*/}
+      //         {/*    container*/}
+      //         {/*    justify="center"*/}
+      //         {/*    className={classes.buttonContainer}*/}
+      //         {/*    direction={"column"}*/}
+      //         {/*>*/}
+      //         <Grid
+      //             container
+      //             spacing={0}
+      //             direction="column"
+      //             alignItems="center"
+      //             justifyContent="center"
+      //             style={{marginBottom:"3em"}}
+      //         >
+      //           <Grid item style={{marginBottom: "1em"}}>
+      //             {/*<Button component={Link} to="/about"  variant={"contained"} color={"primary"} style={{paddingLeft: "2.9em",paddingRight: "2.9em"}}className={classes.learnButton}> Get Started</Button>*/}
+      //           </Grid>
+      //           <Grid item>
+      //             <Button variant={"outlined"} color={"primary"} >Request Demo</Button>
+      //           </Grid>
+      //         </Grid>
+      //       </Grid>
+      //       <Grid container
+      //             spacing={0}
+      //             direction="column"
+      //             alignItems="center"
+      //             justifyContent="center"
+      //       >
+      //         <Grid item
+      //
+      //         >
+      //           <img
+      //               className={classes.icon}
+      //               alt="Real estate people"
+      //               src={openHouse}
+      //               style={{
+      //                 height: matchesXS ? "23em" : matchesSM ? "25em" : "35em",
+      //                 width: matchesXS ? "30em" : matchesSM ? "40em" : "50em"
+      //
+      //                 // [theme.breakpoints.down("md")]: {
+      //                 //   height: "15em",
+      //                 //   maxWidth: "5em",
+      //                 //   width: "5em",
+      //                 // }
+      //               }}
+      //           />
+      //         </Grid>
+      //       </Grid>
+      //     </Grid>
+      //   </Grid>
+      //
+      // </Grid>
   )
 }
 

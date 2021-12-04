@@ -21,6 +21,7 @@ import Notification from "../components/Notification"
 
 import {getLoggedInUser, getLoggedInUserId} from "../selectors/userSelectors";
 import Login from "./Login";
+import FakeLogin from "./FakeLogin";
 import ClientForm from "./ClientForm";
 import ClientManagement from "./ClientManagement";
 import Home from "../components/Home"
@@ -116,6 +117,7 @@ class App extends Component {
             <Switch>
               <Route path="/" component={Home}/>
               <Route path="/login" component={Login} />
+              {/*<Route path="/login" component={FakeLogin} />*/}
               <Route path="/client" component={ClientManagement} />
               <Route path="/signup" component={SignUp} />
             </Switch>
