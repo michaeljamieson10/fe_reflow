@@ -44,23 +44,11 @@ class Login extends Component<any, {errorMessage: string, enableButton: boolean}
 
     pollLoggedInUser = () => {
         if (this.props.loggedInUser) {
-            if (!this.props.idDocument && !this.props.medicalRecommendation) {
-                history.push("/signup");
-            } else {
-                this.props
-                    .getUserIdDocument()
-                    .then(() => this.props.getUserMedicalRecommendation())
-                    .then(() => {
-                            history.push("/");
-                    })
-            }
+            history.push("/");
         } else {
             if (!this.props.errorMessage) {
                 this.timeout = setTimeout(this.pollLoggedInUser, 100);
             }
-            // else {
-            // history.push('/login');
-            // }
         }
     }
 

@@ -1,6 +1,7 @@
 import {CALL_API, Schemas} from '../middleware/api';
 import {getAppAccessToken} from './oauthActions';
 import 'whatwg-fetch';
+import {history} from "../index";
 
 const baseURL = window.location.protocol + "//" + window.location.host;
 

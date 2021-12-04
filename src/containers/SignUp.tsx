@@ -10,9 +10,10 @@ import { createNewUser } from '../actions/userActions';
 import { attemptLogin } from '../actions/oauthActions';
 import { getError } from "../selectors/errorSelector";
 import { getLoggedInUser } from '../selectors/userSelectors';
-import {window} from 'browser-monads'
+// import {window} from 'browser-monads'
 
 import SignUpForm from './SignUpForm';
+import {history} from "../index";
 
 class SignUp extends Component<any, { errorMessage: string, enableButton: boolean, user?: any }> {
     signupCont;
@@ -31,11 +32,17 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
             });
         }
     }
+    // handleSubmit = userLoginValues => {
+    //     this.setState({ enableButton: false }, () => {
+    //         this.props.attemptLogin(userLoginValues.email.trim(), userLoginValues.password)
+    //             .then(() => this.pollLoggedInUser());
+    //     })
+    // }
 
     handleSubmit = userSignUpValues => {
         const responseFunc = response => {
             if (!response.error) {
-                window.ca("send", "signup_button_clicked", "sign_up_page", "Signup", "click", "sign_up");
+                // window.ca("send", "signup_button_clicked", "sign_up_page", "Signup", "click", "sign_up");
                 this.props.attemptLogin(userSignUpValues.email.trim(), userSignUpValues.password, "/signup");
             } else {
                 const emailAlreadyUsedExceptionRegularExpression = /Email '.*' is already used./;
@@ -48,6 +55,7 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
         this.setState({ enableButton: false }, () => {
                 this.props.createNewUser(userSignUpValues).then(response => {
                     if (!response.error) {
+                        responseFunc(response)
                     } else {
                         this.setState({ enableButton: true });
                         return;

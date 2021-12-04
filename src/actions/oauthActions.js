@@ -120,15 +120,7 @@ export const attemptLogin =(email, password, redirectLocation = undefined) => (d
         dispatch(login(email, password))
             .then((response) => {
                 if(response.error) {
-                    // dispatch(attemptLegacyRegistration(email, password))
-                    //     .then((response) => {
-                    //         if(!response.error) {
-                    //             dispatch(login(email, password))
-                    //                 .then(() => dispatch(updateLoggedInUserInfo()))
-                    //                 .then(() => ReactGA.set({userId: getLoggedInUserId(getState())}))
-                    //                 .then(() => history.push("/legacy"));
-                    //         }
-                    //     });
+
                 } else {
                     dispatch(updateLoggedInUserInfo())
                         .then(() => redirectLocation && history.push(redirectLocation));
