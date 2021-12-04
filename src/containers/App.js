@@ -101,7 +101,7 @@ class App extends Component {
           <CssBaseline />
           {/*<Header loggedInUser={loggedInUser} />*/}
           <Switch>
-            <Route path="/" component={SignUp}/>
+            {/*<Route path="/" component={SignUp}/>*/}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
           </Switch>
