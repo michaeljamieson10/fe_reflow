@@ -1,15 +1,7 @@
 import base64 from 'base-64';
 import qs from 'query-string';
-// import {attemptLegacyRegistration} from './userActions';
 import {updateLoggedInUserInfo} from './userActions';
-import ReactGA from 'react-ga';
 import {logException} from './apiUIHelperActions';
-
-import {LOCAL_STORAGE_MOST_RECENT_DSPR_KEY, LOCAL_STORAGE_APP_REFRESH_DATE_KEY} from './menuActions'
-
-import {getLoggedInUserId} from '../selectors/userSelectors';
-
-// import {clearSavedState} from '../localStorage';
 import {API_HOST} from '../middleware/api';
 
 import { history } from '../index.js'
@@ -36,7 +28,7 @@ const fetchAccessToken = (body) => {
         mode: 'cors',
         method: 'POST',
         headers: {
-            'Authorization': `Basic ${base64.encode('grassp:grassp')}`,
+            'Authorization': `Basic ${base64.encode('reflow:reflow')}`,
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body
@@ -67,8 +59,6 @@ export const LOGOUT = 'LOGOUT';
 export const logout = () => {
     localStorage.removeItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
     localStorage.removeItem(LOCAL_STORAGE_ACCESS_TOKEN_TYPE);
-    localStorage.removeItem(LOCAL_STORAGE_MOST_RECENT_DSPR_KEY);
-    localStorage.removeItem(LOCAL_STORAGE_APP_REFRESH_DATE_KEY);
     // clearSavedState();
 
     return {
@@ -140,7 +130,6 @@ export const attemptLogin =(email, password, redirectLocation = undefined) => (d
                     //         }
                     //     });
                 } else {
-                    ReactGA.set({userId: getLoggedInUserId(getState())});
                     dispatch(updateLoggedInUserInfo())
                         .then(() => redirectLocation && history.push(redirectLocation));
                 }

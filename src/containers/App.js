@@ -10,10 +10,10 @@ import red from "@material-ui/core/colors/red"
 import { getAppAccessToken, getAccessTokenType, ACCESS_TOKEN_TYPES } from "../actions/oauthActions"
 import { updateLoggedInUserInfo } from "../actions/userActions"
 
-import Header from "../components/Header";
+// import Header from "../components/Header";
 
 import SignUp from "./SignUp"
-import Login from "./Login"
+// import Login from "./Login"
 import Notification from "../components/Notification"
 
 import { getLoggedInUser, getLoggedInUserId } from "../selectors/userSelectors"
@@ -98,10 +98,10 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <React.Fragment>
           <CssBaseline />
-          <Header loggedInUser={loggedInUser} />
+          {/*<Header loggedInUser={loggedInUser} />*/}
           <Switch>
-            <Route path="/" component={Login} />
-            <Route path="/login" component={Login} />
+            {/*<Route path="/" component={Login} />*/}
+            {/*<Route path="/login" component={Login} />*/}
             <Route path="/signup" component={SignUp} />
           </Switch>
         </React.Fragment>

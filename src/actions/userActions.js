@@ -30,7 +30,7 @@ export const CREATE_NEW_USER = 'CREATE_NEW_USER';
 export const CREATE_NEW_USER_SUCCESS = 'CREATE_NEW_USER_SUCCESS';
 export const CREATE_NEW_USER_FAILURE = 'CREATE_NEW_USER_FAILURE';
 
-// Creates a new Grassp user.
+// Creates a new reflow user.
 
 const createUser = (user, referrerIdentityCode) => {
     const userRegistration = referrerIdentityCode ? {

@@ -3,7 +3,6 @@ import { Provider } from 'react-redux'
 // import routes from '../routes'
 // import DevTools from './DevTools'
 import { Router } from 'react-router-dom'
-import ReactGA from 'react-ga';
 import PropTypes from 'prop-types';
 
 import App from './App'

@@ -12,8 +12,7 @@ export const API_HOST = process.env.REACT_APP_API_URL;
 
 const API_ROOT = API_HOST + 'v1/';
 
-export const getUserDocumentUrl = (document, userId) =>
-    API_ROOT + `user/${document}/document/${userId}?access_token=${localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY)}`;
+
 
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
