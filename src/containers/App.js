@@ -115,7 +115,7 @@ class App extends Component {
             {/*    />*/}
             <Header loggedInUser={loggedInUser}/>
             <Switch>
-              <Route path="/" component={Home}/>
+              <Route path="/about" component={Home}/>
               <Route path="/login" component={Login} />
               {/*<Route path="/login" component={FakeLogin} />*/}
               <Route path="/client" component={ClientManagement} />

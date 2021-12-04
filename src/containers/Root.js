@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import App from './App'
 
-const debug = true;
+// const debug = true;
 // const debug = false;
 
 
