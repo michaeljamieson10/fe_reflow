@@ -21,26 +21,7 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
         enableButton: true,
     }
 
-    componentDidMount() {
-        window.addEventListener('resize', this.resize);
-        this.resize();
-    }
 
-    componentDidUpdate() {
-        this.resize();
-    }
-
-    resize = () => {
-        const signupNode = ReactDOM.findDOMNode(this.signupCont);
-        if (signupNode !== null) {
-            const diff = signupNode.offsetHeight - signupNode.clientHeight;
-            signupNode.style.height = (window.innerHeight - signupNode.offsetTop + diff) + 'px';
-        }
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.resize);
-    }
 
     componentWillReceiveProps = newProps => {
         if (newProps.errorMessage) {
@@ -65,10 +46,6 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
             }
         };
         this.setState({ enableButton: false }, () => {
-            const referrerIdentityCode = this.props.location && this.props.match.params.code;
-            if (referrerIdentityCode) {
-                this.props.createNewUserWithReferral(userSignUpValues, referrerIdentityCode).then(responseFunc);
-            } else {
                 this.props.createNewUser(userSignUpValues).then(response => {
                     if (!response.error) {
                     } else {
@@ -76,7 +53,6 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
                         return;
                     }
                 });
-            }
 
             this.setState({ user: userSignUpValues });
 
@@ -84,7 +60,6 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
     };
 
     render() {
-        const referrerIdentityCode = this.props.match.params && this.props.match.params.code;
         return (
             <div className="signup-section"
                 ref={(signupCont) => { this.signupCont = signupCont; }}
@@ -105,7 +80,6 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
                             <CardContent>
                                 {this.state.errorMessage && <div className={'msg-style error'}>{this.state.errorMessage}</div>}
                                 <SignUpForm onSubmit={this.handleSubmit} enableButton={this.state.enableButton}/>
-                                {referrerIdentityCode && <div><br />Referral code: {referrerIdentityCode}</div>}
                             </CardContent>
                         </Card>
                     )}       
