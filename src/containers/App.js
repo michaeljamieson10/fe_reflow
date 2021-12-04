@@ -13,6 +13,7 @@ import { getAppAccessToken, getAccessTokenType, ACCESS_TOKEN_TYPES } from "../ac
 import { updateLoggedInUserInfo } from "../actions/userActions"
 
 // import Header from "../components/Header";
+import Header from "../components/ui/Header"
 
 import SignUp from "./SignUp"
 // import Login from "./Login"
@@ -22,7 +23,7 @@ import {getLoggedInUser, getLoggedInUserId} from "../selectors/userSelectors";
 import Login from "./Login";
 import ClientForm from "./ClientForm";
 import ClientManagement from "./ClientManagement";
-import Header from "../components/ui/Header";
+import Home from "../components/Home"
 
 // const theme = createMuiTheme({
 //   overrides: {
@@ -111,8 +112,9 @@ class App extends Component {
             {/*        value={this.value}*/}
             {/*        setValue={this.setValue}*/}
             {/*    />*/}
+            <Header loggedInUser={loggedInUser}/>
             <Switch>
-              {/*<Route path="/" component={SignUp}/>*/}
+              <Route path="/" component={Home}/>
               <Route path="/login" component={Login} />
               <Route path="/client" component={ClientManagement} />
               <Route path="/signup" component={SignUp} />

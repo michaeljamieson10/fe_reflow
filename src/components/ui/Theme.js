@@ -1,6 +1,7 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
 const arcBlue = "#0B72B9";
+const arcPurple = "#7A64D3";
 const arcOrange = "#FFBA60";
 const arcGrey = "#868686";
 
@@ -11,7 +12,7 @@ export default createMuiTheme({
       orange: arcOrange
     },
     primary: {
-      main: arcBlue
+      main: arcPurple
     },
     secondary: {
       main: arcOrange
@@ -19,7 +20,7 @@ export default createMuiTheme({
   },
   typography: {
     tab: {
-      fontFamily: "Raleway",
+      fontFamily: "Avantgarde",
       textTransform: "none",
       fontWeight: 700,
       color: "white",
@@ -32,26 +33,26 @@ export default createMuiTheme({
       color: "white"
     },
     h2: {
-      fontFamily: "Raleway",
+      fontFamily: "Roboto",
       fontWeight: 700,
       fontSize: "2.5rem",
-      color: arcBlue,
+      color: "black",
       lineHeight: 1.5
     },
     h3: {
-      fontFamily: "Pacifico",
+      fontFamily: "Roboto",
       fontSize: "2.5rem",
       color: arcBlue
     },
     h4: {
-      fontFamily: "Raleway",
+      fontFamily: "Roboto",
       fontSize: "1.75rem",
       color: arcBlue,
       fontWeight: 700
     },
     h6: {
       fontWeight: 500,
-      fontFamily: "Raleway",
+      fontFamily: "Roboto",
       color: arcBlue
     },
     subtitle1: {
