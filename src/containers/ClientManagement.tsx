@@ -39,7 +39,7 @@ function ClientManagement(props: Props) {
 //     const isSystemAdmin: boolean = loggedInUser && loggedInUser.systemAdministrator;
 //
 //     if (!isSystemAdmin) {
-//         history.push(`/`);
+//         history.push(`/about`);
 //     }
 //
 //     function handleNewDSPFormOpen() {
