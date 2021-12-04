@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { connect, shallowEqual, useSelector } from 'react-redux';
 import { State, User } from '../store/reduxStoreState';
-// import {
-//     Grid,
-//     Card,
-//     CardContent,
-//     CardActionArea,
-//     CircularProgress,
-//     Dialog,
-//     // Button,
-//     DialogTitle,
-// } from '@material-ui/core';
+import {
+    Grid,
+    Card,
+    CardContent,
+    CardActionArea,
+    CircularProgress,
+    Dialog,
+    // Button,
+    DialogTitle,
+} from '@material-ui/core';
 // import {Add} from '@material-ui/icons';
 // // eslint-disable-next-line
 // // import { pressSpecialAdminButton } from "../actions/systemAdminActions"
@@ -32,8 +32,8 @@ interface Props {
 function ClientManagement(props: Props) {
 //     // eslint-disable-next-line
     const { users, getAllUsers, loggedInUser } = props;
-//     const [showNewClientForm, setShowNewClientForm] = useState(false);
-//     const [allUsersLoaded, setAllUsersLoaded] = useState(true)
+    const [showNewClientForm, setShowNewClientForm] = useState(false);
+    // const [allUsersLoaded, setAllUsersLoaded] = useState(true)
 //     const usersAll = useSelector<State, User[]>(getAllUsers, shallowEqual);
 //
 //     const isSystemAdmin: boolean = loggedInUser && loggedInUser.systemAdministrator;
