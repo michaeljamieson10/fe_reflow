@@ -63,7 +63,7 @@ const Header: React.FC<{ loggedInUser: any, classes: any, onDSPRSelection: boole
                 <ListItem button onClick={() => {
                     dispatch(logout());
                     dispatch(getAppAccessToken());
-                    history.push('/about');
+                    history.push('/');
                 }}>
                     <ListItemText primary="Log Out" />
                 </ListItem>
@@ -96,7 +96,7 @@ const Header: React.FC<{ loggedInUser: any, classes: any, onDSPRSelection: boole
         <AppBar position="static" className="app-bar">
             <Toolbar>
 
-                <Typography variant="h3" color="inherit"  onClick={() => { history.push("/about") }} style={{ margin: 'auto', width: 'auto' }}>
+                <Typography variant="h3" color="inherit"  onClick={() => { history.push("/") }} style={{ margin: 'auto', width: 'auto' }}>
                     {/*<p className="h1 logo" style={{ padding: '0', margin: '0', position: 'absolute', whiteSpace: "nowrap", overflow: "hidden", left: "56px", right: "56px" }}>*/}
                         {/*<img src='/images/.png' alt="logo" style={{ height: '30px', top: '6px', position: 'relative', marginRight: '1px' }} />*/}
                         {/*Reflow<em style={{ color: '#7DAA55', fontSize: "80%", fontStyle: "normal" }}> Real</em>*/}
