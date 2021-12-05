@@ -49,13 +49,13 @@ export default createMuiTheme({
     h4: {
       fontFamily: "Roboto",
       fontSize: "1.75rem",
-      color: arcBlue,
+      color: "black",
       fontWeight: 700
     },
     h6: {
       fontWeight: 500,
       fontFamily: "Roboto",
-      color: arcBlue
+      color: "black"
     },
     subtitle1: {
       fontSize: "1.25rem",

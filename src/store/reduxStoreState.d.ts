@@ -42,6 +42,8 @@ interface Api {
 interface Entities {
     users: { [key: number]: User };
     clients:{[key: number]: Client };
+    agents:{[key: number]: Agent };
+
 }
 
 interface User {
@@ -58,4 +60,7 @@ interface User {
 interface Client {
     id: number;
     isActive: boolean;
+}
+interface Agent {
+    id: number;
 }

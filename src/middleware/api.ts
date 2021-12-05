@@ -67,11 +67,16 @@ const clientSchema = new Schema('clients', {
     idAttribute: client => client.id
 });
 
+const agentSchema = new Schema('agents', {
+    idAttribute: client => client.id
+});
+
 
 // Schemas for Grassp API responses.
 export const Schemas = {
     USER: userSchema,
     CLIENT: clientSchema,
+    AGENT: agentSchema,
     // USER_ARRAY: arrayOf(userSchema),
 };
 

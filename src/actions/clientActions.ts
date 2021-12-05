@@ -32,6 +32,7 @@ const clientCreator = ( userId) => {
                 "id" : userId
             }
     }
+    console.log("inside clientCreator", userId)
     return {
         [CALL_API]: {
             httpAction: 'POST',
