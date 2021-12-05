@@ -71,11 +71,6 @@ interface Props {
 }
 
 const mapStateToProps = (state: State) => {
-    // const users = getUsersByName(state);
-    // return {
-        // users,
-        // loggedInUser: getLoggedInUser(state),
-    // };
     return {
         loggedInUser: getLoggedInUser(state)
     }
@@ -84,9 +79,6 @@ const mapStateToProps = (state: State) => {
 const mapDispatchToProps = {
     createClient,
     createAgent
-    // getAllUsers,
-    // interceptAutocompleteSelected,
-    // createDSP,
-    // pressSpecialAdminButton
+
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ChooseRole)
