@@ -41,8 +41,10 @@ export default createMuiTheme({
     },
     h3: {
       fontFamily: "Roboto",
-      fontSize: "2.5rem",
-      color: arcBlue
+      fontWeight: 700,
+      fontSize: "2.0rem",
+      color: "black",
+      lineHeight: 1.5
     },
     h4: {
       fontFamily: "Roboto",

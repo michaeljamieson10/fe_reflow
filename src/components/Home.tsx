@@ -3,6 +3,7 @@ import { Card, CardHeader, CardContent, Grid, useMediaQuery, Typography, Button 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Link  } from 'react-router-dom';
 import openHouse from "../assets/openhouse.jpeg"
+import Footer from "./ui/Footer";
 
 const useStyles = makeStyles(theme => ({
   animation: {
@@ -170,6 +171,33 @@ const Home: React.FC<{}> = () => {
                 />
               </Grid>
             </Grid>
+          </Grid>
+          <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justifyContent="center"
+              style={{marginBottom:"3em", backgroundColor:"#56504F"}}
+          >
+            <Typography variant="h3" align="center" style={{color:"white"}}>
+              Redesigining the flow of
+            </Typography>
+            <Typography variant="h3" align="center" style={{color:"white"}}>
+            real estate transactions
+            </Typography>
+          </Grid>
+          <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justifyContent="center"
+              style={{marginBottom:"3em"}}
+          >
+            <Typography variant="h3" align="center" color={"primary"} >
+              Our Features
+            </Typography>
           </Grid>
         </Grid>
 

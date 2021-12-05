@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
-import { FormControlLabel, TextField, Button, Checkbox } from '@material-ui/core';
+import {FormControlLabel, TextField, Button, Checkbox, Grid} from '@material-ui/core';
 
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
     <div>
@@ -37,6 +37,14 @@ interface SignUpFormProps extends Partial<InjectedFormProps> {
 const SignUpForm = (props: SignUpFormProps) => {
     const { handleSubmit, enableButton } = props;
     return (
+        <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            style={{marginBottom:"3em"}}
+        >
         <form onSubmit={handleSubmit}>
             <Field name="firstName" type="text" component={renderField} label="First Name" />
             <Field name="lastName" type="text" component={renderField} label="Last Name" />
@@ -47,6 +55,7 @@ const SignUpForm = (props: SignUpFormProps) => {
                 Sign Up
             </Button>
         </form>
+        </Grid>
     );
 };
 

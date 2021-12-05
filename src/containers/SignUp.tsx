@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 
-import { Card, CardHeader, CardContent } from '@material-ui/core';
+import {Card, CardHeader, CardContent, Grid} from '@material-ui/core';
 
 import { createNewUser } from '../actions/userActions';
 import { attemptLogin } from '../actions/oauthActions';
@@ -68,8 +68,18 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
                 ref={(signupCont) => { this.signupCont = signupCont; }}
             >
                 {this.props.loggedInUser ? (
-                    <div>Hi</div>
+                    <div>You already have an account, please navigate to app</div>
                 ) : (
+                    <Grid
+                        container
+                        spacing={0}
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                        style={{
+                            marginTop:"2em",
+                            marginBottom:"3em"}}
+                    >
                         <Card className="card-with-form" style={{ boxShadow: 'none' }}>
                             <CardHeader
                                 title="Let's create your new reflow Account!"
@@ -85,6 +95,7 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
                                 <SignUpForm onSubmit={this.handleSubmit} enableButton={this.state.enableButton}/>
                             </CardContent>
                         </Card>
+                    </Grid>
                     )}       
             </div>
         );
