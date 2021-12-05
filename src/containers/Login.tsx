@@ -64,7 +64,7 @@ class Login extends Component<any, {errorMessage: string, enableButton: boolean}
             >
                 <Card style={{padding:"2em"}}>
 
-                <Typography variant="h3" align="center" color={"primary"} >
+                <Typography variant="h3" align="center" color={"primary"} gutterBottom>
                     Login
                 </Typography>
 

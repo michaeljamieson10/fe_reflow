@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 
-import {Card, CardHeader, CardContent, Grid} from '@material-ui/core';
+import {Card, CardHeader, CardContent, Grid, Typography} from '@material-ui/core';
 
 import { createNewUser } from '../actions/userActions';
 import { attemptLogin } from '../actions/oauthActions';
@@ -80,13 +80,16 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
                             marginTop:"2em",
                             marginBottom:"3em"}}
                     >
+
+                        <Typography variant="h3" align="center" color={"primary"} gutterBottom>
+                            Create Account
+                        </Typography>
                         <Card className="card-with-form" style={{ boxShadow: 'none' }}>
                             <CardHeader
-                                title="Let's create your new reflow Account!"
                                 subheader={
                                     <div>
                                         <div>Get started by filling this out. Do you already have an account?</div>
-                                        <Link to="/login">Log in.</Link>
+                                        <Link style={{ textDecoration: 'none', color:"#7A64D3"}}  to="/login">Log in.</Link>
                                     </div>
                                 }
                             />

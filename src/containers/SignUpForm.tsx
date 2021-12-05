@@ -51,9 +51,18 @@ const SignUpForm = (props: SignUpFormProps) => {
             <Field name="email" type="text" component={renderField} label="Email Address" />
             <Field name="password" type="password" component={renderField} label="Password" />
             <Field name="phoneNumber" type="text" component={renderField} label="Phone Number" />
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                style={{marginTop: "0.5em"}}
+                >
             <Button color="primary" variant="contained" onClick={handleSubmit} disabled={!enableButton} id="sign-up-button">
                 Sign Up
             </Button>
+            </Grid>
         </form>
         </Grid>
     );
