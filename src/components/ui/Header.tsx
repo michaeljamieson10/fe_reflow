@@ -25,11 +25,12 @@ const styles = {
 
     list: {
         width: 200,
+
     },
     fullList: {
         width: 'auto',
-    },
 
+    },
 };
 
 function ListItemLink(props) {
@@ -92,7 +93,9 @@ const Header: React.FC<{ loggedInUser: any, classes: any, onDSPRSelection: boole
                 <Divider />
             </List>;
 
-    return <div>
+
+    return    (
+        <>
         <AppBar position="static" className="app-bar">
             <Toolbar>
 
@@ -122,7 +125,8 @@ const Header: React.FC<{ loggedInUser: any, classes: any, onDSPRSelection: boole
                 {menu}
             </div>
         </Drawer>
-    </div>
+        </>
+)
 }
 
 export default withStyles(styles)(Header);

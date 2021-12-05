@@ -40,12 +40,13 @@ const useStyles = makeStyles(theme => ({
     }
   },
   mainContainer: {
+
     marginTop: "2em",
     [theme.breakpoints.down("md")]: {
       marginTop: "1em"
     },
     [theme.breakpoints.down("xs")]: {
-      marginTop: "0.5em"
+      marginTop: "0.5em",
     }
   },
   heroTextContainer: {
@@ -65,7 +66,7 @@ const useStyles = makeStyles(theme => ({
   icon: {
     marginLeft: "2em",
     [theme.breakpoints.down("xs")]: {
-      marginLeft: 0
+      marginLeft: 0,
     }
   },
   serviceContainer: {
@@ -113,12 +114,11 @@ const Home: React.FC<{}> = () => {
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   return (
       <Grid container direction="column" className={classes.mainContainer}>
-        <Grid item>
           {" "}
           {/*-----Hero Block-----*/}
           <Grid container justify="flex-end" alignItems="center" direction="row">
             <Grid sm item className={classes.heroTextContainer}>
-              <Typography variant="h2" align="center">
+              <Typography variant={matchesXS ? "h3" : "h2" } align="center">
                 The new way of doing
                 <br />
                 real estate
@@ -134,7 +134,6 @@ const Home: React.FC<{}> = () => {
               {/*>*/}
               <Grid
                   container
-                  spacing={0}
                   direction="column"
                   alignItems="center"
                   justifyContent="center"
@@ -153,6 +152,7 @@ const Home: React.FC<{}> = () => {
                   direction="column"
                   alignItems="center"
                   justifyContent="center"
+                  style={{marginBottom: "2em"}}
             >
               <Grid item
 
@@ -163,7 +163,7 @@ const Home: React.FC<{}> = () => {
                     src={openHouse}
                     style={{
                       height: matchesXS ? "23em" : matchesSM ? "25em" : "35em",
-                      width: matchesXS ? "30em" : matchesSM ? "40em" : "50em"
+                      width: matchesXS ? "25em" : matchesSM ? "40em" : "55em"
 
                       // [theme.breakpoints.down("md")]: {
                       //   height: "15em",
@@ -184,7 +184,7 @@ const Home: React.FC<{}> = () => {
               style={{marginBottom:"3em", backgroundColor:"#56504F"}}
           >
             <Typography variant="h3" align="center" style={{color:"white"}}>
-              Redesigining the flow of
+              Redesigning the flow of
             </Typography>
             <Typography variant="h3" align="center" style={{color:"white"}}>
             real estate transactions
@@ -244,8 +244,6 @@ const Home: React.FC<{}> = () => {
               </ListItem>
             </List>
           </Grid>
-        </Grid>
-
       </Grid>
   )
 }
