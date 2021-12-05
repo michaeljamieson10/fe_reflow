@@ -1,8 +1,11 @@
 import React from "react";
-import { Card, CardHeader, CardContent, Grid, useMediaQuery, Typography, Button } from "@material-ui/core";
+import {Card, CardHeader, CardContent, Grid, useMediaQuery, Typography, Button, ListItemText} from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Link  } from 'react-router-dom';
 import openHouse from "../assets/openhouse.jpeg"
+import {ListItem, List} from "@material-ui/core";
+import fiber_smart_record from "../assets/fiber_smart_record.svg"
+
 import Footer from "./ui/Footer";
 
 const useStyles = makeStyles(theme => ({
@@ -198,6 +201,48 @@ const Home: React.FC<{}> = () => {
             <Typography variant="h3" align="center" color={"primary"} >
               Our Features
             </Typography>
+            <List>
+              <ListItem>
+                <img
+                  src={fiber_smart_record}
+                  style={{ marginLeft: "-2.75em" }}
+                  alt="bullet point"
+                  />
+                <ListItemText>
+                  Digital first experience
+                  </ListItemText>
+              </ListItem>
+              <ListItem>
+                <img
+                    src={fiber_smart_record}
+                    style={{ marginLeft: "-2.75em" }}
+                    alt="bullet point"
+                />
+                <ListItemText>
+                  Identify key milestones
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <img
+                    src={fiber_smart_record}
+                    style={{ marginLeft: "-2.75em" }}
+                    alt="bullet point"
+                />
+                <ListItemText>
+                  Smart Notifications
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <img
+                    src={fiber_smart_record}
+                    style={{ marginLeft: "-2.75em" }}
+                    alt="bullet point"
+                />
+                <ListItemText>
+                  Track your deals
+                </ListItemText>
+              </ListItem>
+            </List>
           </Grid>
         </Grid>
 
