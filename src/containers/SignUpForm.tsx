@@ -57,7 +57,7 @@ const SignUpForm = (props: SignUpFormProps) => {
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
-                style={{marginTop: "0.5em"}}
+                style={{marginTop: "1.5em"}}
                 >
             <Button color="primary" variant="contained" onClick={handleSubmit} disabled={!enableButton} id="sign-up-button">
                 Sign Up

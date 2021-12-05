@@ -51,7 +51,7 @@ const LoginForm = (props: LoginFormProps) => {
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
-                style={{marginTop:"0.2em",marginBottom: "0.5em"}}
+                style={{marginTop:"0.8em",marginBottom: "0.5em"}}
             >
             <Button color="primary" variant="contained" onClick={handleSubmit} disabled={!enableButton}>
                 Log In
