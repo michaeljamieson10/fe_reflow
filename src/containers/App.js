@@ -25,6 +25,7 @@ import FakeLogin from "./FakeLogin";
 import ClientForm from "./ClientForm";
 import ClientManagement from "./ClientManagement";
 import Home from "../components/Home"
+import ChooseRole from "./ChooseRole";
 
 // const theme = createMuiTheme({
 //   overrides: {
@@ -121,7 +122,7 @@ class App extends Component {
               </Route>
               <Route path="/login" component={Login} />
               <Route path="/about" component={Home} />
-              {/*<Route path="/login" component={FakeLogin} />*/}
+              <Route path="/role" component={ChooseRole} />
               <Route path="/client" component={ClientManagement} />
               <Route path="/signup" component={SignUp} />
             </Switch>

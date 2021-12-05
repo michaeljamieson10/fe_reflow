@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
-import { Button, TextField } from '@material-ui/core';
+import {Button, Grid, TextField} from '@material-ui/core';
 
 const validate = values => {
     const errors:any = {};
@@ -41,12 +41,22 @@ const LoginForm = (props: LoginFormProps) => {
     }
 
     return (
+
         <form onSubmit={handleSubmit} onKeyPress={e => keyPressCallback(e)}>
             <Field name="email" type="text" component={renderField} label="Email" />
             <Field name="password" type="password" component={renderField} label="Password" />
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                style={{marginTop:"0.2em",marginBottom: "0.5em"}}
+            >
             <Button color="primary" variant="contained" onClick={handleSubmit} disabled={!enableButton}>
                 Log In
             </Button>
+            </Grid>
         </form>
     )
 };

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 
-import {Card, CardHeader, CardContent, Grid} from "@material-ui/core";
+import {Card, CardHeader, CardContent, Grid, Typography} from "@material-ui/core";
 
 import { attemptLogin } from "../actions/oauthActions";
 import { clearErrorMessage } from "../actions/apiUIHelperActions";
@@ -62,34 +62,55 @@ class Login extends Component<any, {errorMessage: string, enableButton: boolean}
                 justifyContent="center"
                 style={{marginBottom:"3em"}}
             >
+                <Card style={{padding:"2em"}}>
 
-            <Card className="login-section card-with-form">
+                <Typography variant="h3" align="center" color={"primary"} >
+                    Login
+                </Typography>
+
+
                 <CardHeader
-                    title="Log in with your reflow Account"
+
                     subheader={
-                        <div>
+                        <Grid
+                            container
+                            spacing={0}
+                            direction="column"
+                            alignItems="center"
+                            justifyContent="center"
+                        >
                             Don't have an account?
                             <div>
-                                <Link to="/signup">Sign Up!</Link>
+                                <Link style={{ textDecoration: 'none', color:"#7A64D3" }} to="/signup">Sign Up!</Link>
                                 {this.state.errorMessage && <div className="error">{this.state.errorMessage}</div>}
                             </div>
-                        </div>
+                        </Grid>
                     }
                 />
-                <Grid
-                    container
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justifyContent="center"
-                >
+
                 <CardContent>
+                    <Grid
+                        container
+                        spacing={0}
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                    >
                     <LoginForm onSubmit={this.handleSubmit} enableButton={this.state.enableButton} />
-                    <div className="forgot-pass">
-                        <Link to="/forgot-password">Forgot your password?</Link>
-                    </div>
+                        <Grid
+                            container
+                            spacing={0}
+                            direction="column"
+                            alignItems="center"
+                            justifyContent="center"
+                            style={{marginTop: "0.5em"}}
+
+                        >
+                        <Link style={{ textDecoration: 'none', color:"#7A64D3" }} to="/forgot-password">Forgot your password?</Link>
+                        </Grid>
+                    </Grid>
                 </CardContent>
-                </Grid>
+
             </Card>
             </Grid>
         )
