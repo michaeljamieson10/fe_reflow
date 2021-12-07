@@ -34,7 +34,7 @@ const ClientForm = (props: ClientFormProps & InjectedFormProps<{}, ClientFormPro
         <form onSubmit={handleSubmit} >
             <DialogContent>
                  <Field name="name" type="text" component={renderField} label="Name" />
-                <Field name="userId" component={renderField} autocomplete users={users} label="User id" dataLoaded={usersLoaded}  />
+                <Field name="userId" component={renderField} users={users} label="User id" dataLoaded={usersLoaded}  />
             </DialogContent>
             <DialogActions>
                 <Button color='primary' onClick={onCancel}>Cancel</Button>

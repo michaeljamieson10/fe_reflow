@@ -9,7 +9,6 @@ const variantIcon = {
   warning: <Warning />,
   error: <Error />,
   info: <Info />,
-  download: <div style={{background: "#fff", height: 60, width: 60, border: "1px solid transparent", borderRadius: 15}}><img src={"/images/grasspLogo.svg"} alt="grassp-logo" style={{height: 60, width: 60}}/></div>
 }
 
 const styles = theme => ({

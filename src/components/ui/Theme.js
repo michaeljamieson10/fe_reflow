@@ -52,20 +52,32 @@ export default createMuiTheme({
       color: "black",
       fontWeight: 700
     },
+    h5: {
+      fontFamily: "Roboto",
+      fontSize: "1.55rem",
+      color: "black",
+      fontWeight: 700
+    },
     h6: {
       fontWeight: 500,
       fontFamily: "Roboto",
       color: "black"
     },
+    h7: {
+      fontFamily: "Roboto",
+      fontSize: "0.55rem",
+      color: "black",
+      fontWeight: 700
+    },
     subtitle1: {
       fontSize: "1.25rem",
       fontWeight: 300,
-      color: arcGrey
+      color: "black"
     },
     subtitle2: {
-      color: "white",
-      fontWeight: 300,
-      fontSize: "1.25rem"
+      color: "black",
+      fontWeight: 370,
+      fontSize: "0.85rem"
     },
     body1: {
       fontSize: "1.25rem",

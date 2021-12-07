@@ -72,7 +72,7 @@ const agentSchema = new Schema('agents', {
 });
 
 
-// Schemas for Grassp API responses.
+// Schemas for Reflow API responses.
 export const Schemas = {
     USER: userSchema,
     CLIENT: clientSchema,

@@ -38,7 +38,7 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
         const responseFunc = response => {
             if (!response.error) {
                 // window.ca("send", "signup_button_clicked", "sign_up_page", "Signup", "click", "sign_up");
-                this.props.attemptLogin(userSignUpValues.email.trim(), userSignUpValues.password, "/agentOrNo");
+                this.props.attemptLogin(userSignUpValues.email.trim(), userSignUpValues.password, "/role");
             } else {
                 const emailAlreadyUsedExceptionRegularExpression = /Email '.*' is already used./;
                 if (response.error.match(emailAlreadyUsedExceptionRegularExpression) !== null) {

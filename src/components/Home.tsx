@@ -4,7 +4,8 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Link  } from 'react-router-dom';
 import openHouse from "../assets/openhouse.jpeg"
 import {ListItem, List} from "@material-ui/core";
-import fiber_smart_record from "../assets/fiber_smart_record.svg"
+import fiber_smart_record from "../assets/fiber_smart_record.svg";
+import Brightness1Icon from '@material-ui/icons/Brightness1';
 
 import Footer from "./ui/Footer";
 
@@ -140,7 +141,7 @@ const Home: React.FC<{}> = () => {
                   style={{marginBottom:"3em"}}
               >
                 <Grid item style={{marginBottom: "1em"}}>
-                  <Button component={Link} to="/LOL"  variant={"contained"} color={"primary"} style={{paddingLeft: "2.9em",paddingRight: "2.9em"}}className={classes.learnButton}> Get Started</Button>
+                  <Button component={Link} to="/rea"  variant={"contained"} color={"primary"} style={{paddingLeft: "2.9em",paddingRight: "2.9em"}}className={classes.learnButton}> Get Started</Button>
                 </Grid>
                 <Grid item>
                   <Button variant={"outlined"} color={"primary"} >Request Demo</Button>
@@ -203,41 +204,45 @@ const Home: React.FC<{}> = () => {
             </Typography>
             <List>
               <ListItem>
-                <img
-                  src={fiber_smart_record}
-                  style={{ marginLeft: "-2.75em" }}
-                  alt="bullet point"
-                  />
+                {/*<img*/}
+                {/*  src={fiber_smart_record}*/}
+                {/*  style={{ marginLeft: "-2.75em" }}*/}
+                {/*  alt="bullet point"*/}
+                {/*  />*/}
+                <Brightness1Icon fontSize="small" style={{ marginLeft: "-2.75em", paddingRight:"0.5em" }}/>
                 <ListItemText>
                   Digital first experience
                   </ListItemText>
               </ListItem>
               <ListItem>
-                <img
-                    src={fiber_smart_record}
-                    style={{ marginLeft: "-2.75em" }}
-                    alt="bullet point"
-                />
+                {/*<img*/}
+                {/*    src={fiber_smart_record}*/}
+                {/*    style={{ marginLeft: "-2.75em" }}*/}
+                {/*    alt="bullet point"*/}
+                {/*/>*/}
+                <Brightness1Icon fontSize="small" style={{ marginLeft: "-2.75em", paddingRight:"0.5em" }}/>
                 <ListItemText>
                   Identify key milestones
                 </ListItemText>
               </ListItem>
               <ListItem>
-                <img
-                    src={fiber_smart_record}
-                    style={{ marginLeft: "-2.75em" }}
-                    alt="bullet point"
-                />
+                {/*<img*/}
+                {/*    src={fiber_smart_record}*/}
+                {/*    style={{ marginLeft: "-2.75em" }}*/}
+                {/*    alt="bullet point"*/}
+                {/*/>*/}
+                <Brightness1Icon fontSize="small" style={{ marginLeft: "-2.75em", paddingRight:"0.5em" }}/>
                 <ListItemText>
                   Smart Notifications
                 </ListItemText>
               </ListItem>
               <ListItem>
-                <img
-                    src={fiber_smart_record}
-                    style={{ marginLeft: "-2.75em" }}
-                    alt="bullet point"
-                />
+                {/*<img*/}
+                {/*    src={fiber_smart_record}*/}
+                {/*    style={{ marginLeft: "-2.75em" }}*/}
+                {/*    alt="bullet point"*/}
+                {/*/>*/}
+                <Brightness1Icon fontSize="small" style={{ marginLeft: "-2.75em", paddingRight:"0.5em" }}/>
                 <ListItemText>
                   Track your deals
                 </ListItemText>

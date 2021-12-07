@@ -26,6 +26,11 @@ import ClientForm from "./ClientForm";
 import ClientManagement from "./ClientManagement";
 import Home from "../components/Home"
 import ChooseRole from "./ChooseRole";
+import SetUpAgentProfileForm from "./SetUpAgentProfileForm";
+import READashboard from "./READashboard";
+import REABuyerQuantity from "./REABuyerQuantity";
+import REABuyerEmailForm from "./REABuyerEmailForm";
+import REABuyerEmail from "./REABuyerEmail";
 
 // const theme = createMuiTheme({
 //   overrides: {
@@ -121,10 +126,15 @@ class App extends Component {
                 <Redirect to="/about"/>
               </Route>
               <Route path="/login" component={Login} />
-              <Route path="/about" component={Home} />
-              <Route path="/role" component={ChooseRole} />
-              <Route path="/client" component={ClientManagement} />
-              <Route path="/signup" component={SignUp} />
+              {/*<Route path="/LOL" component={SetUpAgentProfileForm} />*/}
+              <Route exact path="/rea" component={READashboard} />
+              <Route exact path="/rea/invite_buyer" component={REABuyerEmail}/>
+              <Route exact path="/rea/invite_buyer/quantity" component={REABuyerQuantity} />
+              <Route exact path="/rea/invite_buyer/send_emails" component={REABuyerQuantity} />
+              <Route exact path="/about" component={Home} />
+              <Route exact path="/role" component={ChooseRole} />
+              <Route exact path="/client" component={ClientManagement} />
+              <Route exact path="/signup" component={SignUp} />
             </Switch>
 
           </React.Fragment>
