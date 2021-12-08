@@ -12,6 +12,11 @@ import {
 import {CLEAR_API_ERROR_MESSAGE} from '../actions/apiUIHelperActions';
 import merge from 'lodash/merge';
 import entitiesReducer, {initialState as entitiesInitialState} from './entitiesReducer';
+import {
+    CREATE_TRANSACTION,
+    CREATE_TRANSACTION_FAILURE,
+    CREATE_TRANSACTION_SUCCESS
+} from "../actions/transactionActions";
 
 const initialState = {accessToken: '', loggedInUserId: '', errorMessage: '', entities: entitiesInitialState};
 
@@ -47,6 +52,9 @@ export default (state = initialState, action) => {
         case CREATE_CLIENT:
         case CREATE_CLIENT_SUCCESS:
         case CREATE_CLIENT_FAILURE:
+        case CREATE_TRANSACTION:
+        case CREATE_TRANSACTION_SUCCESS:
+        case CREATE_TRANSACTION_FAILURE:
 
         default:
             return state;

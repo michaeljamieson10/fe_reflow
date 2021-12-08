@@ -68,7 +68,10 @@ const clientSchema = new Schema('clients', {
 });
 
 const agentSchema = new Schema('agents', {
-    idAttribute: client => client.id
+    idAttribute: agent => agent.id
+});
+const transactionSchema = new Schema('transactions', {
+    idAttribute: transaction => transaction.id
 });
 
 
@@ -77,6 +80,7 @@ export const Schemas = {
     USER: userSchema,
     CLIENT: clientSchema,
     AGENT: agentSchema,
+    TRANSACTION: transactionSchema,
     // USER_ARRAY: arrayOf(userSchema),
 };
 

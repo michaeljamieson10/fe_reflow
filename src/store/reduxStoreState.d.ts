@@ -8,6 +8,7 @@ export interface State {
 interface Form {
     ClientForm?: GeneralForm;
     reaBuyerEmailForm?: GeneralForm;
+    reaCreateTransactionForm?: GeneralForm;
 }
 
 interface GeneralForm {
@@ -44,6 +45,7 @@ interface Entities {
     users: { [key: number]: User };
     clients:{[key: number]: Client };
     agents:{[key: number]: Agent };
+    transactions:{[key: number]: Transaction };
 
 }
 
@@ -64,4 +66,10 @@ interface Client {
 }
 interface Agent {
     id: number;
+}
+interface Transaction {
+    id: number;
+    firstName: string;
+    lastName: string;
+    agent: Agent;
 }

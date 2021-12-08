@@ -30,7 +30,8 @@ import SetUpAgentProfileForm from "./SetUpAgentProfileForm";
 import READashboard from "./READashboard";
 import REABuyerQuantity from "./REABuyerQuantity";
 import REABuyerEmailForm from "./REABuyerEmailForm";
-import REABuyerEmail from "./REABuyerEmail";
+import REABuyerEmail from "./REABuyerEmailAdd";
+import REACreateTransaction from "./REACreateTransaction";
 
 // const theme = createMuiTheme({
 //   overrides: {
@@ -128,6 +129,7 @@ class App extends Component {
               <Route path="/login" component={Login} />
               {/*<Route path="/LOL" component={SetUpAgentProfileForm} />*/}
               <Route exact path="/rea" component={READashboard} />
+              <Route exact path="/rea/create_transaction" component={REACreateTransaction}/>
               <Route exact path="/rea/invite_buyer" component={REABuyerEmail}/>
               <Route exact path="/rea/invite_buyer/quantity" component={REABuyerQuantity} />
               <Route exact path="/rea/invite_buyer/send_emails" component={REABuyerQuantity} />

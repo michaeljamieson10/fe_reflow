@@ -30,12 +30,12 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
     </div>
 );
 
-interface REABuyerEmailFormProps extends Partial<InjectedFormProps> {
+interface REACreateTransactionFormProps extends Partial<InjectedFormProps> {
     handleSubmit?: any;
     onSubmit?: any;
     enableButton: boolean;
 }
-const REABuyerEmailForm = (props: REABuyerEmailFormProps) => {
+const REACreateTransactionForm = (props: REACreateTransactionFormProps) => {
     const { handleSubmit, enableButton } = props;
 
     const keyPressCallback = (event) => {
@@ -49,7 +49,6 @@ const REABuyerEmailForm = (props: REABuyerEmailFormProps) => {
         <form onSubmit={handleSubmit} onKeyPress={e => keyPressCallback(e)}>
             <Field name="firstName" type="text" component={renderField} label="First Name" />
             <Field name="lastName" type="text" component={renderField} label="Last Name" />
-            <Field name="email" type="text" component={renderField} label="Email" />
             <Grid
                 container
                 spacing={0}
@@ -59,14 +58,14 @@ const REABuyerEmailForm = (props: REABuyerEmailFormProps) => {
                 style={{marginTop:"0.8em",marginBottom: "0.5em"}}
             >
                 <Button color="primary" variant="contained" onClick={handleSubmit} disabled={!enableButton}>
-                    Send Invite
+                    Create Transaction
                 </Button>
             </Grid>
         </form>
     )
 };
 
-export default reduxForm<any, REABuyerEmailFormProps>({
-    form: 'reaBuyerEmailForm', // a unique identifier for this form
+export default reduxForm<any, REACreateTransactionFormProps>({
+    form: 'reaCreateTransactionForm', // a unique identifier for this form
     validate
-})(REABuyerEmailForm)
+})(REACreateTransactionForm)

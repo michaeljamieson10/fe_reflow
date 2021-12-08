@@ -16,7 +16,7 @@ import SignUpForm from './SignUpForm';
 import {history} from "../index";
 import REABuyerEmailForm from "./REABuyerEmailForm";
 
-class REABuyerEmail extends Component<any, { errorMessage: string, enableButton: boolean, user?: any }> {
+class REABuyerEmailAdd extends Component<any, { errorMessage: string, enableButton: boolean, user?: any }> {
     signupCont;
     state = {
         errorMessage: null,
@@ -62,37 +62,37 @@ class REABuyerEmail extends Component<any, { errorMessage: string, enableButton:
     };
 
     render() {
-        return (<div>ls</div>
-                    // <Grid
-                    //     container
-                    //     spacing={0}
-                    //     direction="column"
-                    //     alignItems="center"
-                    //     justifyContent="center"
-                    //     style={{
-                    //         marginTop:"2em"
-                    //         }}
-                    // >
-                    //     <Card style={{padding:"0.7em"}}>
-                    //         <Typography align={"center"}  variant={"h5"}  gutterBottom>Invite New Buyer</Typography>
-                    //         {/* onClick={handleSubmit} disabled={!enableButton}*/}
-                    //         <Divider style={{marginBottom:"0.5em"}} />
-                    //         <Typography align={"center"}  variant={"subtitle1"}  gutterBottom>Send Invite Text</Typography>
-                    //         <Typography align={"center"}  variant={"subtitle2"}  >
-                    //             We’ll text each buyer a link
-                    //         </Typography>
-                    //         <Typography align={"center"}  variant={"subtitle2"}  >
-                    //              to create their account
-                    //         </Typography>
-                    //     <Card className="card-with-form" style={{ boxShadow: 'none' }}>
-                    //
-                    //         <CardContent>
-                    //             {this.state.errorMessage && <div className={'msg-style error'}>{this.state.errorMessage}</div>}
-                    //             <REABuyerEmailForm onSubmit={this.handleSubmit} enableButton={this.state.enableButton}/>
-                    //         </CardContent>
-                    //     </Card>
-                    //     </Card>
-                    // </Grid>
+        return (
+                    <Grid
+                        container
+                        spacing={0}
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                        style={{
+                            marginTop:"2em"
+                            }}
+                    >
+                        <Card style={{padding:"0.7em"}}>
+                            <Typography align={"center"}  variant={"h5"}  gutterBottom>Invite New Buyer</Typography>
+                            {/* onClick={handleSubmit} disabled={!enableButton}*/}
+                            <Divider style={{marginBottom:"0.5em"}} />
+                            <Typography align={"center"}  variant={"subtitle1"}  gutterBottom>Send Invite Text</Typography>
+                            <Typography align={"center"}  variant={"subtitle2"}  >
+                                We’ll text each buyer a link
+                            </Typography>
+                            <Typography align={"center"}  variant={"subtitle2"}  >
+                                 to create their account
+                            </Typography>
+                        <Card className="card-with-form" style={{ boxShadow: 'none' }}>
+
+                            <CardContent>
+                                {this.state.errorMessage && <div className={'msg-style error'}>{this.state.errorMessage}</div>}
+                                <REABuyerEmailForm onSubmit={this.handleSubmit} enableButton={this.state.enableButton}/>
+                            </CardContent>
+                        </Card>
+                        </Card>
+                    </Grid>
                 )
 
     }
@@ -107,5 +107,5 @@ const mapDispatchToProps = {
     createNewUser,
     attemptLogin,
 }
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(REABuyerEmail));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(REABuyerEmailAdd));
 

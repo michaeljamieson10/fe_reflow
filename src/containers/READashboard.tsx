@@ -111,7 +111,7 @@ function READashBoard(props: Props) {
             <Grid container direction={"row"}>
                 <Typography  variant={"subtitle2"} style={{marginRight: "10em"}} gutterBottom>Buyers</Typography>
                 {/* onClick={handleSubmit} disabled={!enableButton}*/}
-                <Button component={Link}  to="/rea/invite_buyer" color="primary" variant="contained"
+                <Button component={Link}  to="/rea/create_transaction" color="primary" variant="contained"
                     // style={{
                     //     height: 45,
                     //     width: 100,}}
