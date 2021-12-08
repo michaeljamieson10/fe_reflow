@@ -75,6 +75,9 @@ const transactionSchema = new Schema('transactions', {
 });
 
 
+transactionSchema.define({
+    agent: agentSchema,
+});
 // Schemas for Reflow API responses.
 export const Schemas = {
     USER: userSchema,

@@ -26,38 +26,14 @@ export const CREATE_TRANSACTION_SUCCESS = 'CREATE_TRANSACTION_SUCCESS';
 export const CREATE_TRANSACTION_FAILURE = 'CREATE_TRANSACTION_FAILURE';
 
 const transactionCreator = (firstName,lastName, agentId) => {
-    // const transaction = {
-    //     "transaction":
-    //         {
-    //             // "id" : transactionId,
-    //             firstName,
-    //             lastName,
-    //             agent:{id: agentId}
-    //         }
-    // }
-    // let coupon = {
-    //     dspr: { id: dsprId },
-    //     code,
-    //     isFlower,
-    //     discountAmount,
-    //     discountType,
-    //     maxDiscountAmount,
-    //     maxPerUserUsageTimes,
-    //     isFirstTimeUserOnly,
-    //     startTimestamp,
-    //     endTimestamp,
-    //     id,
-    //     dailyDealDays: days,
-    //     quantityRequired,
-    //     unit
-    // };
+
     let transaction = {
-        "transaction":
-            {
+        // "transaction":
+        //     {
             firstName,
             lastName,
             agent:{id: agentId}
-        }
+        // }
     }
     console.log("inside transactionCreator", transaction)
     return {

@@ -25,61 +25,17 @@ type newTransactionValues = {
     reaId: Number;
 }
 interface REACreateTransactionProps {
-    // createCoupon: (
-    //     dsprId: number,
-    //     code: string,
-    //     isFlower: boolean,
-    //     discountAmount: string,
-    //     discountType: string,
-    //     maxDiscountAmount: string,
-    //     maxPerUserUsageTimes: string,
-    //     isFirstTimeUserOnly: string,
-    //     startTimestamp: any,
-    //     endTimestamp: any,
-    //     userId: number,
-    //     categories: string[],
-    //     days: string[],
-    //     quantityRequired: string,
-    //     unit: string,
-    //     id: any
-    // ) => any;
     createTransaction:(
         firstName: string,
         lastName: string,
         userId: number
     ) => any;
-    // toggler: (couponId: number) => any;
-    // dspr: DSPR;
-    // searchCoupons: (partialCode: string) => any;
-    // getAllCoupons: () => any;
-    // coupons: (Omit<Coupon, 'user'> & { user: User })[];
-    // categories: DspProductCategory[];
-    // interceptAutocompleteSelected: (value: number) => any;
-    // users?: { value: number, text: string }[];
-    // tableHeight: number;
-    // isManagerForCurrentDSPR: boolean;
-    // isSystemAdmin: boolean;
+
 }
 
-// class REACreateTransaction extends Component<any, { errorMessage: string, enableButton: boolean, user?: any }> {
 const REACreateTransaction: React.FC<REACreateTransactionProps> = props => {
-    // signupCont;
-    // state = {
-    //     errorMessage: null,
-    //     enableButton: true,
-    // }
+
     const {
-        // coupons,
-        // dspr,
-        // categories,
-        // createCoupon,
-        // toggler,
-        // searchCoupons,
-        // getAllCoupons,
-        // interceptAutocompleteSelected,
-        // tableHeight,
-        // isManagerForCurrentDSPR,
-        // isSystemAdmin
         createTransaction,
 
     } = props;
@@ -104,12 +60,7 @@ const REACreateTransaction: React.FC<REACreateTransactionProps> = props => {
 
             } else {
             }
-            console.log(values, "IM HERE")
         };
-            // alert(values);
-        console.log(values, "IM HERE")
-        // createTransaction();
-        //     dispatch(createTransaction(values.firstName, values.lastName, loggedInUser.id));
 
         // dispatch<any>(getUsersBySearch(userSearchTerm))
         //     .then((response) => {
