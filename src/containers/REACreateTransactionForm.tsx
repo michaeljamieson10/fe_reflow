@@ -44,6 +44,9 @@ const REACreateTransactionForm = (props: REACreateTransactionFormProps) => {
         }
     }
 
+    const handleSubmiter = values => {
+        alert("OL")
+    }
     return (
 
         <form onSubmit={handleSubmit} onKeyPress={e => keyPressCallback(e)}>
@@ -57,7 +60,8 @@ const REACreateTransactionForm = (props: REACreateTransactionFormProps) => {
                 justifyContent="center"
                 style={{marginTop:"0.8em",marginBottom: "0.5em"}}
             >
-                <Button color="primary" variant="contained" onClick={handleSubmit} disabled={!enableButton}>
+                {/*disabled={!enableButton}  onClick={handleSubmit} */}
+                <Button color="primary" variant="contained" onClick={handleSubmit}>
                     Create Transaction
                 </Button>
             </Grid>
