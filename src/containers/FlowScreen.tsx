@@ -142,8 +142,9 @@ const FlowScreen: React.FC<FlowScreenProps> = props => {
                     </Grid>
                 </Card>
                 <Card style={{padding:"2em"}}>
-                    <Grid container direction={"row"}>
+                    <Grid container justify="space-between" direction={"row"}>
                         <Typography  variant={"h6"} style={{marginRight: "10em"}} gutterBottom>Your Flow</Typography>
+                        <Typography  variant={"subtitle2"} style={{marginRight: "10em"}} gutterBottom>Click steps to view detail</Typography>
                     </Grid>
                     <Divider style={{marginBottom:"2em"}} />
                     {/*<Grid container direction={"row"} style={{padding:"2em"}}>*/}
