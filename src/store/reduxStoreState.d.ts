@@ -73,3 +73,33 @@ interface Transaction {
     lastName: string;
     agent: Agent;
 }
+// ENUM('one_hundred','two_hundred','three_hundred','four_hundred','five_hundred','six_hundred','seven_hundred','eight_hundred','nine_hundred','one_million')")
+type PriceByHundredsType = 'one_hundred' | 'two_hundred' | 'three_hundred' | 'four_hundred' | 'five_hundred'| 'six_hundred' | 'seven_hundred'| 'eight_hundred' | 'nine_hundred'| 'one_million';
+type HomeCriteriaStatusType = 'not_started' | 'in_progress' | 'completed';
+//"ENUM('not_started', 'in_progress', 'completed')")
+// "ENUM('one', 'two', 'three', 'four', 'five')")
+type RoomAmountType = 'one' | 'two' | 'three' | 'four' | 'five';
+// type DiscountType = 'one_hundred' | 'two_hundred' | 'three_hundred' | 'four_hundred' | 'five_hundred';
+interface HomeCriteria {
+    id: number;
+    transaction: Transaction;
+    homeCriteriaStatusType : HomeCriteriaStatusType;
+    minPrice: PriceByHundredsType;
+    maxPrice: PriceByHundredsType;
+    amountOfBed: RoomAmountType;
+    amountOfBaths: RoomAmountType;
+    house: boolean;
+    multifamily: boolean;
+    condocoop: boolean;
+    townhome: boolean;
+    basement: boolean;
+    centralair: boolean;
+    pool: boolean;
+    waterfront: boolean;
+    cityOne: boolean;
+    cityTwo: boolean;
+    cityThree: boolean;
+    cityFour: boolean;
+    cityFive: boolean;
+    createdTimestamp: string;
+}
