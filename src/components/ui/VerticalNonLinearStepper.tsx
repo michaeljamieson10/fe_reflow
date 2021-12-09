@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function getSteps() {
-    return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+    return ['Home Criteria', 'Pre-Approval', 'Accepted Offer', 'Home Inspection', 'Contracts Signed','Appraisal','Loan Commitment','Homeowners Insurance','Clear to Close','Final Walkthrough','Closing'];
 }
 
 function getStepContent(step: number) {
@@ -114,9 +114,9 @@ export default function VerticalNonLinearStepper() {
                                                   {label}
                                                      </StepButton>
 
-                        <StepContent>
-                            <Typography>{getStepContent(index)}</Typography>
-                        </StepContent>
+                        {/*<StepContent>*/}
+                        {/*    <Typography>{getStepContent(index)}</Typography>*/}
+                        {/*</StepContent>*/}
                     </Step>
                 ))}
             </Stepper>
