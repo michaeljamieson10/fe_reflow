@@ -5,7 +5,7 @@ import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {StepContent, StepLabel} from "@material-ui/core";
+import {Grid, StepContent, StepLabel} from "@material-ui/core";
 import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -144,10 +144,12 @@ export default function VerticalNonLinearStepper() {
                                                      </StepButton>
 
                         <StepContent>
-                            {/*<Typography>{getStepContent(index)}</Typography>*/}
+                            <Grid container direction={"row"}>
                             <Button component={Link} to={getStepsRoutes(index)} color="primary" variant="contained"  >
                                 View Details
                             </Button>
+                            </Grid>
+
                         </StepContent>
                     </Step>
                 ))}
