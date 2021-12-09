@@ -6,6 +6,7 @@ import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {StepContent, StepLabel} from "@material-ui/core";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -41,6 +42,34 @@ function getStepContent(step: number) {
         default:
             return 'Unknown step';
     }
+}
+function getStepsRoutes(step: number){
+    switch(step){
+        case 0:
+            return '/home_criteria';
+        case 1:
+            return '/pre_approval';
+        case 2:
+            return 'accepted_offer';
+        case 3:
+            return '/home_inspection';
+        case 4:
+            return '/contracts_signed';
+        case 5:
+            return '/appraisal';
+        case 6:
+            return '/loan_commitment';
+        case 7:
+            return '/homeowners_insurance';
+        case 8:
+            return '/clear_to_close';
+        case 9:
+            return '/final-walkthrough';
+        case 10:
+            return '/closing';
+
+    }
+
 }
 
 export default function VerticalNonLinearStepper() {
@@ -114,9 +143,12 @@ export default function VerticalNonLinearStepper() {
                                                   {label}
                                                      </StepButton>
 
-                        {/*<StepContent>*/}
-                        {/*    <Typography>{getStepContent(index)}</Typography>*/}
-                        {/*</StepContent>*/}
+                        <StepContent>
+                            {/*<Typography>{getStepContent(index)}</Typography>*/}
+                            <Button component={Link} to={getStepsRoutes(index)} color="primary" variant="contained"  >
+                                View Details
+                            </Button>
+                        </StepContent>
                     </Step>
                 ))}
             </Stepper>
