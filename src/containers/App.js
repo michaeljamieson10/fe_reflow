@@ -33,6 +33,7 @@ import REABuyerEmailForm from "./REABuyerEmailForm";
 import REABuyerEmail from "./REABuyerEmailAdd";
 import REACreateTransaction from "./REACreateTransaction";
 import FlowScreen from "./FlowScreen";
+import HomeCriteriaScreen from "./HomeCriteriaScreen";
 
 // const theme = createMuiTheme({
 //   overrides: {
@@ -138,6 +139,7 @@ class App extends Component {
               <Route exact path="/role" component={ChooseRole} />
               <Route exact path="/client" component={ClientManagement} />
               <Route exact path="/dashboard/flow" component={FlowScreen} />
+              <Route exact path="/home_criteria" component={HomeCriteriaScreen} />
               <Route exact path="/signup" component={SignUp} />
             </Switch>
 

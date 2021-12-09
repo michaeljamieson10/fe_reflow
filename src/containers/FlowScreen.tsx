@@ -86,7 +86,7 @@ const FlowScreen: React.FC<FlowScreenProps> = props => {
                 justifyContent="center"
                 style={{marginBottom:"3em"}}
             >
-                <Card style={{padding:"2em",marginTop:"2em", marginBottom:"2em"}}>
+                <Card style={{marginTop:"2em", marginBottom:"2em"}}>
                     <Grid
                         container
                         direction="row"
@@ -102,6 +102,7 @@ const FlowScreen: React.FC<FlowScreenProps> = props => {
                                 alignItems="center"
                                 justifyContent="center"
                                 // style={{marginBottom:"3em"}}
+                                style={{padding:"2em"}}
                             >
                                 <Typography variant={"subtitle2"}>Flow Complete</Typography>
                                 <Typography variant={"h6"}>0/11</Typography>
@@ -117,7 +118,8 @@ const FlowScreen: React.FC<FlowScreenProps> = props => {
                                 direction="column"
                                 alignItems="center"
                                 justifyContent="center"
-                                // style={{marginBottom:"3em"}}
+
+                                style={{padding:"2em"}}
                             >
                                 <Typography variant={"subtitle2"}>Current Flow</Typography>
                                 <Box bgcolor="secondary.main" color={"white"} m={1} style={{padding:"0.2em"}}>

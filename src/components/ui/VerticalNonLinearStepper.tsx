@@ -11,8 +11,8 @@ import {Link} from "react-router-dom";
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            // width: '100%',
-            width: '50em',
+            width: '100%',
+            // width: '50em',
         },
         button: {
             marginRight: theme.spacing(1),
