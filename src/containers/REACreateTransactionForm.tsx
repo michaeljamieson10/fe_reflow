@@ -44,9 +44,6 @@ const REACreateTransactionForm = (props: REACreateTransactionFormProps) => {
         }
     }
 
-    const handleSubmiter = values => {
-        alert("OL")
-    }
     return (
 
         <form onSubmit={handleSubmit} onKeyPress={e => keyPressCallback(e)}>

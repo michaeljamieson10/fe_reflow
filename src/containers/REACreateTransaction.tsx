@@ -27,8 +27,7 @@ type newTransactionValues = {
 interface REACreateTransactionProps {
     createTransaction:(
         firstName: string,
-        lastName: string,
-        userId: number
+        lastName: string
     ) => any;
 
 }
@@ -75,7 +74,8 @@ const REACreateTransaction: React.FC<REACreateTransactionProps> = props => {
         //         }
         //         setIsLoading(false);
         //     })
-        createTransaction(values.firstName, values.lastName, loggedInUser.id);
+        createTransaction(values.firstName, values.lastName);
+        history.push("/dashboard/flow");
 
 
 

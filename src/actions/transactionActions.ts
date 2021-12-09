@@ -25,14 +25,13 @@ export const CREATE_TRANSACTION = 'CREATE_TRANSACTION';
 export const CREATE_TRANSACTION_SUCCESS = 'CREATE_TRANSACTION_SUCCESS';
 export const CREATE_TRANSACTION_FAILURE = 'CREATE_TRANSACTION_FAILURE';
 
-const transactionCreator = (firstName,lastName, agentId) => {
+const transactionCreator = (firstName,lastName) => {
 
     let transaction = {
         // "transaction":
         //     {
             firstName,
-            lastName,
-            agent:{id: agentId}
+            lastName
         // }
     }
     console.log("inside transactionCreator", transaction)
@@ -47,8 +46,8 @@ const transactionCreator = (firstName,lastName, agentId) => {
     };
 };
 
-export const createTransaction = (firstName,lastName, agentId) => (dispatch, getState) => {
-    return dispatch(transactionCreator(firstName,lastName, agentId));
+export const createTransaction = (firstName,lastName) => (dispatch, getState) => {
+    return dispatch(transactionCreator(firstName,lastName));
 // .then(() => dispatch(getTransaction(transactionId))
 };
 
