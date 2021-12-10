@@ -77,7 +77,7 @@ function getLabel(priceByHundreds: string) {
                     id="demo-simple-select-outlined"
                     value={age}
                     onChange={handleChange}
-                    label="Min"
+                    label="Max"
                 >
                     {priceByHundreds.map((label) => (
                         <MenuItem value={label}>{getLabel(label)}</MenuItem>

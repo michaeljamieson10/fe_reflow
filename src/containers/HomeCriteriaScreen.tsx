@@ -7,7 +7,8 @@ import {connect} from "react-redux";
 import {createStyles, FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import {Theme} from "@material-ui/core/styles";
-import OutlineSelect from "../components/ui/OutlineSelect";
+import OutlineSelect from "../components/ui/homecriteria/OutlineSelect";
+import OutlineSelectBedAndBath from "../components/ui/homecriteria/OutlineSelectBedAndBath";
 
 interface HomeCriteriaScreenProps {
     // priceByHundreds: string[];
@@ -27,7 +28,12 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps> = props => {
     // priceByHundreds.push('one_hundred','two_hundred','three_hundred','four_hundred','five_hundred', 'six_hundred','seven_hundred', 'eight_hundred','nine_hundred','one_million');
     console.log(priceByHundreds,"EL PRECIO");
     // const [homeCriteriaStatusTypse, setHomeCriteriaStatusType] = useState<homeCriteriaStatusStype>("");
-    return(<OutlineSelect/>)
+    return(
+        <>
+        <OutlineSelect/>
+        <OutlineSelectBedAndBath/>
+        </>
+    )
 
 }
 
