@@ -12,12 +12,14 @@ import {
 } from '@material-ui/core';
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import {makeStyles, useTheme} from "@material-ui/core/styles";
-import {connect} from "react-redux";
-import {State, User} from "../store/reduxStoreState";
+import {connect, shallowEqual, useDispatch, useSelector} from "react-redux";
+import {Agent, State, User} from "../store/reduxStoreState";
 import {getLoggedInUser} from "../selectors/userSelectors";
 import {createClient} from "../actions/clientActions";
-import {createAgent} from "../actions/agentActions";
-import {Link} from "react-router-dom";
+import {createAgent, getAgentByToken} from "../actions/agentActions";
+import {Link, useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {getAgentFromProps, getAgents} from "../selectors/agentSelectors";
 
 const renderTextField = ({
                              input,
@@ -49,12 +51,32 @@ const useStyles = makeStyles(theme => ({
 interface Props {
     createClient: (userId: number) => any,
     createAgent: (userId: number) => any,
+    getAgent:(agentId: number) => any,
     loggedInUser: User;
 }
-
-function READashBoard(props: Props) {
+const READashBoard = (props: Props) => {
     // const { handleSubmit, enableButton } = props;
     const { createClient,loggedInUser,createAgent } = props;
+    const [agentId, setAgentId] = useState(1);
+    // const { agentId } = useParams<{agentId}>();
+    // const dspr = useSelector<State, DSPR>(state => getDSPRFromProps(state, {dsprId}), shallowEqual);
+    // const agent = useSelector<State, Agent>(state => getAgentFromProps(state,{agentId}), shallowEqual);
+    // const agent = useSelector<State, Agent>(state => getAgents(state));
+    const agent = useSelector<State, { [key: string]: Agent }>(getAgents, shallowEqual);
+    console.log(agent,'this is agent');
+    // console.log(agentId,'this is agent');
+    const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        setIsLoading(true);
+        // console.log(agentId,"something");
+        dispatch<any>(getAgentByToken())//getAgentHere
+            // .then((agent) => setAgentId(1))
+        //     .then(() => dispatch(getAllZipCodesForDSPR(dsprId)))
+            .then(() => setIsLoading(false));
+    }, [dispatch]);
+
+
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
     const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -153,28 +175,6 @@ const validate = values => {
     }
     return errors;
 };
-//
-// const asyncValidate = (values, dispatch, props, field ) => {
-//     return props.checkIfEmailTaken(values["email"]).then(emailTaken => {
-//         if(emailTaken) throw { email: 'Email is already taken' }
-//     });
-// };
 
-// export default reduxForm<{}, SetUpAgentProfileFormProps>({
-//     form: 'userSignUpForm',
-//     validate
-// })(SetUpAgentProfileForm);
-const mapStateToProps = (state: State) => {
-    return {
-        loggedInUser: getLoggedInUser(state)
-    }
-};
 
-const mapDispatchToProps = {
-    createClient,
-    createAgent
-
-}
-
-// export default React.memo(READashBoard);
-export default connect(mapStateToProps, mapDispatchToProps)(READashBoard)
+export default READashBoard;

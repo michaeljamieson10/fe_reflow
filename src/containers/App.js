@@ -130,7 +130,7 @@ class App extends Component {
               </Route>
               <Route path="/login" component={Login} />
               {/*<Route path="/LOL" component={SetUpAgentProfileForm} />*/}
-              <Route exact path="/rea" component={READashboard} />
+              <Route exact path="/rea/:agentId" component={READashboard} />
               <Route exact path="/rea/create_transaction" component={REACreateTransaction}/>
               <Route exact path="/rea/invite_buyer" component={REABuyerEmail}/>
               <Route exact path="/rea/invite_buyer/quantity" component={REABuyerQuantity} />

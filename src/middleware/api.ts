@@ -84,6 +84,7 @@ export const Schemas = {
     CLIENT: clientSchema,
     AGENT: agentSchema,
     TRANSACTION: transactionSchema,
+    TRANSACTION_ARRAY: arrayOf(transactionSchema),
     // USER_ARRAY: arrayOf(userSchema),
 };
 

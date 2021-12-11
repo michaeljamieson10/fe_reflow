@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import {Grid} from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -53,7 +54,15 @@ function getLabel(priceByHundreds: string) {
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         setAge(event.target.value as string);
     };
-    return (<>
+    return (  <Grid
+            container
+            spacing={0}
+            direction="row"
+            // alignItems="center"
+            // justifyContent="center"
+            // style={{marginBottom:"3em"}}
+            // style={{padding:"2em"}}
+        >
         <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="demo-simple-select-outlined-label">Min</InputLabel>
         <Select
@@ -86,7 +95,7 @@ function getLabel(priceByHundreds: string) {
 
                 </Select>
             </FormControl>
-        </>
+        </Grid>
     )
 }
 export default OutlineSelect;

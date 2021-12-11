@@ -52,4 +52,25 @@ export const createTransaction = (firstName,lastName) => (dispatch, getState) =>
 };
 
 
+export const GET_ALL_TRANSACTION = 'GET_ALL_TRANSACTION';
+export const GET_ALL_TRANSACTION_SUCCESS = 'GET_ALL_TRANSACTION_SUCCESS';
+export const GET_ALL_TRANSACTION_FAILURE = 'GET_ALL_TRANSACTION_FAILURE';
+
+const allTransactionsGetter = (agentId) => {
+    return {
+        [CALL_API]: {
+            httpAction: 'GET',
+            types: [GET_ALL_TRANSACTION, GET_ALL_TRANSACTION_SUCCESS, GET_ALL_TRANSACTION_FAILURE],
+            endPoint: 'transaction/list',
+            schema: Schemas.TRANSACTION_ARRAY,
+            queryParamsMap: { agent_id: agentId }
+        }
+    }
+};
+
+export const getAllTransactions = (agentId) => (dispatch, getState) => {
+    return dispatch(allTransactionsGetter(agentId));
+};
+
+
 

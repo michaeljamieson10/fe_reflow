@@ -12,6 +12,7 @@ import {
     CREATE_TRANSACTION_FAILURE,
     CREATE_TRANSACTION_SUCCESS
 } from "../actions/transactionActions";
+import {GET_AGENT_BY_TOKEN, GET_AGENT_FAILURE_BY_TOKEN, GET_AGENT_SUCCESS_BY_TOKEN} from "../actions/agentActions";
 
 export const initialState = {users: {}};
 
@@ -41,6 +42,11 @@ export default (state = initialState, action) => {
         case CREATE_TRANSACTION:
         case CREATE_TRANSACTION_SUCCESS:
         case CREATE_TRANSACTION_FAILURE:
+        case GET_AGENT_BY_TOKEN:
+        case GET_AGENT_FAILURE_BY_TOKEN:
+        case GET_AGENT_SUCCESS_BY_TOKEN:
+            state = {...state, agent: {}};
+            return appendAndUpdateEntitiesFromResponse(state, responseEntities);
         default:
             return state;
     }
