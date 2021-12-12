@@ -53,8 +53,6 @@ const createUser = (user, referrerIdentityCode) => {
     }
 };
 
-//Given a zipcode we can find out all the DSPRs that are servicing that zip code... there can be multiple DSPRs
-//We're creating the user, then we make at least make one call otherwise we have no DSPR object since they aren't even at the menu yet
 export const createNewUser = (user) => (dispatch, getState) => {
     return dispatch(getAppAccessToken())
         .then(() => dispatch(createUser(user)))

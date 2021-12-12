@@ -86,6 +86,7 @@ export const Schemas = {
     TRANSACTION: transactionSchema,
     TRANSACTION_ARRAY: arrayOf(transactionSchema),
     // USER_ARRAY: arrayOf(userSchema),
+    EMPTY: [],
 };
 
 // Action key that carries API call info interpreted by this Redux middleware.

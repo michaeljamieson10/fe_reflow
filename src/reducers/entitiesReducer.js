@@ -10,11 +10,15 @@ import {merge} from 'lodash';
 import {
     CREATE_TRANSACTION,
     CREATE_TRANSACTION_FAILURE,
-    CREATE_TRANSACTION_SUCCESS
+    CREATE_TRANSACTION_SUCCESS,
+    GET_ALL_TRANSACTION,
+    GET_ALL_TRANSACTION_FAILURE,
+    GET_ALL_TRANSACTION_SUCCESS,
+    GET_TRANSACTION, GET_TRANSACTION_FAILURE, GET_TRANSACTION_SUCCESS
 } from "../actions/transactionActions";
 import {GET_AGENT_BY_TOKEN, GET_AGENT_FAILURE_BY_TOKEN, GET_AGENT_SUCCESS_BY_TOKEN} from "../actions/agentActions";
 
-export const initialState = {users: {}, agents:{}};
+export const initialState = {users: {}, agents:{}, transactions:{} };
 
 const appendAndUpdateEntitiesFromResponse = (oldState, responseEntities, skipEntityTypes = []) => {
     let newState = merge({}, oldState);
@@ -47,6 +51,15 @@ export default (state = initialState, action) => {
         case GET_AGENT_SUCCESS_BY_TOKEN:
             state = {...state, agent: {}};
             return appendAndUpdateEntitiesFromResponse(state, responseEntities);
+        case GET_ALL_TRANSACTION:
+        case GET_ALL_TRANSACTION_SUCCESS:
+            state = {...state, transactions: {}};
+            return appendAndUpdateEntitiesFromResponse(state, responseEntities);
+        case GET_ALL_TRANSACTION_FAILURE:
+        case GET_TRANSACTION:
+        case GET_TRANSACTION_SUCCESS:
+        case GET_TRANSACTION_FAILURE:
+
         default:
             return state;
     }

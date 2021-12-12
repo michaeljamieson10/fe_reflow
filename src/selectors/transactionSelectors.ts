@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
 import { State } from '../store/reduxStoreState';
-import {getLoggedInUser} from "./userSelectors";
 
 // export const getLoggedInUser = (state: State) => state.api.loggedInUserId ? state.api.entities.users[state.api.loggedInUserId] : undefined;
 // export const getLoggedInUserId = (state) => state.api.loggedInUserId;
@@ -14,7 +13,7 @@ import {getLoggedInUser} from "./userSelectors";
 //             .map(user => { return { value: user.id, text: user.firstName + " " + user.lastName + " (" + user.email + ")" }; });
 //     }
 // );
-export const getAgents = (state) => state.api.entities.agents;
+export const  getTransactions = (state) => state.api.entities.transactions;
 
 
 // export const getAgentsByName = createSelector(
@@ -26,17 +25,6 @@ export const getAgents = (state) => state.api.entities.agents;
 //     }
 // );
 export const getAgentById = (state) => Object.keys(state.api.entities.agents).map(key => state.api.entities.agents[key]);
-
-
-// export const getActiveAgentsForLoggedInUser = createSelector(
-//     [getAgents, getLoggedInUser], (agents, loggedInUser) => {
-//         return loggedInUser ?
-//             agents ? loggedInUser.deliveryServiceProviderManagers.filter(agentId => agents[agentId].active).map(agentId => agents[agentId])
-//                 : undefined
-//             : undefined
-//     }
-// );
-
 // export const getAgentsByBla = createSelector(
 //     [getAgents],
 //     (agents) => Object.keys(agents).map(key => agents[key])

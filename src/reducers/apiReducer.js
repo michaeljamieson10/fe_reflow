@@ -18,7 +18,10 @@ import {
     CREATE_TRANSACTION_SUCCESS,
     GET_ALL_TRANSACTION,
     GET_ALL_TRANSACTION_SUCCESS,
-    GET_ALL_TRANSACTION_FAILURE
+    GET_ALL_TRANSACTION_FAILURE,
+    GET_TRANSACTION,
+    GET_TRANSACTION_SUCCESS,
+    GET_TRANSACTION_FAILURE
 } from "../actions/transactionActions";
 import {GET_AGENT_BY_TOKEN, GET_AGENT_FAILURE_BY_TOKEN, GET_AGENT_SUCCESS_BY_TOKEN} from "../actions/agentActions";
 
@@ -59,18 +62,21 @@ export default (state = initialState, action) => {
         case CREATE_TRANSACTION:
         case CREATE_TRANSACTION_SUCCESS:
         case CREATE_TRANSACTION_FAILURE:
-        case GET_ALL_TRANSACTION:
-        case GET_ALL_TRANSACTION_SUCCESS:
-        case GET_ALL_TRANSACTION_FAILURE:
+        case GET_TRANSACTION:
+        case GET_TRANSACTION_SUCCESS:
+        case GET_TRANSACTION_FAILURE:
         case GET_AGENT_BY_TOKEN:
         case GET_AGENT_FAILURE_BY_TOKEN:
-        case GET_AGENT_SUCCESS_BY_TOKEN:
+        case GET_AGENT_SUCCESS_BY_TOKEN: {
             let entities = action.response.entities;
             let agentsFromResponse = entities.agents;
             let currentAgentId = Object.keys(agentsFromResponse)[0];
             return merge({}, {...state, entities: entitiesInitialState},
                 {currentAgentId, entities: entitiesReducer(state.entities, action)});
-
+        }
+        case GET_ALL_TRANSACTION:
+        case GET_ALL_TRANSACTION_SUCCESS:
+        case GET_ALL_TRANSACTION_FAILURE:
 
 
         default:

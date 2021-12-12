@@ -6,6 +6,7 @@ export const GET_TRANSACTION_SUCCESS = 'GET_TRANSACTION_SUCCESS';
 export const GET_TRANSACTION_FAILURE = 'GET_TRANSACTION_FAILURE';
 
 const transaction = (transactionId, signal: any) => {
+
     return {
         [CALL_API]: {
             httpAction: 'GET',
@@ -17,8 +18,8 @@ const transaction = (transactionId, signal: any) => {
     }
 };
 
-export const getTransaction = (clientId, signal?: any) => (dispatch, getState) => {
-    return dispatch(transaction(clientId, signal));
+export const getTransaction = (transactionId, signal?: any) => (dispatch, getState) => {
+    return dispatch(transaction(transactionId, signal));
 };
 
 export const CREATE_TRANSACTION = 'CREATE_TRANSACTION';
@@ -62,8 +63,8 @@ const allTransactionsGetter = (agentId) => {
             httpAction: 'GET',
             types: [GET_ALL_TRANSACTION, GET_ALL_TRANSACTION_SUCCESS, GET_ALL_TRANSACTION_FAILURE],
             endPoint: 'transaction/list',
-            schema: Schemas.TRANSACTION_ARRAY,
-            queryParamsMap: { agent_id: agentId }
+            schema: Schemas.TRANSACTION_ARRAY
+            // queryParamsMap: { agent_id: agentId }
         }
     }
 };

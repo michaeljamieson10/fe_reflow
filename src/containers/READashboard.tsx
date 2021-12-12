@@ -13,7 +13,7 @@ import {
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import {connect, shallowEqual, useDispatch, useSelector} from "react-redux";
-import {Agent, State, User} from "../store/reduxStoreState";
+import {Agent, State, Transaction, User} from "../store/reduxStoreState";
 import {getLoggedInUser} from "../selectors/userSelectors";
 import {createClient} from "../actions/clientActions";
 import {createAgent, getAgentByToken} from "../actions/agentActions";
@@ -21,7 +21,8 @@ import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getAgentById, getAgentFromProps, getAgents} from "../selectors/agentSelectors";
 import { useIsMount} from "../hooks/useIsMount";
-import {getAllTransactions} from "../actions/transactionActions";
+import {getAllTransactions, getTransaction} from "../actions/transactionActions";
+import {getTransactions} from "../selectors/transactionSelectors";
 
 const renderTextField = ({
                              input,
@@ -69,6 +70,11 @@ const READashBoard = (props: Props) => {
     // const users = useSelector<State, { value: number, text: string }[]>(getUsersByName, shallowEqual);
     // const agents = useSelector<State, { [key: number]: Agent }>(getAgents, shallowEqual);
     const agents = useSelector<State, { [key: number]: Agent }>(getAgentById, shallowEqual);
+    // const transactions = useSelector<State , { value: number, text:string}[]>(getTransactions, shallowEqual);
+    // const transactions = useSelector<State , {[key: number]: Transaction}>(getTransactions, shallowEqual);
+    const transactions = useSelector<State , {[key: number]: Transaction}>(getTransactions, shallowEqual);
+    console.log(transactions,"aftermpage")
+    // const agentsByIder = useSelector<State,any>()
     // const agents = useSelector<State, { value: number, text: string }[] }>(getAgents, shallowEqual);
     function getIdOfAgent(){
         // return agents
@@ -82,17 +88,24 @@ const READashBoard = (props: Props) => {
         setIsLoading(true);
         // console.log(agentId,"something");
         dispatch<any>(getAgentByToken())//getAgentHere
-        //     .then(() => dispatch(getAllZipCodesForDSPR(dsprId)))
             .then(() => setIsLoading(false));
+        // console.log(agents,"Im here");
     }, []);
     useEffect(() => {
         if(!isMount){
+
         console.log(agents,"how many times dispatched");
+            // dispatch<any>(getAllTransactions(agents[0].id))//getAgentHere
+            // dispatch<any>(getAllTransactions(1));//getAgentHere
+            dispatch<any>(getTransaction(1))
+                .then(()=>{console.log(transactions,"after trans")});
+        console.log(transactions,"how many times dispatched TRANSCACTIONS");
         // console.log(lollol,"how many times dispatchedlolol");
 
         }
     //    agents
-    }, [agents]);
+    }, [isLoading]);
+    // }, [dispatch,agents]);
 
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));

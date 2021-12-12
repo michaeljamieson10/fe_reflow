@@ -41,17 +41,9 @@ const REACreateTransaction: React.FC<REACreateTransactionProps> = props => {
     const [showErrorMessage, setShowErrorMessage] = useState(false);
     const [enableButton, setEnableButton] = useState(false);
     const dispatch = useDispatch();
-    // const isManagerForCurrentDSPR: boolean = activeDSPRManagersForUser && activeDSPRManagersForUser.filter(dsprManager => dsprManager.dspr === parseInt(dsprId)).length > 0;
-    // const loggedInUserId: number = getLoggedInUserId;
+
     const loggedInUser = useSelector<State, User>(getLoggedInUser);
-    // componentWillReceiveProps = newProps => {
-    //     if (newProps.errorMessage) {
-    //         this.setState({
-    //             errorMessage: newProps.errorMessage,
-    //             enableButton: true,
-    //         });
-    //     }
-    // }
+
 
     const handleSubmit = values => {
         const responseFunc = response => {
@@ -61,60 +53,9 @@ const REACreateTransaction: React.FC<REACreateTransactionProps> = props => {
             }
         };
 
-        // dispatch<any>(getUsersBySearch(userSearchTerm))
-        //     .then((response) => {
-        //
-        //         if (response.type === GET_USERS_BY_SEARCH_SUCCESS) {
-        //             setSearchedUsers(response.response.entities.searchUsers);
-        //         }
-        //
-        //         if (response.type === GET_USER_ID_DOCUMENT_FAILURE) {
-        //             setShowErrorMessage(true);
-        //             setMessageText(response.error ? `Error Retrieving users! ${response.error}` : 'Failed to complete user search');
-        //         }
-        //         setIsLoading(false);
-        //     })
         createTransaction(values.firstName, values.lastName);
         history.push("/dashboard/flow");
 
-
-
-
-        // this.setState({ enableButton: false }, ()=>{
-        //     //, loggedInUserId
-        //     this.props.createTransaction(values.firstName, values.lastName).then(response => {
-        //             if (!response.error) {
-        //                 responseFunc(response)
-        //             } else {
-        //                 this.setState({ enableButton: true });
-        //                 return;
-        //             }
-        //         });
-        // })
-        // this.setState({ enableButton: false }, ()=>{
-        //     //, loggedInUserId
-        //     this.props.createTransaction(values.firstName, values.lastName).then(response => {
-        //             if (!response.error) {
-        //                 responseFunc(response)
-        //             } else {
-        //                 this.setState({ enableButton: true });
-        //                 return;
-        //             }
-        //         });
-        // })
-        // this.setState({ enableButton: false }, () => {
-            // this.props.createNewUser(userSignUpValues).then(response => {
-            //     if (!response.error) {
-            //         responseFunc(response)
-            //     } else {
-            //         this.setState({ enableButton: true });
-            //         return;
-            //     }
-            // });
-
-            // this.setState({ user: userSignUpValues });
-        //
-        // })
     };
 
     // render() {

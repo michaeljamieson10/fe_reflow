@@ -5,18 +5,14 @@ import { ThemeProvider } from "@material-ui/styles";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom"
 import theme from "../components/ui/Theme";
 
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import CssBaseline from "@material-ui/core/CssBaseline"
-import red from "@material-ui/core/colors/red"
 
 import { getAppAccessToken, getAccessTokenType, ACCESS_TOKEN_TYPES } from "../actions/oauthActions"
 import { updateLoggedInUserInfo } from "../actions/userActions"
 
-// import Header from "../components/Header";
 import Header from "../components/ui/Header"
 
 import SignUp from "./SignUp"
-// import Login from "./Login"
 import Notification from "../components/Notification"
 
 import {getLoggedInUser, getLoggedInUserId} from "../selectors/userSelectors";
@@ -35,56 +31,17 @@ import REACreateTransaction from "./REACreateTransaction";
 import FlowScreen from "./FlowScreen";
 import HomeCriteriaScreen from "./HomeCriteriaScreen";
 
-// const theme = createMuiTheme({
-//   overrides: {
-//     MuiButton: {
-//       root: {
-//         margin: "5px",
-//         padding: "10px"
-//       }
-//     }
-//   },
-//   layout: {
-//     width: "100%",
-//     height: "100%"
-//   },
-//   palette: {
-//     primary: {
-//       main: "#67cb33",
-//       contrastText: "#fff"
-//     },
-//     secondary: {
-//       main: "#000",
-//       contrastText: "#fff"
-//     },
-//     error: red
-//   },
-//   typography: {
-//     useNextVariants: true
-//   }
-// })
-
 class App extends Component {
-  // const [selectedIndex, setSelectedIndex] = useState(0);
-  // const [value, setValue] = useState(0);
+
   constructor(props) {
     super(props);
-    // this.setValue = this.setValue.bind(this);
     this.state = {
       showInstallMessage: false,
       selectedIndex: 0,
       value: 0,
     }
-    // this.setState({ [stateName + "State"]: "success" });
   }
-  // setValue = (val) => {
-  //   this.setState({value: val
-  //   })}
-  // setSelectedIndex = (idx) =>{
-  //   this.setState({
-  //     selectedIndex: idx
-  //   })
-  // }
+
 
   componentDidMount() {
     if (this.props.accessToken === "") {
@@ -117,11 +74,6 @@ class App extends Component {
         <ThemeProvider theme={theme}>
           <React.Fragment>
             <CssBaseline />
-            {/*<Header loggedInUser={loggedInUser} selectedIndex={this.selectedIndex}*/}
-            {/*        setSelectedIndex={this.setSelectedIndex}*/}
-            {/*        value={this.value}*/}
-            {/*        setValue={this.setValue}*/}
-            {/*    />*/}
             <Header loggedInUser={loggedInUser}/>
             <Switch>
               <Route exact path="/">
@@ -130,7 +82,7 @@ class App extends Component {
               </Route>
               <Route path="/login" component={Login} />
               {/*<Route path="/LOL" component={SetUpAgentProfileForm} />*/}
-              <Route exact path="/rea/:agentId" component={READashboard} />
+              <Route exact path="/rea" component={READashboard} />
               <Route exact path="/rea/create_transaction" component={REACreateTransaction}/>
               <Route exact path="/rea/invite_buyer" component={REABuyerEmail}/>
               <Route exact path="/rea/invite_buyer/quantity" component={REABuyerQuantity} />
