@@ -13,10 +13,30 @@ import { State } from '../store/reduxStoreState';
 //             .map(user => { return { value: user.id, text: user.firstName + " " + user.lastName + " (" + user.email + ")" }; });
 //     }
 // );
-export const getAgents = (state: State) => {
-    console.log(state,"whats inside here");
-    return state.api.entities.agents
-};
+export const getAgents = (state) => state.api.entities.agents;
+
+
+// export const getAgentsByName = createSelector(
+//     [getAgents], (users) => {
+//         if (!users) return [];
+//         return Object.keys(users)
+//             .map(key => users[key])
+//             .map(user => { return { value: user.id, text: user.firstName + " " + user.lastName + " (" + user.email + ")" }; });
+//     }
+// );
+export const getAgentById = (state) => Object.keys(state.api.entities.agents).map(key => state.api.entities.agents[key]);
+// export const getAgentsByBla = createSelector(
+//     [getAgents],
+//     (agents) => Object.keys(agents).map(key => agents[key])
+        // if (!agents) return [];
+        // return Object.keys(agents)
+        //     .map(key => agents[key])
+        //     .map(user => { return { value: user.id, text: user.firstName + " " + user.lastName + " (" + user.email + ")" };
+        //     });
+    // }
+// );
+//
+// export const getUsers = (state: State) => state.api.entities.users;
 export const getAgentFromProps = (state: State, props) => {
     console.log(state, props,'whats in selector')
     return state.api.entities.agents && props && props.agentId ?

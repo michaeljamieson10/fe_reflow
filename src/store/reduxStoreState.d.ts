@@ -67,6 +67,7 @@ interface Client {
 interface Agent {
     id: number;
 }
+
 interface Transaction {
     id: number;
     firstName: string;

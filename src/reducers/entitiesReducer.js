@@ -14,7 +14,7 @@ import {
 } from "../actions/transactionActions";
 import {GET_AGENT_BY_TOKEN, GET_AGENT_FAILURE_BY_TOKEN, GET_AGENT_SUCCESS_BY_TOKEN} from "../actions/agentActions";
 
-export const initialState = {users: {}};
+export const initialState = {users: {}, agents:{}};
 
 const appendAndUpdateEntitiesFromResponse = (oldState, responseEntities, skipEntityTypes = []) => {
     let newState = merge({}, oldState);

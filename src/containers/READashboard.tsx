@@ -19,7 +19,9 @@ import {createClient} from "../actions/clientActions";
 import {createAgent, getAgentByToken} from "../actions/agentActions";
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {getAgentFromProps, getAgents} from "../selectors/agentSelectors";
+import {getAgentById, getAgentFromProps, getAgents} from "../selectors/agentSelectors";
+import { useIsMount} from "../hooks/useIsMount";
+import {getAllTransactions} from "../actions/transactionActions";
 
 const renderTextField = ({
                              input,
@@ -55,6 +57,7 @@ interface Props {
     loggedInUser: User;
 }
 const READashBoard = (props: Props) => {
+    const isMount = useIsMount();
     // const { handleSubmit, enableButton } = props;
     const { createClient,loggedInUser,createAgent } = props;
     const [agentId, setAgentId] = useState(1);
@@ -62,8 +65,16 @@ const READashBoard = (props: Props) => {
     // const dspr = useSelector<State, DSPR>(state => getDSPRFromProps(state, {dsprId}), shallowEqual);
     // const agent = useSelector<State, Agent>(state => getAgentFromProps(state,{agentId}), shallowEqual);
     // const agent = useSelector<State, Agent>(state => getAgents(state));
-    const agent = useSelector<State, { [key: string]: Agent }>(getAgents, shallowEqual);
-    console.log(agent,'this is agent');
+    //export const getDSPRServiceAreasFromComponentState = (state: State, props) => Object.values(state.componentState.dsprServiceAreaManagementContainer.dsprServiceAreas).filter(serviceArea => serviceArea.dspr === parseInt(props.dpsrId))
+    // const users = useSelector<State, { value: number, text: string }[]>(getUsersByName, shallowEqual);
+    // const agents = useSelector<State, { [key: number]: Agent }>(getAgents, shallowEqual);
+    const agents = useSelector<State, { [key: number]: Agent }>(getAgentById, shallowEqual);
+    // const agents = useSelector<State, { value: number, text: string }[] }>(getAgents, shallowEqual);
+    function getIdOfAgent(){
+        // return agents
+    }
+    // console.log(agent,'this is agent');
+
     // console.log(agentId,'this is agent');
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
@@ -71,11 +82,17 @@ const READashBoard = (props: Props) => {
         setIsLoading(true);
         // console.log(agentId,"something");
         dispatch<any>(getAgentByToken())//getAgentHere
-            // .then((agent) => setAgentId(1))
         //     .then(() => dispatch(getAllZipCodesForDSPR(dsprId)))
             .then(() => setIsLoading(false));
-    }, [dispatch]);
+    }, []);
+    useEffect(() => {
+        if(!isMount){
+        console.log(agents,"how many times dispatched");
+        // console.log(lollol,"how many times dispatchedlolol");
 
+        }
+    //    agents
+    }, [agents]);
 
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -146,11 +163,13 @@ const READashBoard = (props: Props) => {
                 {/*<Grid container direction={"row"} style={{padding:"2em"}}>*/}
                 {/*</Grid>*/}
             <Grid>
-                <Typography align={"center"}variant={"h6"}>
+                <> <Typography align={"center"}variant={"h6"}>
                     Invite a home buyer </Typography>
+                </>
                 <Typography align={"center"}variant={"h6"}>
                     to get started
                 </Typography>
+                {/*{isMount? 'loading': agents.map(agent => <div>{agent.id}</div>)}*/}
             </Grid>
                 <Grid
                     container
