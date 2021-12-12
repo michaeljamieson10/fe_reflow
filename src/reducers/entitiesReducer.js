@@ -58,6 +58,8 @@ export default (state = initialState, action) => {
         case GET_ALL_TRANSACTION_FAILURE:
         case GET_TRANSACTION:
         case GET_TRANSACTION_SUCCESS:
+            state = {...state, transactions: {}};
+            return appendAndUpdateEntitiesFromResponse(state, responseEntities);
         case GET_TRANSACTION_FAILURE:
 
         default:
