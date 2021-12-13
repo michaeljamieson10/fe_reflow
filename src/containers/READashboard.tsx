@@ -97,9 +97,7 @@ const READashBoard = (props: Props) => {
         console.log(agents,"how many times dispatched");
             // dispatch<any>(getAllTransactions(agents[0].id))//getAgentHere
             // dispatch<any>(getAllTransactions(1));//getAgentHere
-            dispatch<any>(getTransaction(1))
-                .then(()=>{console.log(transactions,"after trans")});
-        console.log(transactions,"how many times dispatched TRANSCACTIONS");
+            dispatch<any>(getTransaction(1));
         // console.log(lollol,"how many times dispatchedlolol");
 
         }
