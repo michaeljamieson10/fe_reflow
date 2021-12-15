@@ -1,7 +1,7 @@
 import {Component, useEffect, useState} from 'react';
 import * as React from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {Link, RouteComponentProps, withRouter} from 'react-router-dom';
+import {connect, shallowEqual, useDispatch, useSelector} from 'react-redux';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -12,7 +12,7 @@ import VerticalNonLinearStepper from "../components/ui/VerticalNonLinearStepper"
 import {Card, CardHeader, CardContent, Grid, Typography, Divider, Button, Box} from '@material-ui/core';
 
 import { createNewUser } from '../actions/userActions';
-import { createTransaction } from '../actions/transactionActions'
+import {createTransaction, getTransaction} from '../actions/transactionActions'
 import { attemptLogin } from '../actions/oauthActions';
 import { getError } from "../selectors/errorSelector";
 import {getLoggedInUser, getLoggedInUserId} from '../selectors/userSelectors';
@@ -22,7 +22,9 @@ import SignUpForm from './SignUpForm';
 import {history} from "../index";
 import REABuyerEmailForm from "./REABuyerEmailForm";
 import REACreateTransactionForm from "./REACreateTransactionForm";
-import {State, User} from "../store/reduxStoreState";
+import {State, Transaction, User} from "../store/reduxStoreState";
+import {useIsMount} from "../hooks/useIsMount";
+import {getTransactions} from "../selectors/transactionSelectors";
 
 
 type newTransactionValues = {
@@ -38,14 +40,17 @@ interface FlowScreenProps {
 
 }
 
-const FlowScreen: React.FC<FlowScreenProps> = props => {
-    //
-    // const {
-    //     createTransaction,
-    //
-    // } = props;
+const FlowScreen: React.FC<FlowScreenProps & RouteComponentProps > = props => {
+    const {
+        match
+    } = props;
+    const transactionId = match.params['transaction_id'];
+    console.log(transactionId,"Im transaction id");
     const [showErrorMessage, setShowErrorMessage] = useState(false);
     const [enableButton, setEnableButton] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactions, shallowEqual);
+    const isMount = useIsMount();
     const dispatch = useDispatch();
     // const isManagerForCurrentDSPR: boolean = activeDSPRManagersForUser && activeDSPRManagersForUser.filter(dsprManager => dsprManager.dspr === parseInt(dsprId)).length > 0;
     // const loggedInUserId: number = getLoggedInUserId;
@@ -59,22 +64,15 @@ const FlowScreen: React.FC<FlowScreenProps> = props => {
             }
         };
 
-        // dispatch<any>(getUsersBySearch(userSearchTerm))
-        //     .then((response) => {
-        //
-        //         if (response.type === GET_USERS_BY_SEARCH_SUCCESS) {
-        //             setSearchedUsers(response.response.entities.searchUsers);
-        //         }
-        //
-        //         if (response.type === GET_USER_ID_DOCUMENT_FAILURE) {
-        //             setShowErrorMessage(true);
-        //             setMessageText(response.error ? `Error Retrieving users! ${response.error}` : 'Failed to complete user search');
-        //         }
-        //         setIsLoading(false);
-        //     })
-        createTransaction(values.firstName, values.lastName);
-
     };
+
+
+    useEffect(() => {
+        // if(!isMount){
+            dispatch<any>(getTransaction(transactionId)).then(() => setIsLoading(false));
+        // }
+    }, []);
+    // createTransaction(values.firstName, values.lastName);
 
     return (
         <React.Fragment>
@@ -146,6 +144,7 @@ const FlowScreen: React.FC<FlowScreenProps> = props => {
                 <Card style={{padding:"0.9em"}}>
                     <Grid container justify="space-between" direction={"row"}>
                         <Typography  variant={"h6"} style={{marginRight: "10em"}} gutterBottom>Your Flow</Typography>
+                        {isLoading? 'loading': console.log(transactions)}
                         <Typography  variant={"subtitle2"} style={{marginRight: "10em"}} gutterBottom>Click steps to view detail</Typography>
                     </Grid>
                     <Divider style={{marginBottom:"2em"}} />
@@ -171,17 +170,5 @@ const FlowScreen: React.FC<FlowScreenProps> = props => {
     );
 }
 
-const mapStateToProps = state => ({
-    loggedInUser: getLoggedInUser(state),
-    errorMessage: getError(state),
-    // loggedInUserId: getLoggedInUserId(state)
-})
-
-const mapDispatchToProps = {
-    createTransaction,
-    createNewUser,
-    attemptLogin,
-
-}
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FlowScreen));
+export default FlowScreen;
 

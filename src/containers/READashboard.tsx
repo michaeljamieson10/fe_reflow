@@ -95,18 +95,9 @@ const READashBoard = (props: Props) => {
     }, []);
     useEffect(() => {
         if(!isMount){
-
-        console.log(agents,"how many times dispatched");
-            // dispatch<any>(getAllTransactions(agents[0].id))//getAgentHere
-            // dispatch<any>(getAllTransactions(1));//getAgentHere
             dispatch<any>(getTransaction(1));
-        // console.log(lollol,"how many times dispatchedlolol");
-
         }
-    //    agents
     }, [isLoading]);
-    // }, [dispatch,agents]);
-
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
     const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -182,11 +173,14 @@ const READashBoard = (props: Props) => {
                 <Typography align={"center"}variant={"h6"}>
                     to get started
                 </Typography>
-                {/*{isLoading?'loading':<div>"LOADED"</div>}*/}
-                {isLoading? 'loading': Object.keys(transactions).map(transaction => <div>{transaction}</div>)}
+                {/*{isLoading? 'loading': Object.keys(transactions).map(transaction => <div>{transaction}</div>)}*/}
 
-                {isLoading? 'loading': Object.entries(transactions).map(([key, value]) => <div>{value.firstName} {value.lastName}</div>)}
-                {isLoading? 'loading': Object.entries(transactions).map(([key, value]) => console.log(value["firstName"],"MI VALUEA"))}
+                {isLoading? 'loading': Object.entries(transactions).map(([key, value]) =>
+                    <div>{value.firstName} {value.lastName} {value.id}
+                    <Button
+                    component={Link}  to={`/dashboard/transaction/${value.id}`} color="primary" variant="contained"
+                >View</Button></div> )}
+                {/*{isLoading? 'loading': Object.entries(transactions).map(([key, value]) => console.log(value["firstName"],"MI VALUEA"))}*/}
 
                 {/*{isLoading? 'loading': <div>{transactions.id}</div>}*/}
             </Grid>
