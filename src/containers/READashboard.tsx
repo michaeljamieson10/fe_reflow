@@ -183,23 +183,11 @@ const READashBoard = (props: Props) => {
                     to get started
                 </Typography>
                 {/*{isLoading?'loading':<div>"LOADED"</div>}*/}
-                {/*{isLoading?'loading':agents.map(agent => <div>{agent.id}</div>)}}*/}
-                {/*{isMount? 'loading': agents.map(agent => <div>{agent.id}</div>)}*/}
-                {/*{isLoading? 'loading': transactions.map(transaction => <div>{transaction.id}</div>)}*/}
                 {isLoading? 'loading': Object.keys(transactions).map(transaction => <div>{transaction}</div>)}
-                {/*{isLoading? 'loading': Object.keys(transactions).map(transaction => <div>{transaction}</div>)}*/}
-                {/*{isLoading?  'loading': <div>{transactions[1].firstName}</div>}*/}
-                {/*{isLoading? 'loading': Object.values(transactions).map(transaction => <div>{transaction.id}</div>)}*/}
-                {/*{isLoading? 'loading': Object.entries(transactions).map(([key, value]) => <div>{key} key works</div>)}*/}
+
                 {isLoading? 'loading': Object.entries(transactions).map(([key, value]) => <div>{value.firstName} {value.lastName}</div>)}
                 {isLoading? 'loading': Object.entries(transactions).map(([key, value]) => console.log(value["firstName"],"MI VALUEA"))}
-                {/*{isLoading? 'loading': Object.entries(transactions).map(([key, value]) => value.firstName )}*/}
-                {/*    return (*/}
-                {/*        <div>*/}
-                {/*            {key} = {value}*/}
-                {/*        </div>*/}
-                {/*    );*/}
-                {/*})}*/}
+
                 {/*{isLoading? 'loading': <div>{transactions.id}</div>}*/}
             </Grid>
                 <Grid
