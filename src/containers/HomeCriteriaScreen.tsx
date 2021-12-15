@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import {HomeCriteria, HomeCriteriaStatusType, State} from "../store/reduxStoreState";
+import {HomeCriteria, State} from "../store/reduxStoreState";
 import {getLoggedInUser} from "../selectors/userSelectors";
 import {createClient} from "../actions/clientActions";
+import {createHomeCriteria} from "../actions/homeCriteriaActions";
 import {createAgent} from "../actions/agentActions";
-import {connect} from "react-redux";
 import {
     Card,
     Checkbox,
@@ -20,11 +20,17 @@ import {Theme} from "@material-ui/core/styles";
 import OutlineSelect from "../components/ui/homecriteria/OutlineSelect";
 import OutlineSelectBedAndBath from "../components/ui/homecriteria/OutlineSelectBedAndBath";
 import FlowCurrentProgressCard from "../components/ui/FlowCurrentProgressCard";
+import {history} from "../index";
+import {match} from "assert";
+import {RouteComponentProps} from "react-router-dom";
 
 interface HomeCriteriaScreenProps {
     // priceByHundreds: string[];
     homeCriteria: HomeCriteria;
-    homeCriteriaStatustype: HomeCriteriaStatusType;
+    createTransaction:(
+        firstName: string,
+        lastName: string
+    ) => any;
 }
 function getLabel(initialFilterDiscountTypeState: string) {
     switch (initialFilterDiscountTypeState) {
@@ -46,14 +52,15 @@ function getLabel(initialFilterDiscountTypeState: string) {
             return 'Waterfront';
     }
 }
-const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps> = props => {
+const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps> = props => {
     const initialFilterDiscountTypeState = {house: false, multifamily: false, condocoop: false, townhome: false, basement: false, centralair: false, pool: false, waterfront: false};
+    const {match} = props;
+    const transactionId = match.params['transaction_id'];
     const [filterDiscountTypeChecked, setFilterDiscountTypeChecked] = useState(initialFilterDiscountTypeState);
     const [filterDiscountType, setFilterDiscountType] = useState(initialFilterDiscountTypeState);
     const {
-        // priceByHundreds,
         homeCriteria,
-        homeCriteriaStatustype
+        createTransaction
     } = props;
     // const [homeCriteriaStatusType, setHomeCriteriaStatusType] = useState(homeCriteria.homeCriteriaStatusType);
     //'one_hundred' 'two_hundred' 'three_hundred' | 'four_hundred' | 'five_hundred'| 'six_hundred' | 'seven_hundred'| 'eight_hundred' | 'nine_hundred'| 'one_million';
@@ -61,6 +68,22 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps> = props => {
 
     // console.log(priceByHundreds,"EL PRECIO");
     // const [homeCriteriaStatusTypse, setHomeCriteriaStatusType] = useState<homeCriteriaStatusStype>("");
+
+    const handleSubmit = values => {
+        const responseFunc = response => {
+            if (!response.error) {
+
+            } else {
+            }
+        };
+
+        // createTransaction(values.firstName, values.lastName);
+        // createHomeCriteria();
+
+        history.push("/dashboard/flow");
+
+    };
+
     const [filterDiscountTypeRadioSelection, setFilterDiscountTypeRadioSelection] = useState<'all' | 'some'>('all');
     const handleChangeCheckboxDiscountType = (evt) => {
         const selection = evt.target.value;

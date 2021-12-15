@@ -43,10 +43,11 @@ function getStepContent(step: number) {
             return 'Unknown step';
     }
 }
-function getStepsRoutes(step: number){
+function getStepsRoutes(step: number,transactionId){
     switch(step){
+        //todo transaction wtf how to put id over here
         case 0:
-            return '/home_criteria';
+            return `/home_criteria/transaction/${transactionId}`;
         case 1:
             return '/pre_approval';
         case 2:
@@ -72,7 +73,7 @@ function getStepsRoutes(step: number){
 
 }
 
-export default function VerticalNonLinearStepper() {
+export default function VerticalNonLinearStepper({transactionId}) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const [completed, setCompleted] = React.useState<{ [k: number]: boolean }>({});
@@ -145,7 +146,7 @@ export default function VerticalNonLinearStepper() {
 
                         <StepContent>
                             <Grid container direction={"row"}>
-                            <Button component={Link} to={getStepsRoutes(index)} color="primary" variant="contained"  >
+                            <Button component={Link} to={getStepsRoutes(index, transactionId)} color="primary" variant="contained"  >
                                 View Details
                             </Button>
                             </Grid>

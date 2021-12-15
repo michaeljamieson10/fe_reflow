@@ -92,7 +92,7 @@ class App extends Component {
               <Route exact path="/client" component={ClientManagement} />
               <Route exact path="/dashboard/flow" component={FlowScreen} />
               <Route path="/dashboard/transaction/:transaction_id" component={FlowScreen} />
-              <Route exact path="/home_criteria" component={HomeCriteriaScreen} />
+              <Route exact path="/home_criteria/transaction/:transaction_id" component={HomeCriteriaScreen} />
               <Route exact path="/signup" component={SignUp} />
             </Switch>
 

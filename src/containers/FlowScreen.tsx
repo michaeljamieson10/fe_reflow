@@ -151,7 +151,7 @@ const FlowScreen: React.FC<FlowScreenProps & RouteComponentProps > = props => {
                     {/*<Grid container direction={"row"} style={{padding:"2em"}}>*/}
                     {/*</Grid>*/}
                     <Grid>
-                        <VerticalNonLinearStepper/>
+                        <VerticalNonLinearStepper transactionId={transactionId}/>
 
                     </Grid>
                     <Grid

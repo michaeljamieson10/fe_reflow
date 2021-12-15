@@ -73,11 +73,20 @@ const agentSchema = new Schema('agents', {
 const transactionSchema = new Schema('transactions', {
     idAttribute: transaction => transaction.id
 });
+const homeCriteriaSchema = new Schema('homeCriterias', {
+    idAttribute: homeCriterias => homeCriterias.id
+});
 
 
 transactionSchema.define({
-    agent: agentSchema,
+    agent: agentSchema
 });
+
+homeCriteriaSchema.define({
+    transaction: transactionSchema,
+    agent: agentSchema
+});
+
 // Schemas for Reflow API responses.
 export const Schemas = {
     USER: userSchema,
@@ -85,6 +94,7 @@ export const Schemas = {
     AGENT: agentSchema,
     TRANSACTION: transactionSchema,
     TRANSACTION_ARRAY: arrayOf(transactionSchema),
+    HOME_CRITERIA: homeCriteriaSchema,
     // USER_ARRAY: arrayOf(userSchema),
     EMPTY: [],
 };

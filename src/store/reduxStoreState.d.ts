@@ -73,11 +73,12 @@ interface Transaction {
     id: number;
     firstName: string;
     lastName: string;
+    homeCriteria: HomeCriteria;
     agent: Agent;
 }
 // ENUM('one_hundred','two_hundred','three_hundred','four_hundred','five_hundred','six_hundred','seven_hundred','eight_hundred','nine_hundred','one_million')")
 type PriceByHundredsType = 'one_hundred' | 'two_hundred' | 'three_hundred' | 'four_hundred' | 'five_hundred'| 'six_hundred' | 'seven_hundred'| 'eight_hundred' | 'nine_hundred'| 'one_million';
-type HomeCriteriaStatusType = 'not_started' | 'in_progress' | 'completed';
+type TransactionStatusType = 'not_started' | 'in_progress' | 'completed';
 //"ENUM('not_started', 'in_progress', 'completed')")
 // "ENUM('one', 'two', 'three', 'four', 'five')")
 type RoomAmountType = 'one' | 'two' | 'three' | 'four' | 'five';
@@ -85,7 +86,7 @@ type RoomAmountType = 'one' | 'two' | 'three' | 'four' | 'five';
 interface HomeCriteria {
     id: number;
     transaction: Transaction;
-    homeCriteriaStatusType : HomeCriteriaStatusType;
+    transactionStatusType : TransactionStatusType;
     minPrice: PriceByHundredsType;
     maxPrice: PriceByHundredsType;
     amountOfBed: RoomAmountType;
