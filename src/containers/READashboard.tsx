@@ -72,8 +72,10 @@ const READashBoard = (props: Props) => {
     const agents = useSelector<State, { [key: number]: Agent }>(getAgentById, shallowEqual);
     // const transactions = useSelector<State , { value: number, text:string}[]>(getTransactions, shallowEqual);
     // const transactions = useSelector<State , {[key: number]: Transaction}>(getTransactions, shallowEqual);
-    const transactions = useSelector<State , {[key: number]: Transaction}>(getTransactions, shallowEqual);
-    console.log(transactions,"aftermpage")
+    // const transactions = useSelector<State , {[key: number]: Transaction}>(getTransactions, shallowEqual);
+    // const transactions = useSelector<State , any[] | any | Transaction>(getTransactions, shallowEqual);
+    const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactions, shallowEqual);
+    console.log(transactions,"this is transactions")
     // const agentsByIder = useSelector<State,any>()
     // const agents = useSelector<State, { value: number, text: string }[] }>(getAgents, shallowEqual);
     function getIdOfAgent(){
@@ -180,7 +182,25 @@ const READashBoard = (props: Props) => {
                 <Typography align={"center"}variant={"h6"}>
                     to get started
                 </Typography>
+                {/*{isLoading?'loading':<div>"LOADED"</div>}*/}
+                {/*{isLoading?'loading':agents.map(agent => <div>{agent.id}</div>)}}*/}
                 {/*{isMount? 'loading': agents.map(agent => <div>{agent.id}</div>)}*/}
+                {/*{isLoading? 'loading': transactions.map(transaction => <div>{transaction.id}</div>)}*/}
+                {isLoading? 'loading': Object.keys(transactions).map(transaction => <div>{transaction}</div>)}
+                {/*{isLoading? 'loading': Object.keys(transactions).map(transaction => <div>{transaction}</div>)}*/}
+                {/*{isLoading?  'loading': <div>{transactions[1].firstName}</div>}*/}
+                {/*{isLoading? 'loading': Object.values(transactions).map(transaction => <div>{transaction.id}</div>)}*/}
+                {/*{isLoading? 'loading': Object.entries(transactions).map(([key, value]) => <div>{key} key works</div>)}*/}
+                {isLoading? 'loading': Object.entries(transactions).map(([key, value]) => <div>{value.firstName} {value.lastName}</div>)}
+                {isLoading? 'loading': Object.entries(transactions).map(([key, value]) => console.log(value["firstName"],"MI VALUEA"))}
+                {/*{isLoading? 'loading': Object.entries(transactions).map(([key, value]) => value.firstName )}*/}
+                {/*    return (*/}
+                {/*        <div>*/}
+                {/*            {key} = {value}*/}
+                {/*        </div>*/}
+                {/*    );*/}
+                {/*})}*/}
+                {/*{isLoading? 'loading': <div>{transactions.id}</div>}*/}
             </Grid>
                 <Grid
                     container
