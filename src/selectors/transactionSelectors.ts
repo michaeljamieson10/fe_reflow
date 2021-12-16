@@ -24,7 +24,8 @@ export const  getTransactions = (state) => state.api.entities.transactions;
 //             .map(user => { return { value: user.id, text: user.firstName + " " + user.lastName + " (" + user.email + ")" }; });
 //     }
 // );
-export const getAgentById = (state) => Object.keys(state.api.entities.agents).map(key => state.api.entities.agents[key]);
+// export const getAgentById = (state) => Object.keys(state.api.entities.agents).map(key => state.api.entities.agents[key]);
+export const getTransactionById = (state) => Object.keys(state.api.entities.transactions).map(key => state.api.entities.transactions[key]);
 // export const getAgentsByBla = createSelector(
 //     [getAgents],
 //     (agents) => Object.keys(agents).map(key => agents[key])

@@ -24,7 +24,7 @@ import REABuyerEmailForm from "./REABuyerEmailForm";
 import REACreateTransactionForm from "./REACreateTransactionForm";
 import {State, Transaction, User} from "../store/reduxStoreState";
 import {useIsMount} from "../hooks/useIsMount";
-import {getTransactions} from "../selectors/transactionSelectors";
+import {getTransactionById, getTransactions} from "../selectors/transactionSelectors";
 import FlowCurrentProgressCard from "../components/ui/FlowCurrentProgressCard";
 
 
@@ -51,7 +51,8 @@ const FlowScreen: React.FC<FlowScreenProps & RouteComponentProps > = props => {
     const [enableButton, setEnableButton] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [transactionsComplete, setIsTransactionsComplete] = useState(0);
-    const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactions, shallowEqual);
+    // const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactions, shallowEqual);
+    const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactionById, shallowEqual);
     const isMount = useIsMount();
     const dispatch = useDispatch();
     // const isManagerForCurrentDSPR: boolean = activeDSPRManagersForUser && activeDSPRManagersForUser.filter(dsprManager => dsprManager.dspr === parseInt(dsprId)).length > 0;
@@ -72,9 +73,16 @@ const FlowScreen: React.FC<FlowScreenProps & RouteComponentProps > = props => {
 
     useEffect(() => {
         // if(!isMount){
-            dispatch<any>(getTransaction(transactionId)).then(() => setIsLoading(false));
+            dispatch<any>(getTransaction(transactionId)).then(
+                () => setIsLoading(false))
         // }
     }, []);
+
+    useEffect(()=>{
+        if(!isMount){
+            setIsTransactionsComplete(transactions[0].transactionsComplete);
+        }
+    },[isLoading]);
     // createTransaction(values.firstName, values.lastName);
 
     return (
