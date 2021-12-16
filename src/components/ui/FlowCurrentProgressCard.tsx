@@ -60,10 +60,10 @@ const FlowCurrentProgressCard: React.FC<any> = ({transactionId,transactions,isLo
                         style={{padding:"2em"}}
                     >
                         {/*{isLoading? 'loading': console.log(transactions)}*/}
-                        {isLoading? 'loading': console.log("I LOVE CAKE")}
+                        {isLoading? 'loading': console.log(transactionsComplete,"I LOVE CAKE")}
                         <Typography variant={"subtitle2"}>Flow Complete</Typography>
                         {/*{isLoading? 'loading': Object.entries(transactions).map(([key, value]) => <div>{transactionComplete} /11</div>)}*/}
-                        {isLoading? 'loading': <div> /11</div>}
+                        {isLoading? 'loading': <div>{transactionsComplete} /11</div>}
                         {/*<Typography variant={"h6"}>{Object.keys()}/11</Typography>*/}
                         {/*//TODO: this will have to change dynamically*/}
                     </Grid>
