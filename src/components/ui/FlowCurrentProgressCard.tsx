@@ -7,13 +7,22 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import {Box, Button, Card, Grid, Typography} from "@material-ui/core";
 import ButtonArrow from "./ButtonArrow";
-import {Link} from "react-router-dom";
+import {Link, RouteComponentProps} from "react-router-dom";
 import Icon from "./ButtonArrow";
+import {shallowEqual, useSelector} from "react-redux";
+import {State, Transaction} from "../../store/reduxStoreState";
+import {getTransactions} from "../../selectors/transactionSelectors";
 
 
 
-const FlowCurrentProgressCard: React.FC = props => {
+const FlowCurrentProgressCard: React.FC<any> = ({transactionId,transactions,isLoading,transactionsComplete}) => {
 // export default function OutlineSelect() {
+//     const {
+//         transactionId
+//     } = props;
+    console.log(transactionId,"Hello from FCPC")
+    console.log(isLoading,"Hello from FCPC")
+
 
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -22,7 +31,7 @@ const FlowCurrentProgressCard: React.FC = props => {
         <Card style={{marginTop:"2em", marginBottom:"2em"}}>
             <Button
                 component={Link}
-                to="/dashboard/flow"
+                to={`/dashboard/transaction/${transactionId}`}
                 variant="outlined"
                 style={{ color: "primary", borderColor: "white" }}
                 // className={classes.learnButton}
@@ -50,8 +59,12 @@ const FlowCurrentProgressCard: React.FC = props => {
                         // style={{marginBottom:"3em"}}
                         style={{padding:"2em"}}
                     >
+                        {/*{isLoading? 'loading': console.log(transactions)}*/}
+                        {isLoading? 'loading': console.log("I LOVE CAKE")}
                         <Typography variant={"subtitle2"}>Flow Complete</Typography>
-                        <Typography variant={"h6"}>0/11</Typography>
+                        {/*{isLoading? 'loading': Object.entries(transactions).map(([key, value]) => <div>{transactionComplete} /11</div>)}*/}
+                        {isLoading? 'loading': <div> /11</div>}
+                        {/*<Typography variant={"h6"}>{Object.keys()}/11</Typography>*/}
                         {/*//TODO: this will have to change dynamically*/}
                     </Grid>
                 </Grid>

@@ -90,7 +90,7 @@ class App extends Component {
               <Route exact path="/about" component={Home} />
               <Route exact path="/role" component={ChooseRole} />
               <Route exact path="/client" component={ClientManagement} />
-              <Route exact path="/dashboard/flow" component={FlowScreen} />
+              {/*<Route exact path="/dashboard/flow" component={FlowScreen} />*/}
               <Route path="/dashboard/transaction/:transaction_id" component={FlowScreen} />
               <Route exact path="/home_criteria/transaction/:transaction_id" component={HomeCriteriaScreen} />
               <Route exact path="/signup" component={SignUp} />

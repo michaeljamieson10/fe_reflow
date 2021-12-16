@@ -25,6 +25,7 @@ import REACreateTransactionForm from "./REACreateTransactionForm";
 import {State, Transaction, User} from "../store/reduxStoreState";
 import {useIsMount} from "../hooks/useIsMount";
 import {getTransactions} from "../selectors/transactionSelectors";
+import FlowCurrentProgressCard from "../components/ui/FlowCurrentProgressCard";
 
 
 type newTransactionValues = {
@@ -49,6 +50,7 @@ const FlowScreen: React.FC<FlowScreenProps & RouteComponentProps > = props => {
     const [showErrorMessage, setShowErrorMessage] = useState(false);
     const [enableButton, setEnableButton] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [transactionsComplete, setIsTransactionsComplete] = useState(0);
     const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactions, shallowEqual);
     const isMount = useIsMount();
     const dispatch = useDispatch();
@@ -56,6 +58,7 @@ const FlowScreen: React.FC<FlowScreenProps & RouteComponentProps > = props => {
     // const loggedInUserId: number = getLoggedInUserId;
     const loggedInUser = useSelector<State, User>(getLoggedInUser);
 
+    console.log(transactions,"WHATSGOINGON")
     const handleSubmit = values => {
         const responseFunc = response => {
             if (!response.error) {
@@ -84,63 +87,7 @@ const FlowScreen: React.FC<FlowScreenProps & RouteComponentProps > = props => {
                 justifyContent="center"
                 style={{marginBottom:"3em"}}
             >
-                <Card style={{marginTop:"2em", marginBottom:"2em"}}>
-                    <Grid
-                        container
-                        direction="row"
-                    >
-                        <Grid
-                            item
-                            style={{marginRight:"3em"}}
-                        >
-                            <Grid
-                                container
-                                spacing={0}
-                                direction="column"
-                                alignItems="center"
-                                justifyContent="center"
-                                // style={{marginBottom:"3em"}}
-                                style={{padding:"2em"}}
-                            >
-                                <Typography variant={"subtitle2"}>Flow Complete</Typography>
-                                <Typography variant={"h6"}>0/11</Typography>
-                                {/*//TODO: this will have to change dynamically*/}
-                            </Grid>
-                        </Grid>
-                        <Grid
-                            item
-                        >
-                            <Grid
-                                container
-                                spacing={0}
-                                direction="column"
-                                alignItems="center"
-                                justifyContent="center"
-
-                                style={{padding:"2em"}}
-                            >
-                                <Typography variant={"subtitle2"}>Current Flow</Typography>
-                                <Box bgcolor="secondary.main" color={"white"} m={1} style={{padding:"0.2em"}}>
-                                    <Grid
-                                        container
-                                        spacing={0}
-                                        direction="column"
-                                        alignItems="center"
-                                        justifyContent="center"
-                                        // style={{marginBottom:"3em"}}
-                                    >
-                                    <Grid item>
-                                        Home
-                                    </Grid>
-                                    <Grid item>
-                                        Criteria
-                                    </Grid>
-                                    </Grid>
-                                </Box>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Card>
+                <FlowCurrentProgressCard transactionId={transactionId}  isLoading={isLoading} transactions={transactions} transactionsComplete={transactionsComplete}/>
                 <Card style={{padding:"0.9em"}}>
                     <Grid container justify="space-between" direction={"row"}>
                         <Typography  variant={"h6"} style={{marginRight: "10em"}} gutterBottom>Your Flow</Typography>

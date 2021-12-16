@@ -11,7 +11,8 @@ const transaction = (transactionId, signal: any) => {
         [CALL_API]: {
             httpAction: 'GET',
             types: [GET_TRANSACTION, GET_TRANSACTION_SUCCESS, GET_TRANSACTION_FAILURE],
-            endPoint: `transaction/${transactionId}`,
+            // endPoint: `transaction/${transactionId}`,
+            endPoint: `transaction/${transactionId}/flows`,
             schema: Schemas.TRANSACTION,
             signal: signal
         }
@@ -21,6 +22,7 @@ const transaction = (transactionId, signal: any) => {
 export const getTransaction = (transactionId, signal?: any) => (dispatch, getState) => {
     return dispatch(transaction(transactionId, signal));
 };
+
 
 export const CREATE_TRANSACTION = 'CREATE_TRANSACTION';
 export const CREATE_TRANSACTION_SUCCESS = 'CREATE_TRANSACTION_SUCCESS';
