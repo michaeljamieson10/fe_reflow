@@ -31,10 +31,10 @@ import {getTransaction} from "../actions/transactionActions";
 interface HomeCriteriaScreenProps {
     // priceByHundreds: string[];
     homeCriteria: HomeCriteria;
-    createTransaction:(
-        firstName: string,
-        lastName: string
-    ) => any;
+    // createHomeCriteria:(
+    //     transactionId: number
+    //     // lastName: string
+    // ) => any;
 }
 function getLabel(initialFilterDiscountTypeState: string) {
     switch (initialFilterDiscountTypeState) {
@@ -60,17 +60,18 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps
     const initialFilterDiscountTypeState = {house: false, multifamily: false, condocoop: false, townhome: false, basement: false, centralair: false, pool: false, waterfront: false};
     const {match} = props;
     const transactionId = match.params['transaction_id'];
+
     const [filterDiscountTypeChecked, setFilterDiscountTypeChecked] = useState(initialFilterDiscountTypeState);
     const [filterDiscountType, setFilterDiscountType] = useState(initialFilterDiscountTypeState);
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(true);
     const {
-        homeCriteria,
-        createTransaction
+        homeCriteria
+        // createHomeCriteria
     } = props;
 
     const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactions, shallowEqual);
-    console.log(transactions,"inside HCS");
+    // console.log(transactions,"inside HCS");
     // const [homeCriteriaStatusType, setHomeCriteriaStatusType] = useState(homeCriteria.homeCriteriaStatusType);
     //'one_hundred' 'two_hundred' 'three_hundred' | 'four_hundred' | 'five_hundred'| 'six_hundred' | 'seven_hundred'| 'eight_hundred' | 'nine_hundred'| 'one_million';
     let priceByHundreds = ['one_hundred','two_hundred','three_hundred','four_hundred','five_hundred', 'six_hundred','seven_hundred', 'eight_hundred','nine_hundred','one_million'];
@@ -89,12 +90,13 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps
 
             } else {
             }
+
         };
 
         // createTransaction(values.firstName, values.lastName);
-        createHomeCriteria(transactionId);
+        dispatch<any>(createHomeCriteria(transactionId));
 
-        history.push(`{/dashboard/transaction/${transactionId}`);
+        history.push(`/dashboard/transaction/${transactionId}`);
 
     };
 

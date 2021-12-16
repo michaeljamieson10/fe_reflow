@@ -24,6 +24,11 @@ import {
     GET_TRANSACTION_FAILURE
 } from "../actions/transactionActions";
 import {GET_AGENT_BY_TOKEN, GET_AGENT_FAILURE_BY_TOKEN, GET_AGENT_SUCCESS_BY_TOKEN} from "../actions/agentActions";
+import {
+    CREATE_HOME_CRITERIA,
+    CREATE_HOME_CRITERIA_FAILURE,
+    CREATE_HOME_CRITERIA_SUCCESS
+} from "../actions/homeCriteriaActions";
 
 const initialState = {accessToken: '', loggedInUserId: '', errorMessage: '', entities: entitiesInitialState};
 
@@ -77,6 +82,9 @@ export default (state = initialState, action) => {
         case GET_ALL_TRANSACTION:
         case GET_ALL_TRANSACTION_SUCCESS:
         case GET_ALL_TRANSACTION_FAILURE:
+        case CREATE_HOME_CRITERIA:
+        case CREATE_HOME_CRITERIA_SUCCESS:
+        case CREATE_HOME_CRITERIA_FAILURE:
 
 
         default:

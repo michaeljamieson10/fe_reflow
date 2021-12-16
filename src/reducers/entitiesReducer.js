@@ -17,6 +17,11 @@ import {
     GET_TRANSACTION, GET_TRANSACTION_FAILURE, GET_TRANSACTION_SUCCESS
 } from "../actions/transactionActions";
 import {GET_AGENT_BY_TOKEN, GET_AGENT_FAILURE_BY_TOKEN, GET_AGENT_SUCCESS_BY_TOKEN} from "../actions/agentActions";
+import {
+    CREATE_HOME_CRITERIA,
+    CREATE_HOME_CRITERIA_FAILURE,
+    CREATE_HOME_CRITERIA_SUCCESS
+} from "../actions/homeCriteriaActions";
 
 export const initialState = {users: {}, agents:{}, transactions:{} };
 
@@ -61,6 +66,9 @@ export default (state = initialState, action) => {
             state = {...state, transactions: {}};
             return appendAndUpdateEntitiesFromResponse(state, responseEntities);
         case GET_TRANSACTION_FAILURE:
+        case CREATE_HOME_CRITERIA:
+        case CREATE_HOME_CRITERIA_SUCCESS:
+        case CREATE_HOME_CRITERIA_FAILURE:
 
         default:
             return state;
