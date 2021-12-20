@@ -95,7 +95,7 @@ const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, H
     return (
         <form onSubmit={handleSubmit}>
             <OutlineSelect/>
-            {/*<OutlineSelectBedAndBath/>*/}
+            <OutlineSelectBedAndBath/>
             {/*<Field name={`category${category.id}`} label={category.name} key={category.id} component={renderField} type="checkbox" value={category.id} />*/}
             <Field name={'house'} label={'House'} component={renderField} type="checkbox" value={'house'} />
             <Field name={'multifamily'} label={'Multifamily'} component={renderField} type="checkbox" value={'multifamily'} />

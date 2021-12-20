@@ -6,6 +6,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import {Grid} from "@material-ui/core";
+import {Field} from "redux-form";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -32,8 +33,60 @@ function getLabel(priceByHundreds: string) {
             return '5+';
     }
 }
+const renderFromHelper = ({ touched, error }) => {
+    if (!(touched && error)) {
+        return
+    } else {
+        return <FormHelperText>{touched && error}</FormHelperText>
+    }
+}
+const renderSelectBedField = ({
+                                  input,
+                                  label,
+                                  meta: { touched, error },
+                                  children,
+                                  ...custom
+                              }) => (
+    <FormControl error={touched && error}>
+        <InputLabel htmlFor="bed">Bed</InputLabel>
+        <Select
+            native
+            {...input}
+            {...custom}
+            inputProps={{
+                name: 'Min',
+                id: 'min'
+            }}
+        >
+            {children}
+        </Select>
+        {renderFromHelper({ touched, error })}
+    </FormControl>
+)
 
-
+const renderSelectBathField = ({
+                                  input,
+                                  label,
+                                  meta: { touched, error },
+                                  children,
+                                  ...custom
+                              }) => (
+    <FormControl error={touched && error}>
+        <InputLabel htmlFor="bath">Bath</InputLabel>
+        <Select
+            native
+            {...input}
+            {...custom}
+            inputProps={{
+                name: 'bath',
+                id: 'bath'
+            }}
+        >
+            {children}
+        </Select>
+        {renderFromHelper({ touched, error })}
+    </FormControl>
+)
     const OutlineSelectBedAndBath: React.FC = props => {
 // export default function OutlineSelect() {
     const classes = useStyles();
@@ -50,39 +103,55 @@ function getLabel(priceByHundreds: string) {
         <Grid
             item
         >
-        <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Bed Units</InputLabel>
-        <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={age}
-            onChange={handleChange}
-            label="Bed Units"
-        >
-            {unitsQuantity.map((label) => (
-                <MenuItem value={label}>{getLabel(label)}</MenuItem>
+    {/*    <FormControl variant="outlined" className={classes.formControl}>*/}
+    {/*    <InputLabel id="demo-simple-select-outlined-label">Bed Units</InputLabel>*/}
+    {/*    <Select*/}
+    {/*        labelId="demo-simple-select-outlined-label"*/}
+    {/*        id="demo-simple-select-outlined"*/}
+    {/*        value={age}*/}
+    {/*        onChange={handleChange}*/}
+    {/*        label="Bed Units"*/}
+    {/*    >*/}
+    {/*        {unitsQuantity.map((label) => (*/}
+    {/*            <MenuItem value={label}>{getLabel(label)}</MenuItem>*/}
 
-            ))}
-        </Select>
-    </FormControl>
+    {/*        ))}*/}
+    {/*    </Select>*/}
+    {/*</FormControl>*/}
+            <Field name={"Bath"} component={renderSelectBathField}>
+                {/*{priceByHundreds.map((label) => (*/}
+                {/*    <option value={label}>{getLabel(label)}</option>*/}
+                {/*))}*/}
+                {unitsQuantity.map((label) => (
+                    <option value={label}>{getLabel(label)}</option>
+                ))}
+            </Field>
     </Grid>
             <Grid item>
-            <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="demo-simple-select-outlined-label">Bath Units</InputLabel>
-                <Select
-                    labelId="demo-simple-select-outlined-label"
-                    id="demo-simple-select-outlined"
-                    value={age}
-                    onChange={handleChange}
-                    label="Bath Units"
-                >
-                    {unitsQuantity.map((label) => (
-                        <MenuItem value={label}>{getLabel(label)}</MenuItem>
+            {/*<FormControl variant="outlined" className={classes.formControl}>*/}
+            {/*    <InputLabel id="demo-simple-select-outlined-label">Bath Units</InputLabel>*/}
+            {/*    <Select*/}
+            {/*        labelId="demo-simple-select-outlined-label"*/}
+            {/*        id="demo-simple-select-outlined"*/}
+            {/*        value={age}*/}
+            {/*        onChange={handleChange}*/}
+            {/*        label="Bath Units"*/}
+            {/*    >*/}
+            {/*        {unitsQuantity.map((label) => (*/}
+            {/*            <MenuItem value={label}>{getLabel(label)}</MenuItem>*/}
 
-                    ))}
+            {/*        ))}*/}
 
-                </Select>
-            </FormControl>
+            {/*    </Select>*/}
+            {/*</FormControl>*/}
+                <Field name={"Bed"} component={renderSelectBedField}>
+                    {/*{priceByHundreds.map((label) => (*/}
+                    {/*    <option value={label}>{getLabel(label)}</option>*/}
+                    {/*))}*/}
+                            {unitsQuantity.map((label) => (
+                                <option value={label}>{getLabel(label)}</option>
+                            ))}
+                </Field>
         </Grid>
     </>
     )
