@@ -101,10 +101,10 @@ interface HomeCriteria {
     centralair: boolean;
     pool: boolean;
     waterfront: boolean;
-    cityOne: boolean;
-    cityTwo: boolean;
-    cityThree: boolean;
-    cityFour: boolean;
-    cityFive: boolean;
+    cityOne: string;
+    cityTwo: string;
+    cityThree: string;
+    cityFour: string;
+    cityFive: string;
     createdTimestamp: string;
 }

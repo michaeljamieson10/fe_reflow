@@ -87,6 +87,10 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps
     },[isLoading]);
 
 
+    const handleNewHome = values =>{
+        console.log("we made it", values,"tridright",transactionId)
+        dispatch<any>(createHomeCriteria(values,transactionId));
+    }
 
     return(
         <Grid
@@ -102,7 +106,7 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps
             {/*<FlowCurrentProgressCard transactionId={transactionId}  isLoading={isLoading} transactions={transactions}/>*/}
 
             <Card className="card-with-form" style={{marginTop:"2em",padding:"2em", boxShadow: 'none' }}>
-                <HomeCriteriaForm/>
+                <HomeCriteriaForm onSubmit={(values) => handleNewHome(values)}/>
             </Card>
         </Grid>
     )

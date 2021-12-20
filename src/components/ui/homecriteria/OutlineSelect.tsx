@@ -58,14 +58,14 @@ const renderSelectMinField = ({
                                ...custom
                            }) => (
     <FormControl error={touched && error}>
-        <InputLabel htmlFor="min">Min</InputLabel>
+        <InputLabel htmlFor="minPrice">Min</InputLabel>
         <Select
             native
             {...input}
             {...custom}
             inputProps={{
                 name: 'Min',
-                id: 'min'
+                id: 'minPrice'
             }}
         >
             {children}
@@ -81,14 +81,14 @@ const renderSelectMaxField = ({
                                   ...custom
                               }) => (
     <FormControl error={touched && error}>
-        <InputLabel htmlFor="max">Max</InputLabel>
+        <InputLabel htmlFor="maxPrice">Max</InputLabel>
         <Select
             native
             {...input}
             {...custom}
             inputProps={{
                 name: 'Max',
-                id: 'max'
+                id: 'maxPrice'
             }}
         >
             {children}
@@ -136,7 +136,7 @@ const renderSelectMaxField = ({
                     <option value={label}>{getLabel(label)}</option>
                 ))}
             </Field>
-            <Field name={"Max"} component={renderSelectMaxField}>
+            <Field name={"Max"} value={"maxPrice"}component={renderSelectMaxField}>
                 {priceByHundreds.map((label) => (
                     <option value={label}>{getLabel(label)}</option>
                 ))}

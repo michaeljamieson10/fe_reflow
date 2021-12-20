@@ -10,8 +10,8 @@ const validate = (values) => {
     // if (!values.userId) {
     //     errors.userId = 'Required'
     // }
-    // if (!values.name) {
-    //     errors.name = 'Required'
+    // if (!values.condocoop) {
+    //     errors.condocoop = false
     // }
     return errors
 };
@@ -22,23 +22,25 @@ const renderField = ({ input, label, type, users, meta: { touched, error, value,
                helperText={touched && error ? error : ''} {...custom} />
 }
 
-const onSubmit = values => {
-    // const responseFunc = response => {
-    //     if (!response.error) {
-    //
-    //     } else {
-    //     }
-    // console.log(response,"FROM INSIDE HANDLE SUBMIT OF HCF");
-    //
-    // };
-    // alert(values);
-    console.log(values,"FROM INSIDE HANDLE SUBMIT OF HCF");
-
-    // dispatch<any>(createHomeCriteria(transactionId));
-
-    // history.push(`/dashboard/transaction/${transactionId}`);
-
-};
+// const onSubmit = values => {
+//     // const responseFunc = response => {
+//     //     if (!response.error) {
+//     //
+//     //     } else {
+//     //     }
+//     // console.log(response,"FROM INSIDE HANDLE SUBMIT OF HCF");
+//     //
+//     // };
+//     // alert(values);
+//
+//     console.log(values,"FROM INSIDE HANDLE SUBMIT OF HCF");
+//
+//     // dispatch<any>(createHomeCriteria(transactionId));
+//     createHomeCriteria(values);
+//
+//     // history.push(`/dashboard/transaction/${transactionId}`);
+//
+// };
 interface HomeCriteriaFormProps {
     // onCancel: () => any,
     // users: { value: number, text: string }[],
@@ -51,7 +53,8 @@ const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, H
 // const HomeCriteriaForm = (props: InjectedFormProps<any>) => {
 // const HomeCriteriaForm = ({handleSubmit}) => {
     // const {handleSubmit : createHomeCriteria } = props;
-    const {handleSubmit,onSubmit} = props;
+    // const {handleSubmit: createHomeCriteria} = props;
+    const {handleSubmit} = props;
     const initialFilterDiscountTypeState = {house: false, multifamily: false, condocoop: false, townhome: false, basement: false, centralair: false, pool: false, waterfront: false};
 
     // console.log(transactions,"inside HCS");
@@ -90,7 +93,11 @@ const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, H
                 />;
         }
     };
+    // const handleSubmit = (formData) => {
+        // console.log(formData,"does this ever get called")
+        // createHomeCriteria(formData)
 
+    // }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -98,7 +105,7 @@ const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, H
             <OutlineSelectBedAndBath/>
             {/*<Field name={`category${category.id}`} label={category.name} key={category.id} component={renderField} type="checkbox" value={category.id} />*/}
             <Field name={'house'} label={'House'} component={renderField} type="checkbox" value={'house'} />
-            <Field name={'multifamily'} label={'Multifamily'} component={renderField} type="checkbox" value={'multifamily'} />
+            <Field name={'multifamily'} label={'Multifamily'} component={renderField} type="checkbox"  value={'multifamily'} />
             <Field name={'condocoop'} label={'Condocoop'} component={renderField} type="checkbox" value={'condocoop'} />
             <Field name={'townhome'} label={'Townhome'} component={renderField} type="checkbox" value={'townhome'} />
             <Field name={'basement'} label={'Basement'} component={renderField} type="checkbox" value={'basement'} />
@@ -113,6 +120,5 @@ const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, H
 
 export default reduxForm<any,HomeCriteriaFormProps>({
     form: 'HomeCriteriaForm', // a unique identifier for this form
-    onSubmit,
     validate,
 })(HomeCriteriaForm)

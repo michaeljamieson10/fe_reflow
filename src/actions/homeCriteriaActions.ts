@@ -1,5 +1,6 @@
 import { CALL_API, Schemas } from '../middleware/api';
 import { getSpecificUser } from './userActions';
+import {PriceByHundredsType, RoomAmountType, Transaction, TransactionStatusType} from "../store/reduxStoreState";
 
 export const GET_HOME_CRITERIA = 'GET_HOME_CRITERIA';
 export const GET_HOME_CRITERIA_SUCCESS = 'GET_HOME_CRITERIA_SUCCESS';
@@ -27,17 +28,47 @@ export const CREATE_HOME_CRITERIA = 'CREATE_HOME_CRITERIA';
 export const CREATE_HOME_CRITERIA_SUCCESS = 'CREATE_HOME_CRITERIA_SUCCESS';
 export const CREATE_HOME_CRITERIA_FAILURE = 'CREATE_HOME_CRITERIA_FAILURE';
 
-const homeCriteriaCreator = (transactionId) => {
-    //    private int id;
-    //     private Transaction transaction;
-    //     private TransactionStatusType transactionStatusType;
+const homeCriteriaCreator = (values,transactionId) => {
+    // id: number;
+    // transaction: Transaction;
+    // transactionStatusType : TransactionStatusType;
+    // minPrice: PriceByHundredsType;
+    // maxPrice: PriceByHundredsType;
+    // amountOfBed: RoomAmountType;
+    // amountOfBaths: RoomAmountType;
+    // house: boolean;
+    // multifamily: boolean;
+    // condocoop: boolean;
+    // townhome: boolean;
+    // basement: boolean;
+    // centralair: boolean;
+    // pool: boolean;
+    // waterfront: boolean;
+    // cityOne: string;
+    // cityTwo: string;
+    // cityThree: string;
+    // cityFour: string;
+    // cityFive: string;
+    // createdTimestamp: string;
     let homeCriteria = {
-        transaction:
-            {
-            id: transactionId
-            },
-            homeCriteria:{
-            }
+        transaction: {id: transactionId},
+        minPrice: values.minPrice,
+        maxPrice: values.maxPrice,
+        amountOfBed: values.amountOfBed,
+        amountOfBaths: values.amountOfBaths,
+        house: values.house,
+        multifamily: values.multifamily,
+        condocoop: values.condocoop,
+        townhome: values.townhome,
+        basement: values.basement,
+        centralair: values.centralair,
+        pool: values.pool,
+        waterfront: values.waterfront,
+        cityOne: values.cityOne,
+        cityTwo: values.cityTwo,
+        cityThree: values.cityThree,
+        cityFour: values.cityFour,
+        cityFive: values.cityFive
     }
     console.log("inside homeCriteria creator", homeCriteria)
     return {
@@ -51,8 +82,9 @@ const homeCriteriaCreator = (transactionId) => {
     };
 };
 
-export const createHomeCriteria = (transactionId) => (dispatch, getState) => {
-    return dispatch(homeCriteriaCreator(transactionId));
+export const createHomeCriteria = (values,transactionId) => (dispatch, getState) => {
+    console.log(values, transactionId,"lolol");
+    return dispatch(homeCriteriaCreator(values,transactionId));
 // .then(() => dispatch(getTransaction(transactionId))
 };
 
