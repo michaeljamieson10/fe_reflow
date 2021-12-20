@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -11,19 +11,28 @@ import {Link, RouteComponentProps} from "react-router-dom";
 import Icon from "./ButtonArrow";
 import {shallowEqual, useSelector} from "react-redux";
 import {State, Transaction} from "../../store/reduxStoreState";
-import {getTransactions} from "../../selectors/transactionSelectors";
+import {getTransactionById, getTransactions} from "../../selectors/transactionSelectors";
+import {useIsMount} from "../../hooks/useIsMount";
 
 
 
-const FlowCurrentProgressCard: React.FC<any> = ({transactionId,transactions,isLoading,transactionsComplete}) => {
+const FlowCurrentProgressCard: React.FC<any> = ({transactionId,isLoading}) => {
 // export default function OutlineSelect() {
 //     const {
 //         transactionId
 //     } = props;
     console.log(transactionId,"Hello from FCPC")
     console.log(isLoading,"Hello from FCPC")
+    const isMount = useIsMount();
 
+    const [transactionsComplete, setIsTransactionsComplete] = useState(0);
+    const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactionById, shallowEqual);
 
+    useEffect(()=>{
+        if(!isMount){
+            setIsTransactionsComplete(transactions[0].transactionsComplete);
+        }
+    },[isLoading]);
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     };

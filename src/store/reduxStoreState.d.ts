@@ -7,6 +7,7 @@ export interface State {
 
 interface Form {
     ClientForm?: GeneralForm;
+    HomeCriteriaForm?: GeneralForm;
     reaBuyerEmailForm?: GeneralForm;
     reaCreateTransactionForm?: GeneralForm;
 }

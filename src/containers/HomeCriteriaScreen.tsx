@@ -25,8 +25,10 @@ import {history} from "../index";
 import {match} from "assert";
 import {RouteComponentProps} from "react-router-dom";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
-import {getTransactions} from "../selectors/transactionSelectors";
+import {getTransactionById, getTransactions} from "../selectors/transactionSelectors";
 import {getTransaction} from "../actions/transactionActions";
+import {useIsMount} from "../hooks/useIsMount";
+import HomeCriteriaForm from "./HomeCriteriaForm";
 
 interface HomeCriteriaScreenProps {
     // priceByHundreds: string[];
@@ -57,63 +59,34 @@ function getLabel(initialFilterDiscountTypeState: string) {
     }
 }
 const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps> = props => {
-    const initialFilterDiscountTypeState = {house: false, multifamily: false, condocoop: false, townhome: false, basement: false, centralair: false, pool: false, waterfront: false};
     const {match} = props;
     const transactionId = match.params['transaction_id'];
+    const isMount = useIsMount();
 
-    const [filterDiscountTypeChecked, setFilterDiscountTypeChecked] = useState(initialFilterDiscountTypeState);
-    const [filterDiscountType, setFilterDiscountType] = useState(initialFilterDiscountTypeState);
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(true);
+    const [transactionsComplete, setIsTransactionsComplete] = useState(0);
     const {
         homeCriteria
         // createHomeCriteria
     } = props;
 
-    const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactions, shallowEqual);
-    // console.log(transactions,"inside HCS");
-    // const [homeCriteriaStatusType, setHomeCriteriaStatusType] = useState(homeCriteria.homeCriteriaStatusType);
-    //'one_hundred' 'two_hundred' 'three_hundred' | 'four_hundred' | 'five_hundred'| 'six_hundred' | 'seven_hundred'| 'eight_hundred' | 'nine_hundred'| 'one_million';
-    let priceByHundreds = ['one_hundred','two_hundred','three_hundred','four_hundred','five_hundred', 'six_hundred','seven_hundred', 'eight_hundred','nine_hundred','one_million'];
+    // const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactions, shallowEqual);
+    const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactionById, shallowEqual);
 
-    // console.log(priceByHundreds,"EL PRECIO");
-    // const [homeCriteriaStatusTypse, setHomeCriteriaStatusType] = useState<homeCriteriaStatusStype>("");
     useEffect(() => {
         // if(!isMount){
         dispatch<any>(getTransaction(transactionId)).then(() => setIsLoading(false));
         // }
     }, []);
 
-    const handleSubmit = values => {
-        const responseFunc = response => {
-            if (!response.error) {
+    useEffect(()=>{
+        if(!isMount){
+            setIsTransactionsComplete(transactions[0].transactionsComplete);
+        }
+    },[isLoading]);
 
-            } else {
-            }
 
-        };
-
-        // createTransaction(values.firstName, values.lastName);
-        dispatch<any>(createHomeCriteria(transactionId));
-
-        history.push(`/dashboard/transaction/${transactionId}`);
-
-    };
-
-    const [filterDiscountTypeRadioSelection, setFilterDiscountTypeRadioSelection] = useState<'lol' | 'pewpew'>('lol');
-    const handleChangeCheckboxDiscountType = (evt) => {
-        const selection = evt.target.value;
-        const isChecked = evt.target.checked;
-
-        console.log(evt.target,"inside");
-
-        if (filterDiscountTypeRadioSelection === 'lol') setFilterDiscountTypeRadioSelection('pewpew');
-
-        //update checked state for the checkbox that was just checked
-        setFilterDiscountTypeChecked({...filterDiscountTypeChecked, [selection]: isChecked});
-        //update state to filter by selected discount value
-        setFilterDiscountType({...filterDiscountType, [selection]: isChecked});
-    }
 
     return(
         <Grid
@@ -125,44 +98,11 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps
             // style={{marginBottom:"3em"}}
             // style={{}}
         >
-            <FlowCurrentProgressCard transactionId={transactionId}  isLoading={isLoading} transactions={transactions}/>
+            <FlowCurrentProgressCard transactionId={transactionId}  isLoading={isLoading} transactions={transactions} transactionsComplete={transactionsComplete}/>
+            {/*<FlowCurrentProgressCard transactionId={transactionId}  isLoading={isLoading} transactions={transactions}/>*/}
 
             <Card className="card-with-form" style={{marginTop:"2em",padding:"2em", boxShadow: 'none' }}>
-        <OutlineSelect/>
-        <OutlineSelectBedAndBath/>
-                <FormControlLabel
-                    control={<Checkbox checked={filterDiscountTypeChecked.house} value={'house'} onChange={handleChangeCheckboxDiscountType} name='House' />}
-                    label={'House'}
-                />
-                <FormControlLabel
-                    control={<Checkbox checked={filterDiscountTypeChecked.multifamily} value={'multifamily'} onChange={handleChangeCheckboxDiscountType} name='Multifamily' />}
-                    label={'Multifamily'}
-                />
-                <FormControlLabel
-                    control={<Checkbox checked={filterDiscountTypeChecked.condocoop} value={'condocoop'} onChange={handleChangeCheckboxDiscountType} name='Condocoop' />}
-                    label={'Condocoop'}
-                />
-                <FormControlLabel
-                    control={<Checkbox checked={filterDiscountTypeChecked.townhome} value={'townhome'} onChange={handleChangeCheckboxDiscountType} name='Townhome' />}
-                    label={'Townhome'}
-                />
-                <FormControlLabel
-                    control={<Checkbox checked={filterDiscountTypeChecked.basement} value={'basement'} onChange={handleChangeCheckboxDiscountType} name='Basement' />}
-                    label={'Basement'}
-                />
-                <FormControlLabel
-                    control={<Checkbox checked={filterDiscountTypeChecked.centralair} value={'centralair'} onChange={handleChangeCheckboxDiscountType} name='Central Air' />}
-                    label={'Central Air'}
-                />
-                <FormControlLabel
-                    control={<Checkbox checked={filterDiscountTypeChecked.pool} value={'pool'} onChange={handleChangeCheckboxDiscountType} name='Pool' />}
-                    label={'Pool'}
-                />
-                <FormControlLabel
-                    control={<Checkbox checked={filterDiscountTypeChecked.waterfront} value={'waterfront'} onChange={handleChangeCheckboxDiscountType} name='Waterfront' />}
-                    label={'Waterfront'}
-                />
-                <Button onClick={handleSubmit}>create HC</Button>
+                <HomeCriteriaForm/>
             </Card>
         </Grid>
     )
