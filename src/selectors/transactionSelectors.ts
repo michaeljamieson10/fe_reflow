@@ -14,6 +14,7 @@ import { State } from '../store/reduxStoreState';
 //     }
 // );
 export const  getTransactions = (state) => state.api.entities.transactions;
+// export const  getTransactions = (state) => state.api.entities.transactions.undefined;
 
 
 // export const getAgentsByName = createSelector(

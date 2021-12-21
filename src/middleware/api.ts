@@ -90,10 +90,11 @@ homeCriteriaSchema.define({
 // Schemas for Reflow API responses.
 export const Schemas = {
     USER: userSchema,
+    USER_ARRAY: [userSchema],
     CLIENT: clientSchema,
     AGENT: agentSchema,
     TRANSACTION: transactionSchema,
-    TRANSACTION_ARRAY: arrayOf(transactionSchema),
+    TRANSACTION_ARRAY: [transactionSchema],
     HOME_CRITERIA: homeCriteriaSchema,
     // USER_ARRAY: arrayOf(userSchema),
     EMPTY: [],

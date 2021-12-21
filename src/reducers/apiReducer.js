@@ -19,9 +19,13 @@ import {
     GET_ALL_TRANSACTION,
     GET_ALL_TRANSACTION_SUCCESS,
     GET_ALL_TRANSACTION_FAILURE,
+    GET_TRANSACTIONS_BY_TOKEN,
+    GET_TRANSACTIONS_SUCCESS_BY_TOKEN,
+    GET_TRANSACTIONS_FAILURE_BY_TOKEN,
     GET_TRANSACTION,
     GET_TRANSACTION_SUCCESS,
-    GET_TRANSACTION_FAILURE
+    GET_TRANSACTION_FAILURE,
+
 } from "../actions/transactionActions";
 import {GET_AGENT_BY_TOKEN, GET_AGENT_FAILURE_BY_TOKEN, GET_AGENT_SUCCESS_BY_TOKEN} from "../actions/agentActions";
 import {
@@ -49,13 +53,8 @@ export default (state = initialState, action) => {
         }
         case LOGIN_FAILURE:
             return {...state, errorMessage: 'Incorrect email/password combination'};
-        // we re-update the global state based on menu success... isRecreational
-        // a reducer returns new state
         case CREATE_NEW_USER_FAILURE:
             return {...state, errorMessage: action.error}
-        // case SET_IS_FULL_MENU_SHOWN_TO_USER_TO_FALSE:
-            const newState = {...state, entities: entitiesInitialState};
-            return merge({}, newState, {entities: entitiesReducer(state.entities, action)});
         case CLEAR_API_ERROR_MESSAGE:
             return {...state, errorMessage: ''};
         case GET_CLIENT:
@@ -73,11 +72,11 @@ export default (state = initialState, action) => {
         case GET_AGENT_BY_TOKEN:
         case GET_AGENT_FAILURE_BY_TOKEN:
         case GET_AGENT_SUCCESS_BY_TOKEN: {
-            let entities = action.response.entities;
-            let agentsFromResponse = entities.agents;
-            let currentAgentId = Object.keys(agentsFromResponse)[0];
-            return merge({}, {...state, entities: entitiesInitialState},
-                {currentAgentId, entities: entitiesReducer(state.entities, action)});
+            // let entities = action.response.entities;
+            // let agentsFromResponse = entities.agents;
+            // let currentAgentId = Object.keys(agentsFromResponse)[0];
+            // return merge({}, {...state, entities: entitiesInitialState},
+            //     {currentAgentId, entities: entitiesReducer(state.entities, action)});
         }
         case GET_ALL_TRANSACTION:
         case GET_ALL_TRANSACTION_SUCCESS:
@@ -85,6 +84,13 @@ export default (state = initialState, action) => {
         case CREATE_HOME_CRITERIA:
         case CREATE_HOME_CRITERIA_SUCCESS:
         case CREATE_HOME_CRITERIA_FAILURE:
+        case GET_TRANSACTIONS_BY_TOKEN:
+        case GET_TRANSACTIONS_FAILURE_BY_TOKEN:
+        case GET_TRANSACTIONS_SUCCESS_BY_TOKEN:
+            const newState = { ...state, entities: entitiesInitialState };
+            return merge({}, newState, { entities: entitiesReducer(state.entities, action) });
+
+
 
 
         default:

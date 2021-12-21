@@ -1,6 +1,27 @@
 import { CALL_API, Schemas } from '../middleware/api';
 import { getSpecificUser } from './userActions';
 
+
+export const GET_TRANSACTIONS_BY_TOKEN = 'GET_TRANSACTIONS_BY_TOKEN';
+export const GET_TRANSACTIONS_SUCCESS_BY_TOKEN = 'GET_TRANSACTIONS_SUCCESS_BY_TOKEN';
+export const GET_TRANSACTIONS_FAILURE_BY_TOKEN = 'GET_TRANSACTIONS_FAILURE_BY_TOKEN';
+
+const transactionsByToken = (signal: any) => {
+    return {
+        [CALL_API]: {
+            httpAction: 'GET',
+            types: [GET_TRANSACTIONS_BY_TOKEN, GET_TRANSACTIONS_SUCCESS_BY_TOKEN, GET_TRANSACTIONS_FAILURE_BY_TOKEN],
+            endPoint: `transaction`,
+            schema: Schemas.TRANSACTION,
+            signal: signal
+        }
+    }
+};
+
+export const getTransactionByToken = (signal?: any) => (dispatch, getState) => {
+    return dispatch(transactionsByToken(signal));
+};
+
 export const GET_TRANSACTION = 'GET_TRANSACTION';
 export const GET_TRANSACTION_SUCCESS = 'GET_TRANSACTION_SUCCESS';
 export const GET_TRANSACTION_FAILURE = 'GET_TRANSACTION_FAILURE';

@@ -21,7 +21,7 @@ import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getAgentById, getAgentFromProps, getAgents} from "../selectors/agentSelectors";
 import { useIsMount} from "../hooks/useIsMount";
-import {getAllTransactions, getTransaction} from "../actions/transactionActions";
+import {getAllTransactions, getTransaction,getTransactionByToken} from "../actions/transactionActions";
 import {getTransactions} from "../selectors/transactionSelectors";
 
 const renderTextField = ({
@@ -86,18 +86,26 @@ const READashBoard = (props: Props) => {
     // console.log(agentId,'this is agent');
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
+    // useEffect(() => {
+    //     setIsLoading(true);
+    //     // console.log(agentId,"something");
+    //     dispatch<any>(getAgentByToken())//getAgentHere
+    //         .then(() => setIsLoading(false));
+    //     // console.log(agents,"Im here");
+    // }, []);
     useEffect(() => {
         setIsLoading(true);
         // console.log(agentId,"something");
-        dispatch<any>(getAgentByToken())//getAgentHere
+        dispatch<any>(getTransactionByToken())//getAgentHere
             .then(() => setIsLoading(false));
         // console.log(agents,"Im here");
     }, []);
-    useEffect(() => {
-        if(!isMount){
-            dispatch<any>(getTransaction(1));
-        }
-    }, [isLoading]);
+    // useEffect(() => {
+    //     if(!isMount){
+    //         dispatch<any>(getTransaction(1));
+    //     }
+    // }, [isLoading]);
+
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
     const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -127,7 +135,6 @@ const READashBoard = (props: Props) => {
                             direction="column"
                             alignItems="center"
                             justifyContent="center"
-                            // style={{marginBottom:"3em"}}
                             >
                         <Typography variant={"subtitle2"}>Active Buyers</Typography>
                         <Typography variant={"h6"}>0</Typography>
@@ -142,7 +149,6 @@ const READashBoard = (props: Props) => {
                             direction="column"
                             alignItems="center"
                             justifyContent="center"
-                            // style={{marginBottom:"3em"}}
                         >
                             <Typography variant={"subtitle2"}>Completed Transactions</Typography>
                             <Typography variant={"h6"}>0</Typography>
@@ -153,7 +159,6 @@ const READashBoard = (props: Props) => {
         <Card style={{padding:"2em"}}>
             <Grid container direction={"row"}>
                 <Typography  variant={"subtitle2"} style={{marginRight: "10em"}} gutterBottom>Buyers</Typography>
-                {/* onClick={handleSubmit} disabled={!enableButton}*/}
                 <Button component={Link}  to="/rea/create_transaction" color="primary" variant="contained"
                     // style={{
                     //     height: 45,
@@ -164,8 +169,7 @@ const READashBoard = (props: Props) => {
                 </Button>
             </Grid>
                 <Divider style={{marginBottom:"2em"}} />
-                {/*<Grid container direction={"row"} style={{padding:"2em"}}>*/}
-                {/*</Grid>*/}
+
             <Grid>
                 <> <Typography align={"center"}variant={"h6"}>
                     Invite a home buyer </Typography>
@@ -173,14 +177,18 @@ const READashBoard = (props: Props) => {
                 <Typography align={"center"}variant={"h6"}>
                     to get started
                 </Typography>
-                {/*{isLoading? 'loading': Object.keys(transactions).map(transaction => <div>{transaction}</div>)}*/}
+
+                {/*{isLoading? 'loading': Object.entries(transactions).map(([key, value]) =>*/}
+                {/*    <div>{value.firstName} {value.lastName} {value.id}*/}
+                {/*    <Button*/}
+                {/*    component={Link}  to={`/dashboard/transaction/${value.id}`} color="primary" variant="contained"*/}
+                {/*>View</Button></div> )}*/}
 
                 {isLoading? 'loading': Object.entries(transactions).map(([key, value]) =>
                     <div>{value.firstName} {value.lastName} {value.id}
                     <Button
                     component={Link}  to={`/dashboard/transaction/${value.id}`} color="primary" variant="contained"
                 >View</Button></div> )}
-                {/*{isLoading? 'loading': Object.entries(transactions).map(([key, value]) => console.log(value["firstName"],"MI VALUEA"))}*/}
 
                 {/*{isLoading? 'loading': <div>{transactions.id}</div>}*/}
             </Grid>
