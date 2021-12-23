@@ -51,7 +51,7 @@ function getStepsRoutes(step: number,transactionId){
         case 1:
             return `/pre_approval/transaction/${transactionId}`;
         case 2:
-            return 'accepted_offer';
+            return `/accepted_offer/transaction/${transactionId}`;
         case 3:
             return '/home_inspection';
         case 4:

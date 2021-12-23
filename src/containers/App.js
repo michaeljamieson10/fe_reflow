@@ -31,6 +31,7 @@ import REACreateTransaction from "./REACreateTransaction";
 import FlowScreen from "./FlowScreen";
 import HomeCriteriaScreen from "./HomeCriteriaScreen";
 import PreApprovalScreen from "./PreApprovalScreen";
+import AcceptedOfferScreen from "./AcceptedOfferScreen";
 
 class App extends Component {
 
@@ -89,12 +90,13 @@ class App extends Component {
               <Route exact path="/rea/invite_buyer/quantity" component={REABuyerQuantity} />
               <Route exact path="/rea/invite_buyer/send_emails" component={REABuyerQuantity} />
               <Route exact path="/about" component={Home} />
-              <Route exact path="/pre_approval/transaction/:transaction_id" component={PreApprovalScreen} />
               <Route exact path="/role" component={ChooseRole} />
               <Route exact path="/client" component={ClientManagement} />
               {/*<Route exact path="/dashboard/flow" component={FlowScreen} />*/}
               <Route path="/dashboard/transaction/:transaction_id" component={FlowScreen} />
               <Route exact path="/home_criteria/transaction/:transaction_id" component={HomeCriteriaScreen} />
+              <Route exact path="/pre_approval/transaction/:transaction_id" component={PreApprovalScreen} />
+              <Route exact path="/accepted_offer/transaction/:transaction_id" component={AcceptedOfferScreen} />
               <Route exact path="/signup" component={SignUp} />
             </Switch>
 

@@ -49,8 +49,8 @@ export const CREATE_PREAPPROVAL = 'CREATE_PREAPPROVAL';
 export const CREATE_PREAPPROVAL_SUCCESS = 'CREATE_PREAPPROVAL_SUCCESS';
 export const CREATE_PREAPPROVAL_FAILURE = 'CREATE_PREAPPROVAL_FAILURE';
 
-const preApprovalCreator = (values, transactionId) => {
-    let preApproval = {
+const acceptedOfferCreator = (values, transactionId) => {
+    let acceptedOffer = {
         transaction: {id: transactionId},
         maxPurchasePrice: values.maxPurchasePrice,
         maxPropertyTaxes: values.maxPropertyTaxes,
@@ -58,21 +58,21 @@ const preApprovalCreator = (values, transactionId) => {
         downPayment: values.downPayment,
         loanType: values.loanType
     }
-    console.log("inside preApproval", preApproval)
+    console.log("inside preApproval", acceptedOffer)
     return {
         [CALL_API]: {
             httpAction: 'POST',
             types: [CREATE_PREAPPROVAL, CREATE_PREAPPROVAL_SUCCESS, CREATE_PREAPPROVAL_FAILURE],
-            endPoint: 'pre_approval',
+            endPoint: 'accepted_offer',
             schema: Schemas.PRE_APPROVAL,
-            body: preApproval
+            body: acceptedOffer
         }
     };
 };
 
-export const createPreApproval = (values, transactionId) => (dispatch, getState) => {
-    console.log(values, transactionId,"prior to calling preApprovalCreator inside of createPreApproval");
-    return dispatch(preApprovalCreator(values, transactionId));
+export const createAcceptedOffer = (values, transactionId) => (dispatch, getState) => {
+    console.log(values, transactionId,"prior to calling acceptedOfferCreator inside of createAcceptedOffer");
+    return dispatch(acceptedOfferCreator(values, transactionId));
 // .then(() => dispatch(getTransaction(transactionId))
 };
 

@@ -79,6 +79,9 @@ const homeCriteriaSchema = new schema.Entity('homeCriterias', {},{
 const preApprovalSchema = new schema.Entity('preApprovals', {},{
     idAttribute: preApproval => preApproval.id
 });
+const acceptedOfferSchema = new schema.Entity('acceptedOffers', {},{
+    idAttribute: acceptedOffer => acceptedOffer.id
+});
 
 
 transactionSchema.define({
@@ -100,6 +103,7 @@ export const Schemas = {
     TRANSACTION_ARRAY: [transactionSchema],
     HOME_CRITERIA: homeCriteriaSchema,
     PRE_APPROVAL: preApprovalSchema,
+    ACCEPTED_OFFER: acceptedOfferSchema,
     // USER_ARRAY: arrayOf(userSchema),
     EMPTY: [],
 };

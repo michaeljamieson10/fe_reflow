@@ -121,3 +121,15 @@ interface PreApproval {
     loanType: LoanType;
     createdTimestamp: string;
 }
+
+interface AcceptedOffer {
+    id: number;
+    transaction: Transaction;
+    transactionStatusType : TransactionStatusType;
+    maxPurchasePrice: number;
+    maxLoanAmount: number;
+    maxTaxes: number;
+    downPayment: Number;
+    loanType: LoanType;
+    createdTimestamp: string;
+}
