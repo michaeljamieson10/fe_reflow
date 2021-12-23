@@ -86,10 +86,10 @@ export default (state = initialState, action) => {
         case GET_TRANSACTIONS_BY_TOKEN:
         case GET_TRANSACTIONS_FAILURE_BY_TOKEN:
         case GET_TRANSACTIONS_SUCCESS_BY_TOKEN:
-            state = {...state, transactions: {}};
-            console.log(state,"STATE INSIDE ENTITY REDUCER");
+            // state = {...state, transactions: {}};
+            console.log(state,"state",responseEntities,"response ENTITY REDUCER");
             // return appendAndUpdateEntitiesFromResponse(state, responseEntities);
-            return appendAndUpdateEntitiesFromResponseWithArrayOverwrite(state, responseEntities);
+            // return appendAndUpdateEntitiesFromResponseWithArrayOverwrite(state, responseEntities);
 
         default:
             return state;

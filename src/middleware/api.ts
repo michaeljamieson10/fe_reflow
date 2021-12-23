@@ -1,4 +1,4 @@
-import { Schema, arrayOf, normalize } from 'normalizr';
+import {Schema, normalize, schema} from 'normalizr';
 import { camelizeKeys } from 'humps';
 import qs from 'query-string';
 import { logException } from '../actions/apiUIHelperActions';
@@ -59,21 +59,21 @@ const callApi = (httpAction, endpoint, schema, accessToken,
         )
 };
 
-const userSchema = new Schema('users', {
+const userSchema = new schema.Entity('users', {},{
     idAttribute: user => user.id
 });
 
-const clientSchema = new Schema('clients', {
+const clientSchema =  new schema.Entity('clients', {
     idAttribute: client => client.id
 });
 
-const agentSchema = new Schema('agents', {
+const agentSchema =  new schema.Entity('agents', {},{
     idAttribute: agent => agent.id
 });
-const transactionSchema = new Schema('transactions', {
+const transactionSchema =  new schema.Entity('transactions', {},{
     idAttribute: transaction => transaction.id
 });
-const homeCriteriaSchema = new Schema('homeCriterias', {
+const homeCriteriaSchema = new schema.Entity('homeCriterias', {},{
     idAttribute: homeCriterias => homeCriterias.id
 });
 

@@ -12,7 +12,7 @@ const transactionsByToken = (signal: any) => {
             httpAction: 'GET',
             types: [GET_TRANSACTIONS_BY_TOKEN, GET_TRANSACTIONS_SUCCESS_BY_TOKEN, GET_TRANSACTIONS_FAILURE_BY_TOKEN],
             endPoint: `transaction`,
-            schema: Schemas.TRANSACTION,
+            schema: Schemas.TRANSACTION_ARRAY,
             signal: signal
         }
     }
