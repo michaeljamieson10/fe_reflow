@@ -56,7 +56,8 @@ const preApprovalCreator = (values, transactionId) => {
         maxPurchasePrice: values.maxPurchasePrice,
         maxPropertyTaxes: values.maxPropertyTaxes,
         maxLoanAmount: values.maxLoanAmount,
-        downPayment: values.downPayment
+        downPayment: values.downPayment,
+        loanType: values.loanType
     }
     console.log("inside preApproval", preApproval)
     return {

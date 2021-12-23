@@ -117,6 +117,7 @@ interface PreApproval {
     maxPurchasePrice: number;
     maxLoanAmount: number;
     maxTaxes: number;
-    downPayment: LoanType;
+    downPayment: Number;
+    loanType: LoanType;
     createdTimestamp: string;
 }

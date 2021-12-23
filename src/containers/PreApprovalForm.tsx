@@ -79,7 +79,7 @@ const PreApprovalForm = (props: PreApprovalFormProps & InjectedFormProps<{}, Pre
     // console.log(transactions,"inside HCS");
     // const [homeCriteriaStatusType, setHomeCriteriaStatusType] = useState(homeCriteria.homeCriteriaStatusType);
     //'one_hundred' 'two_hundred' 'three_hundred' | 'four_hundred' | 'five_hundred'| 'six_hundred' | 'seven_hundred'| 'eight_hundred' | 'nine_hundred'| 'one_million';
-    let loanType = ['conventional','FHA','VA','USDA'];
+    let loanType = ['','conventional','FHA','VA','USDA'];
 
 
     const renderField = ({ input, defaultSelected, label, type, users,adornment, value,
