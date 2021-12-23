@@ -31,6 +31,7 @@ import {useIsMount} from "../hooks/useIsMount";
 import HomeCriteriaForm from "./HomeCriteriaForm";
 import PreApprovalForm from "./PreApprovalForm";
 import AcceptedOfferForm from "./AcceptedOfferForm";
+import {createAcceptedOffer} from "../actions/acceptedOfferActions";
 
 interface acceptedOfferProps {
     // priceByHundreds: string[];
@@ -91,7 +92,7 @@ const AcceptedOfferScreen: React.FC<acceptedOfferProps & RouteComponentProps> = 
 
     const handleSubmitParent = values =>{
         console.log("we made it", values,"tridright",transactionId)
-        // dispatch<any>(createPreApproval(values,transactionId));
+        dispatch<any>(createAcceptedOffer(values,transactionId));
     }
 
     return(

@@ -115,16 +115,13 @@ const AcceptedOfferForm = (props: AcceptedOfferFormProps & InjectedFormProps<{},
         console.log(values,"Inside handleChange");
         setValues({ ...values, [prop]: event.target.value });
     };
-    // const handleSubmit = (formData) => {
-    //     console.log(formData,"does this ever get called")
-    //     createHomeCriteria(formData)
-    //
-    // }
 
     return (
         <form onSubmit={handleSubmit}>
-            <Field name="purchasePrice" component={renderTextField} label="Purchase Price"/>
+            {/*<Field name="purchasePrice" component={renderTextField} label="Purchase Price"/>*/}
             {/*<Field name={'purchasePrice'} label={'Purchase Price'} component={renderField} type="textfield" adornment={"$"} value={'purchasePrice'} />*/}
+            <Field name={'address'} label={'Address'} component={renderField} type="textfield"  value={'propertyTaxes'} />
+            <Field name={'purchasePrice'} label={'Purchase Price'} component={renderField} type="textfield" value={'purchasePrice'} />
             <Field name={'propertyTaxes'} label={'Property Tax'} component={renderField} type="textfield" adornment={"%"} value={'propertyTaxes'} />
             <Field name={'downPayment'} label={'Down Payment'} component={renderField} type="textfield" adornment={"%"} value={'downPayment'} />
 

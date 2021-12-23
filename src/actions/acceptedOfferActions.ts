@@ -50,13 +50,17 @@ export const CREATE_PREAPPROVAL_SUCCESS = 'CREATE_PREAPPROVAL_SUCCESS';
 export const CREATE_PREAPPROVAL_FAILURE = 'CREATE_PREAPPROVAL_FAILURE';
 
 const acceptedOfferCreator = (values, transactionId) => {
+    //    private String address;
+    //     private BigDecimal purchasePrice;
+    //     private BigDecimal propertyTaxes;
+    //     private BigDecimal downPayment;
+
     let acceptedOffer = {
         transaction: {id: transactionId},
-        maxPurchasePrice: values.maxPurchasePrice,
-        maxPropertyTaxes: values.maxPropertyTaxes,
-        maxLoanAmount: values.maxLoanAmount,
+        address: values.address,
+        purchasePrice: values.purchasePrice,
+        propertyTaxes: values.propertyTaxes,
         downPayment: values.downPayment,
-        loanType: values.loanType
     }
     console.log("inside preApproval", acceptedOffer)
     return {
