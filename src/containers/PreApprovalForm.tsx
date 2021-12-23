@@ -117,7 +117,7 @@ const PreApprovalForm = (props: PreApprovalFormProps & InjectedFormProps<{}, Pre
             <Field name={'maxLoanAmount'} label={'Max Loan Amount'} component={renderField} type="textfield" adornment={"$"} value={'maxLoanAmount'} />
             <Field name={'maxPropertyTaxes'} label={'Max Property Tax'} component={renderField} type="textfield" adornment={"%"} value={'maxPropertyTaxes'} />
             <Field name={'downPayment'} label={'Down Payment'} component={renderField} type="textfield" adornment={"%"} value={'downPayment'} />
-            <Field name={"Loan Type"} value={"loanType"}component={renderSelectLoanTypeField}>
+            <Field name={"loanType"} value={"loanType"}component={renderSelectLoanTypeField}>
                 {loanType.map((label) => (
                     <option value={label}>{label}</option>
                 ))}
