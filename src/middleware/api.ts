@@ -74,7 +74,10 @@ const transactionSchema =  new schema.Entity('transactions', {},{
     idAttribute: transaction => transaction.id
 });
 const homeCriteriaSchema = new schema.Entity('homeCriterias', {},{
-    idAttribute: homeCriterias => homeCriterias.id
+    idAttribute: homeCriteria => homeCriteria.id
+});
+const preApprovalSchema = new schema.Entity('preApprovals', {},{
+    idAttribute: preApproval => preApproval.id
 });
 
 
@@ -96,6 +99,7 @@ export const Schemas = {
     TRANSACTION: transactionSchema,
     TRANSACTION_ARRAY: [transactionSchema],
     HOME_CRITERIA: homeCriteriaSchema,
+    PRE_APPROVAL: preApprovalSchema,
     // USER_ARRAY: arrayOf(userSchema),
     EMPTY: [],
 };

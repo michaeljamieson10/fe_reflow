@@ -30,6 +30,7 @@ import REABuyerEmail from "./REABuyerEmailAdd";
 import REACreateTransaction from "./REACreateTransaction";
 import FlowScreen from "./FlowScreen";
 import HomeCriteriaScreen from "./HomeCriteriaScreen";
+import PreApprovalScreen from "./PreApprovalScreen";
 
 class App extends Component {
 
@@ -88,6 +89,7 @@ class App extends Component {
               <Route exact path="/rea/invite_buyer/quantity" component={REABuyerQuantity} />
               <Route exact path="/rea/invite_buyer/send_emails" component={REABuyerQuantity} />
               <Route exact path="/about" component={Home} />
+              <Route exact path="/pre_approval/transaction/:transaction_id" component={PreApprovalScreen} />
               <Route exact path="/role" component={ChooseRole} />
               <Route exact path="/client" component={ClientManagement} />
               {/*<Route exact path="/dashboard/flow" component={FlowScreen} />*/}

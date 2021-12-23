@@ -49,7 +49,7 @@ function getStepsRoutes(step: number,transactionId){
         case 0:
             return `/home_criteria/transaction/${transactionId}`;
         case 1:
-            return '/pre_approval';
+            return `/pre_approval/transaction/${transactionId}`;
         case 2:
             return 'accepted_offer';
         case 3:

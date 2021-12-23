@@ -8,6 +8,7 @@ export interface State {
 interface Form {
     ClientForm?: GeneralForm;
     HomeCriteriaForm?: GeneralForm;
+    PreApprovalForm?: GeneralForm;
     reaBuyerEmailForm?: GeneralForm;
     reaCreateTransactionForm?: GeneralForm;
 }
@@ -81,6 +82,7 @@ interface Transaction {
 // ENUM('one_hundred','two_hundred','three_hundred','four_hundred','five_hundred','six_hundred','seven_hundred','eight_hundred','nine_hundred','one_million')")
 type PriceByHundredsType = 'one_hundred' | 'two_hundred' | 'three_hundred' | 'four_hundred' | 'five_hundred'| 'six_hundred' | 'seven_hundred'| 'eight_hundred' | 'nine_hundred'| 'one_million';
 type TransactionStatusType = 'not_started' | 'in_progress' | 'completed';
+type LoanType = 'conventional' | 'FHA' | 'VA' | 'USDA';
 //"ENUM('not_started', 'in_progress', 'completed')")
 // "ENUM('one', 'two', 'three', 'four', 'five')")
 type RoomAmountType = 'one' | 'two' | 'three' | 'four' | 'five';
@@ -106,5 +108,15 @@ interface HomeCriteria {
     cityThree: string;
     cityFour: string;
     cityFive: string;
+    createdTimestamp: string;
+}
+interface PreApproval {
+    id: number;
+    transaction: Transaction;
+    transactionStatusType : TransactionStatusType;
+    maxPurchasePrice: number;
+    maxLoanAmount: number;
+    maxTaxes: number;
+    downPayment: LoanType;
     createdTimestamp: string;
 }

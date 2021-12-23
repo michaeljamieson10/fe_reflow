@@ -93,11 +93,6 @@ const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, H
                 />;
         }
     };
-    // const handleSubmit = (formData) => {
-        // console.log(formData,"does this ever get called")
-        // createHomeCriteria(formData)
-
-    // }
 
     return (
         <form onSubmit={handleSubmit}>
