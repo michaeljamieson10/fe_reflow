@@ -45,7 +45,6 @@ function getStepContent(step: number) {
 }
 function getStepsRoutes(step: number,transactionId){
     switch(step){
-        //todo transaction wtf how to put id over here
         case 0:
             return `/home_criteria/transaction/${transactionId}`;
         case 1:
@@ -53,21 +52,21 @@ function getStepsRoutes(step: number,transactionId){
         case 2:
             return `/accepted_offer/transaction/${transactionId}`;
         case 3:
-            return '/home_inspection';
+            return `/home_inspection/transaction/${transactionId}`;
         case 4:
-            return '/contracts_signed';
+            return `/contracts_signed/transaction/${transactionId}`;
         case 5:
-            return '/appraisal';
+            return `/appraisal/transaction/${transactionId}`;
         case 6:
-            return '/loan_commitment';
+            return `/loan_commitment/transaction/${transactionId}`;
         case 7:
-            return '/homeowners_insurance';
+            return `/homeowners_insurance/transaction/${transactionId}`;
         case 8:
-            return '/clear_to_close';
+            return `/clear_to_close/transaction/${transactionId}`;
         case 9:
-            return '/final-walkthrough';
+            return `/final-walkthrough/transaction/${transactionId}`;
         case 10:
-            return '/closing';
+            return `/closing/transaction/${transactionId}`;
 
     }
 

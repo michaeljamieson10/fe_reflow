@@ -32,6 +32,7 @@ import FlowScreen from "./FlowScreen";
 import HomeCriteriaScreen from "./HomeCriteriaScreen";
 import PreApprovalScreen from "./PreApprovalScreen";
 import AcceptedOfferScreen from "./AcceptedOfferScreen";
+import HomeInspectionScreen from "./HomeInspectionScreen";
 
 class App extends Component {
 
@@ -97,6 +98,7 @@ class App extends Component {
               <Route exact path="/home_criteria/transaction/:transaction_id" component={HomeCriteriaScreen} />
               <Route exact path="/pre_approval/transaction/:transaction_id" component={PreApprovalScreen} />
               <Route exact path="/accepted_offer/transaction/:transaction_id" component={AcceptedOfferScreen} />
+              <Route exact path="/home_inspection/transaction/:transaction_id" component={HomeInspectionScreen} />
               <Route exact path="/signup" component={SignUp} />
             </Switch>
 

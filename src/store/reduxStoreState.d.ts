@@ -9,6 +9,8 @@ interface Form {
     ClientForm?: GeneralForm;
     HomeCriteriaForm?: GeneralForm;
     PreApprovalForm?: GeneralForm;
+    AcceptedOfferForm?: GeneralForm;
+    HomeInspectForm?: GeneralForm;
     reaBuyerEmailForm?: GeneralForm;
     reaCreateTransactionForm?: GeneralForm;
 }
@@ -86,6 +88,7 @@ type LoanType = 'conventional' | 'FHA' | 'VA' | 'USDA';
 //"ENUM('not_started', 'in_progress', 'completed')")
 // "ENUM('one', 'two', 'three', 'four', 'five')")
 type RoomAmountType = 'one' | 'two' | 'three' | 'four' | 'five';
+type HomeInspectionStatusType = 'complete_moving_to_contracts' | 'complete_not_moving_to_contracts' | 'no_inspection';
 // type DiscountType = 'one_hundred' | 'two_hundred' | 'three_hundred' | 'four_hundred' | 'five_hundred';
 interface HomeCriteria {
     id: number;
@@ -131,5 +134,15 @@ interface AcceptedOffer {
     maxTaxes: number;
     downPayment: Number;
     loanType: LoanType;
+    createdTimestamp: string;
+}
+interface HomeInspection {
+    id: number;
+    transaction: Transaction;
+    transactionStatusType : TransactionStatusType;
+    scheduledDateTime:Date;
+    scheduledDateTimeMili: Number;
+    downPayment: Number;
+    homeInspectionStatusType: HomeInspectionStatusType;
     createdTimestamp: string;
 }

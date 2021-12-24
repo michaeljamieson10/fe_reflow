@@ -1,0 +1,107 @@
+import { CALL_API, Schemas } from '../middleware/api';
+import { getSpecificUser } from './userActions';
+
+
+export const GET_TRANSACTIONS_BY_TOKEN = 'GET_TRANSACTIONS_BY_TOKEN';
+export const GET_TRANSACTIONS_SUCCESS_BY_TOKEN = 'GET_TRANSACTIONS_SUCCESS_BY_TOKEN';
+export const GET_TRANSACTIONS_FAILURE_BY_TOKEN = 'GET_TRANSACTIONS_FAILURE_BY_TOKEN';
+
+const transactionsByToken = (signal: any) => {
+    return {
+        [CALL_API]: {
+            httpAction: 'GET',
+            types: [GET_TRANSACTIONS_BY_TOKEN, GET_TRANSACTIONS_SUCCESS_BY_TOKEN, GET_TRANSACTIONS_FAILURE_BY_TOKEN],
+            endPoint: `transaction`,
+            schema: Schemas.TRANSACTION_ARRAY,
+            signal: signal
+        }
+    }
+};
+
+export const getTransactionByToken = (signal?: any) => (dispatch, getState) => {
+    return dispatch(transactionsByToken(signal));
+};
+
+export const GET_TRANSACTION = 'GET_TRANSACTION';
+export const GET_TRANSACTION_SUCCESS = 'GET_TRANSACTION_SUCCESS';
+export const GET_TRANSACTION_FAILURE = 'GET_TRANSACTION_FAILURE';
+
+const transaction = (transactionId, signal: any) => {
+
+    return {
+        [CALL_API]: {
+            httpAction: 'GET',
+            types: [GET_TRANSACTION, GET_TRANSACTION_SUCCESS, GET_TRANSACTION_FAILURE],
+            // endPoint: `transaction/${transactionId}`,
+            endPoint: `transaction/${transactionId}/flows`,
+            schema: Schemas.TRANSACTION,
+            signal: signal
+        }
+    }
+};
+
+export const getTransaction = (transactionId, signal?: any) => (dispatch, getState) => {
+    return dispatch(transaction(transactionId, signal));
+};
+
+
+export const CREATE_HOME_INSPECTION = 'CREATE_HOME_INSPECTION';
+export const CREATE_HOME_INSPECTION_SUCCESS = 'CREATE_HOME_INSPECTION_SUCCESS';
+export const CREATE_HOME_INSPECTION_FAILURE = 'CREATE_HOME_INSPECTION_FAILURE';
+
+const homeInspectionCreator = (values, transactionId) => {
+    //    private String address;
+    //     private BigDecimal purchasePrice;
+    //     private BigDecimal propertyTaxes;
+    //     private BigDecimal downPayment;
+
+    let homeInspection = {
+        transaction: {id: transactionId},
+        homeInspectionStatusType: values.homeInspectionStatusType,
+        // HomeInspectionStatusType homeInspectionStatusType, todo: slepe then this valu should not null wtf its above make enum in rSS
+        scheduledDateTimeMilli: toTimestamp(`${values.date} ${values.time}`)
+    }
+    console.log("inside preApproval", homeInspection)
+    return {
+        [CALL_API]: {
+            httpAction: 'POST',
+            types: [CREATE_HOME_INSPECTION, CREATE_HOME_INSPECTION_SUCCESS, CREATE_HOME_INSPECTION_FAILURE],
+            endPoint: 'home_inspection',
+            schema: Schemas.HOME_INSPECTION,
+            body: homeInspection
+        }
+    };
+};
+function toTimestamp(strDate){
+    var datum = Date.parse(strDate);
+    return datum;
+}
+export const createHomeInspection = (values, transactionId) => (dispatch, getState) => {
+    console.log(values, transactionId,"prior to calling acceptedOfferCreator inside of createAcceptedOffer");
+    return dispatch(homeInspectionCreator(values, transactionId));
+// .then(() => dispatch(getTransaction(transactionId))
+};
+
+
+export const GET_ALL_TRANSACTION = 'GET_ALL_TRANSACTION';
+export const GET_ALL_TRANSACTION_SUCCESS = 'GET_ALL_TRANSACTION_SUCCESS';
+export const GET_ALL_TRANSACTION_FAILURE = 'GET_ALL_TRANSACTION_FAILURE';
+
+const allTransactionsGetter = (agentId) => {
+    return {
+        [CALL_API]: {
+            httpAction: 'GET',
+            types: [GET_ALL_TRANSACTION, GET_ALL_TRANSACTION_SUCCESS, GET_ALL_TRANSACTION_FAILURE],
+            endPoint: 'transaction/list',
+            schema: Schemas.TRANSACTION_ARRAY
+            // queryParamsMap: { agent_id: agentId }
+        }
+    }
+};
+
+export const getAllTransactions = (agentId) => (dispatch, getState) => {
+    return dispatch(allTransactionsGetter(agentId));
+};
+
+
+

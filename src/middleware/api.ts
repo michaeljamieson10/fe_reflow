@@ -83,6 +83,10 @@ const acceptedOfferSchema = new schema.Entity('acceptedOffers', {},{
     idAttribute: acceptedOffer => acceptedOffer.id
 });
 
+const homeInspectionSchema = new schema.Entity('homeInspections', {},{
+    idAttribute: homeInspection => homeInspection.id
+});
+
 
 transactionSchema.define({
     agent: agentSchema
@@ -104,6 +108,7 @@ export const Schemas = {
     HOME_CRITERIA: homeCriteriaSchema,
     PRE_APPROVAL: preApprovalSchema,
     ACCEPTED_OFFER: acceptedOfferSchema,
+    HOME_INSPECTION: homeInspectionSchema,
     // USER_ARRAY: arrayOf(userSchema),
     EMPTY: [],
 };

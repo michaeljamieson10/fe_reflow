@@ -33,6 +33,11 @@ import {
     CREATE_HOME_CRITERIA_FAILURE,
     CREATE_HOME_CRITERIA_SUCCESS
 } from "../actions/homeCriteriaActions";
+import {
+    CREATE_HOME_INSPECTION,
+    CREATE_HOME_INSPECTION_FAILURE,
+    CREATE_HOME_INSPECTION_SUCCESS
+} from "../actions/homeInspectionActions";
 
 const initialState = {accessToken: '', loggedInUserId: '', errorMessage: '', entities: entitiesInitialState};
 
@@ -89,6 +94,9 @@ export default (state = initialState, action) => {
         case GET_TRANSACTIONS_SUCCESS_BY_TOKEN:
             const newState = { ...state, entities: entitiesInitialState };
             return merge({}, newState, { entities: entitiesReducer(state.entities, action) });
+        case CREATE_HOME_INSPECTION:
+        case CREATE_HOME_INSPECTION_SUCCESS:
+        case CREATE_HOME_INSPECTION_FAILURE:
 
 
 

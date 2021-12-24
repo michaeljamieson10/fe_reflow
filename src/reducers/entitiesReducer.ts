@@ -19,6 +19,11 @@ import {
     CREATE_HOME_CRITERIA_FAILURE,
     CREATE_HOME_CRITERIA_SUCCESS
 } from "../actions/homeCriteriaActions";
+import {
+    CREATE_HOME_INSPECTION,
+    CREATE_HOME_INSPECTION_FAILURE,
+    CREATE_HOME_INSPECTION_SUCCESS
+} from "../actions/homeInspectionActions";
 
 export const initialState = {users: {}, agents:{}, transactions:{} };
 
@@ -90,6 +95,9 @@ export default (state = initialState, action) => {
             console.log(state,"state",responseEntities,"response ENTITY REDUCER");
             return appendAndUpdateEntitiesFromResponse(state, responseEntities);
             // return appendAndUpdateEntitiesFromResponseWithArrayOverwrite(state, responseEntities);
+        case CREATE_HOME_INSPECTION:
+        case CREATE_HOME_INSPECTION_SUCCESS:
+        case CREATE_HOME_INSPECTION_FAILURE:
 
         default:
             return state;
