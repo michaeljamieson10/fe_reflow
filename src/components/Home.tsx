@@ -1,13 +1,10 @@
 import React from "react";
-import {Card, CardHeader, CardContent, Grid, useMediaQuery, Typography, Button, ListItemText} from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import {Grid, useMediaQuery, Typography, Button, ListItemText} from "@material-ui/core";
 import { Link  } from 'react-router-dom';
 import openHouse from "../assets/openhouse.jpeg"
 import {ListItem, List} from "@material-ui/core";
-import fiber_smart_record from "../assets/fiber_smart_record.svg";
 import Brightness1Icon from '@material-ui/icons/Brightness1';
-
-import Footer from "./ui/Footer";
 
 const useStyles = makeStyles(theme => ({
   animation: {
@@ -24,14 +21,11 @@ const useStyles = makeStyles(theme => ({
     marginTop: "1em"
   },
   learnButtonHero: {
-    // ...theme.typography.learnButton,
     fontSize: "0.9rem",
     height: 45,
     width: 145
   },
   learnButton: {
-    // ...theme.typography.learnButton,
-    // color: theme.palette.primary.main,
     color: "white",
     fontSize: "0.7rem",
     height: 35,
@@ -77,7 +71,6 @@ const useStyles = makeStyles(theme => ({
     }
   },
   revolutionBackground: {
-    // backgroundImage: `url(${revolutionBackground})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
@@ -99,7 +92,6 @@ const useStyles = makeStyles(theme => ({
     }
   },
   infoBackground: {
-    // backgroundImage: `url(${infoBackground})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
@@ -127,12 +119,6 @@ const Home: React.FC<{}> = () => {
               <Typography style={{fontWeight: "bold"}} variant="subtitle1" align="center" className={classes.subtitle}>
                 Let us help drive the home buying process from pre-approval to close.
               </Typography>
-              {/*<Grid*/}
-              {/*    container*/}
-              {/*    justify="center"*/}
-              {/*    className={classes.buttonContainer}*/}
-              {/*    direction={"column"}*/}
-              {/*>*/}
               <Grid
                   container
                   direction="column"
@@ -166,11 +152,6 @@ const Home: React.FC<{}> = () => {
                       height: matchesXS ? "23em" : matchesSM ? "25em" : "35em",
                       width: matchesXS ? "25em" : matchesSM ? "40em" : "55em"
 
-                      // [theme.breakpoints.down("md")]: {
-                      //   height: "15em",
-                      //   maxWidth: "5em",
-                      //   width: "5em",
-                      // }
                     }}
                 />
               </Grid>
@@ -204,44 +185,26 @@ const Home: React.FC<{}> = () => {
             </Typography>
             <List>
               <ListItem>
-                {/*<img*/}
-                {/*  src={fiber_smart_record}*/}
-                {/*  style={{ marginLeft: "-2.75em" }}*/}
-                {/*  alt="bullet point"*/}
-                {/*  />*/}
                 <Brightness1Icon fontSize="small" style={{ marginLeft: "-2.75em", paddingRight:"0.5em" }}/>
                 <ListItemText>
                   Digital first experience
                   </ListItemText>
               </ListItem>
               <ListItem>
-                {/*<img*/}
-                {/*    src={fiber_smart_record}*/}
-                {/*    style={{ marginLeft: "-2.75em" }}*/}
-                {/*    alt="bullet point"*/}
-                {/*/>*/}
+
                 <Brightness1Icon fontSize="small" style={{ marginLeft: "-2.75em", paddingRight:"0.5em" }}/>
                 <ListItemText>
                   Identify key milestones
                 </ListItemText>
               </ListItem>
               <ListItem>
-                {/*<img*/}
-                {/*    src={fiber_smart_record}*/}
-                {/*    style={{ marginLeft: "-2.75em" }}*/}
-                {/*    alt="bullet point"*/}
-                {/*/>*/}
                 <Brightness1Icon fontSize="small" style={{ marginLeft: "-2.75em", paddingRight:"0.5em" }}/>
                 <ListItemText>
                   Smart Notifications
                 </ListItemText>
               </ListItem>
               <ListItem>
-                {/*<img*/}
-                {/*    src={fiber_smart_record}*/}
-                {/*    style={{ marginLeft: "-2.75em" }}*/}
-                {/*    alt="bullet point"*/}
-                {/*/>*/}
+
                 <Brightness1Icon fontSize="small" style={{ marginLeft: "-2.75em", paddingRight:"0.5em" }}/>
                 <ListItemText>
                   Track your deals

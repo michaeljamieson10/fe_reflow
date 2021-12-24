@@ -109,7 +109,6 @@ export const Schemas = {
     PRE_APPROVAL: preApprovalSchema,
     ACCEPTED_OFFER: acceptedOfferSchema,
     HOME_INSPECTION: homeInspectionSchema,
-    // USER_ARRAY: arrayOf(userSchema),
     EMPTY: [],
 };
 

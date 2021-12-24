@@ -41,7 +41,7 @@ const renderField = ({ input, label, type, users, meta: { touched, error, value,
 //     // history.push(`/dashboard/transaction/${transactionId}`);
 //
 // };
-interface HomeCriteriaFormProps {
+interface ContractsSignedFormProps {
     // onCancel: () => any,
     // users: { value: number, text: string }[],
     // usersLoaded?: boolean;
@@ -49,26 +49,9 @@ interface HomeCriteriaFormProps {
 
 }
 
-const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, HomeCriteriaFormProps>) => {
+const ContractsSignedForm = (props: ContractsSignedFormProps & InjectedFormProps<{}, ContractsSignedFormProps>) => {
     const {handleSubmit} = props;
-    const initialFilterDiscountTypeState = {house: false, multifamily: false, condocoop: false, townhome: false, basement: false, centralair: false, pool: false, waterfront: false};
-
     let priceByHundreds = ['one_hundred','two_hundred','three_hundred','four_hundred','five_hundred', 'six_hundred','seven_hundred', 'eight_hundred','nine_hundred','one_million'];
-
-    const [filterDiscountTypeChecked, setFilterDiscountTypeChecked] = useState(initialFilterDiscountTypeState);
-    const [filterDiscountType, setFilterDiscountType] = useState(initialFilterDiscountTypeState);
-    const [filterDiscountTypeRadioSelection, setFilterDiscountTypeRadioSelection] = useState<'lol' | 'pewpew'>('lol');
-    const handleChangeCheckboxDiscountType = (evt) => {
-        const selection = evt.target.value;
-        const isChecked = evt.target.checked;
-
-        if (filterDiscountTypeRadioSelection === 'lol') setFilterDiscountTypeRadioSelection('pewpew');
-
-        //update checked state for the checkbox that was just checked
-        setFilterDiscountTypeChecked({...filterDiscountTypeChecked, [selection]: isChecked});
-        //update state to filter by selected discount value
-        setFilterDiscountType({...filterDiscountType, [selection]: isChecked});
-    }
 
     const renderField = ({ input, defaultSelected, label, type, users,
                              meta: { touched, error, form }, children, ...custom }) => {
@@ -84,23 +67,15 @@ const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, H
 
     return (
         <form onSubmit={handleSubmit}>
-            <OutlineSelect/>
-            <OutlineSelectBedAndBath/>
             <Field name={'house'} label={'House'} component={renderField} type="checkbox" value={'house'} />
             <Field name={'multifamily'} label={'Multifamily'} component={renderField} type="checkbox"  value={'multifamily'} />
-            <Field name={'condocoop'} label={'Condocoop'} component={renderField} type="checkbox" value={'condocoop'} />
-            <Field name={'townhome'} label={'Townhome'} component={renderField} type="checkbox" value={'townhome'} />
-            <Field name={'basement'} label={'Basement'} component={renderField} type="checkbox" value={'basement'} />
-            <Field name={'centralair'} label={'Central Air'} component={renderField} type="checkbox" value={'centralair'} />
-            <Field name={'pool'} label={'Pool'} component={renderField} type="checkbox" value={'pool'} />
-            <Field name={'waterfront'} label={'Waterfront'} component={renderField} type="checkbox" value={'waterfront'} />
 
             <Button variant="contained" color="primary" onClick={handleSubmit}>create HC</Button>
         </form>
     )
 };
 
-export default reduxForm<any,HomeCriteriaFormProps>({
-    form: 'HomeCriteriaForm', // a unique identifier for this form
+export default reduxForm<any,ContractsSignedFormProps>({
+    form: 'ContractsSignedForm', // a unique identifier for this form
     validate,
-})(HomeCriteriaForm)
+})(ContractsSignedForm)

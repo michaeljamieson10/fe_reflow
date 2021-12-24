@@ -67,6 +67,6 @@ const REABuyerEmailForm = (props: REABuyerEmailFormProps) => {
 };
 
 export default reduxForm<any, REABuyerEmailFormProps>({
-    form: 'reaBuyerEmailForm', // a unique identifier for this form
+    form: 'ReaBuyerEmailForm', // a unique identifier for this form
     validate
 })(REABuyerEmailForm)

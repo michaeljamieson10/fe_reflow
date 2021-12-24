@@ -2,8 +2,6 @@ import React from 'react';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import { Button, TextField, DialogActions, DialogContent } from '@material-ui/core';
 
-// import './DSPFormStyles.scss';
-
 const validate = (values) => {
     const errors: any = {};
     if (!values.userId) {

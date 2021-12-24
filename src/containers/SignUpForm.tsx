@@ -90,14 +90,8 @@ const validate = values => {
     }
     return errors;
 };
-//
-// const asyncValidate = (values, dispatch, props, field ) => {
-//     return props.checkIfEmailTaken(values["email"]).then(emailTaken => {
-//         if(emailTaken) throw { email: 'Email is already taken' }
-//     });
-// };
 
 export default reduxForm<{}, SignUpFormProps>({
-    form: 'userSignUpForm',
+    form: 'UserSignUpForm',
     validate
 })(SignUpForm);

@@ -2,7 +2,6 @@ import { Component } from 'react';
 import * as React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ReactDOM from 'react-dom';
 
 import {Card, CardHeader, CardContent, Grid, Typography} from '@material-ui/core';
 
@@ -10,10 +9,8 @@ import { createNewUser } from '../actions/userActions';
 import { attemptLogin } from '../actions/oauthActions';
 import { getError } from "../selectors/errorSelector";
 import { getLoggedInUser } from '../selectors/userSelectors';
-// import {window} from 'browser-monads'
 
 import SignUpForm from './SignUpForm';
-import {history} from "../index";
 
 class SignUp extends Component<any, { errorMessage: string, enableButton: boolean, user?: any }> {
     signupCont;
@@ -37,7 +34,6 @@ class SignUp extends Component<any, { errorMessage: string, enableButton: boolea
     handleSubmit = userSignUpValues => {
         const responseFunc = response => {
             if (!response.error) {
-                // window.ca("send", "signup_button_clicked", "sign_up_page", "Signup", "click", "sign_up");
                 this.props.attemptLogin(userSignUpValues.email.trim(), userSignUpValues.password, "/role");
             } else {
                 const emailAlreadyUsedExceptionRegularExpression = /Email '.*' is already used./;

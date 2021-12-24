@@ -8,11 +8,13 @@ export interface State {
 interface Form {
     ClientForm?: GeneralForm;
     HomeCriteriaForm?: GeneralForm;
+    ContractsSignedForm?: GeneralForm;
     PreApprovalForm?: GeneralForm;
     AcceptedOfferForm?: GeneralForm;
     HomeInspectForm?: GeneralForm;
-    reaBuyerEmailForm?: GeneralForm;
-    reaCreateTransactionForm?: GeneralForm;
+    ReaBuyerEmailForm?: GeneralForm;
+    UserSignUpForm?: GeneralForm;
+    ReaCreateTransactionForm?: GeneralForm;
 }
 
 interface GeneralForm {

@@ -1,14 +1,9 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-// import routes from '../routes'
-// import DevTools from './DevTools'
 import { Router } from 'react-router-dom'
 import PropTypes from 'prop-types';
 
 import App from './App'
-
-// const debug = true;
-// const debug = false;
 
 
 const Root = ({ store, history }) => (
@@ -25,4 +20,3 @@ Root.propTypes = {
 };
 
 export default Root
-// process.env.NODE_ENV !== 'production' && <DevTools />

@@ -1,21 +1,17 @@
-import {Component, useEffect, useState} from 'react';
+import {useState} from 'react';
 import * as React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {connect, useDispatch, useSelector} from 'react-redux';
-import ReactDOM from 'react-dom';
 
-import {Card, CardHeader, CardContent, Grid, Typography, Divider} from '@material-ui/core';
+import {Card, CardContent, Grid, Typography, Divider} from '@material-ui/core';
 
 import { createNewUser } from '../actions/userActions';
 import { createTransaction } from '../actions/transactionActions'
 import { attemptLogin } from '../actions/oauthActions';
 import { getError } from "../selectors/errorSelector";
-import {getLoggedInUser, getLoggedInUserId} from '../selectors/userSelectors';
-// import {window} from 'browser-monads'
+import {getLoggedInUser} from '../selectors/userSelectors';
 
-import SignUpForm from './SignUpForm';
 import {history} from "../index";
-import REABuyerEmailForm from "./REABuyerEmailForm";
 import REACreateTransactionForm from "./REACreateTransactionForm";
 import {State, User} from "../store/reduxStoreState";
 
@@ -58,7 +54,6 @@ const REACreateTransaction: React.FC<REACreateTransactionProps> = props => {
 
     };
 
-    // render() {
         return (
                     <Grid
                         container
@@ -84,7 +79,6 @@ const REACreateTransaction: React.FC<REACreateTransactionProps> = props => {
                         <Card className="card-with-form" style={{ boxShadow: 'none' }}>
 
                             <CardContent>
-                                {/*{this.state.errorMessage && <div className={'msg-style error'}>{this.state.errorMessage}</div>}*/}
                                 <REACreateTransactionForm onSubmit={handleSubmit}
                                                           enableButton={enableButton}/>
                             </CardContent>
@@ -99,7 +93,6 @@ const REACreateTransaction: React.FC<REACreateTransactionProps> = props => {
 const mapStateToProps = state => ({
     loggedInUser: getLoggedInUser(state),
     errorMessage: getError(state),
-    // loggedInUserId: getLoggedInUserId(state)
 })
 
 const mapDispatchToProps = {

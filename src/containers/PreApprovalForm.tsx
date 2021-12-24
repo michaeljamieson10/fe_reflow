@@ -1,16 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import {
     Button,
-    TextField,
-    DialogActions,
-    DialogContent,
-    FormControlLabel,
-    Checkbox,
     FormControl, InputLabel, FilledInput, InputAdornment
 } from '@material-ui/core';
-import OutlineSelect from "../components/ui/homecriteria/OutlineSelect";
-import OutlineSelectBedAndBath from "../components/ui/homecriteria/OutlineSelectBedAndBath";
 import {LoanType} from "../store/reduxStoreState";
 import Select from "@material-ui/core/Select";
 import FormHelperText from "@material-ui/core/FormHelperText";
@@ -29,9 +22,6 @@ const validate = (values) => {
 
 
 interface PreApprovalFormProps {
-    // onCancel: () => any,
-    // users: { value: number, text: string }[],
-    // usersLoaded?: boolean;
     onSubmit?: (values) => any;
 
 }
@@ -74,11 +64,6 @@ const renderSelectLoanTypeField = ({
 
 const PreApprovalForm = (props: PreApprovalFormProps & InjectedFormProps<{}, PreApprovalFormProps>) => {
     const {handleSubmit} = props;
-    const initialFilterDiscountTypeState = {house: false, multifamily: false, condocoop: false, townhome: false, basement: false, centralair: false, pool: false, waterfront: false};
-    const [values, setValues] = useState<StateValues>({maxPurchasePrice: 0,minPurchasePrice:0,maxPropertyTaxes:0, downPayment: "conventional"})
-    // console.log(transactions,"inside HCS");
-    // const [homeCriteriaStatusType, setHomeCriteriaStatusType] = useState(homeCriteria.homeCriteriaStatusType);
-    //'one_hundred' 'two_hundred' 'three_hundred' | 'four_hundred' | 'five_hundred'| 'six_hundred' | 'seven_hundred'| 'eight_hundred' | 'nine_hundred'| 'one_million';
     let loanType = ['','conventional','FHA','VA','USDA'];
 
 
@@ -100,16 +85,6 @@ const PreApprovalForm = (props: PreApprovalFormProps & InjectedFormProps<{}, Pre
         }
     };
 
-    // const handleChange = (prop: keyof StateValues) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     console.log(values);
-    //     setValues({ ...values, [prop]: event.target.value });
-    // };
-    // const handleSubmit = (formData) => {
-    //     console.log(formData,"does this ever get called")
-    //     createHomeCriteria(formData)
-    //
-    // }
-
     return (
         <form onSubmit={handleSubmit}>
             <Field name={'maxPurchasePrice'} label={'Max Purchase Price'} component={renderField} type="textfield" adornment={"$"} value={'maxPurchasePrice'} />
@@ -124,16 +99,6 @@ const PreApprovalForm = (props: PreApprovalFormProps & InjectedFormProps<{}, Pre
             </Field>
 
             <Button variant="contained" color="primary" onClick={handleSubmit}>create pre approval</Button>
-        {/*    <FormControl   variant="filled">
-                    <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
-                    <FilledInput
-                        id="filled-adornment-amount"
-                        value={values.amount}
-                        // value={0}
-                        onChange={handleChange('amount')}
-                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                    />
-                </FormControl>*/}
         </form>
     )
 };

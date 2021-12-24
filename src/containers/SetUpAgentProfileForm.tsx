@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import {
-    FormControlLabel,
     TextField,
     Button,
-    Checkbox,
     Grid,
     InputAdornment,
     Typography,
@@ -53,10 +51,8 @@ const SetUpAgentProfileForm = (props: SetUpAgentProfileFormProps) => {
                 <Typography variant={"h6"}>Finish Account Setup</Typography>
             <form onSubmit={handleSubmit}>
                 <Divider />
-                {/*<Grid container direction={"row"} style={{padding:"2em"}}>*/}
                     <Typography variant={"h6"} gutterBottom>UserName</Typography>
                     <Field name="firstName" type="text" component={renderTextField} label="First Name" />
-                {/*</Grid>*/}
                 <Grid
                     container
                     spacing={0}
@@ -82,12 +78,6 @@ const validate = values => {
     }
     return errors;
 };
-//
-// const asyncValidate = (values, dispatch, props, field ) => {
-//     return props.checkIfEmailTaken(values["email"]).then(emailTaken => {
-//         if(emailTaken) throw { email: 'Email is already taken' }
-//     });
-// };
 
 export default reduxForm<{}, SetUpAgentProfileFormProps>({
     form: 'userSignUpForm',

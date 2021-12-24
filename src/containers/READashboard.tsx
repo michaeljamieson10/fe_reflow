@@ -1,43 +1,17 @@
 import * as React from 'react';
-import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import {
-    FormControlLabel,
-    TextField,
     Button,
-    Checkbox,
     Grid,
-    InputAdornment,
     Typography,
     Divider, Card, useMediaQuery
 } from '@material-ui/core';
-import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import {makeStyles, useTheme} from "@material-ui/core/styles";
-import {connect, shallowEqual, useDispatch, useSelector} from "react-redux";
-import {Agent, State, Transaction, User} from "../store/reduxStoreState";
-import {getLoggedInUser} from "../selectors/userSelectors";
-import {createClient} from "../actions/clientActions";
-import {createAgent, getAgentByToken} from "../actions/agentActions";
-import {Link, useParams} from "react-router-dom";
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
+import { State, Transaction, User} from "../store/reduxStoreState";
+import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {getAgentById, getAgentFromProps, getAgents} from "../selectors/agentSelectors";
-import { useIsMount} from "../hooks/useIsMount";
-import {getAllTransactions, getTransaction,getTransactionByToken} from "../actions/transactionActions";
+import {getTransactionByToken} from "../actions/transactionActions";
 import {getTransactions} from "../selectors/transactionSelectors";
-
-const renderTextField = ({
-                             input,
-                         }) => (
-    <TextField
-        id="input-with-icon-textfield" variant="outlined"
-        InputProps={{
-            startAdornment: (
-                <InputAdornment position="start">
-                    <AlternateEmailIcon />
-                </InputAdornment>
-            ),
-        }}
-    />
-)
 
 const useStyles = makeStyles(theme => ({
     mainContainer: {
@@ -58,53 +32,14 @@ interface Props {
     loggedInUser: User;
 }
 const READashBoard = (props: Props) => {
-    const isMount = useIsMount();
-    // const { handleSubmit, enableButton } = props;
-    const { createClient,loggedInUser,createAgent } = props;
-    const [agentId, setAgentId] = useState(1);
-    // const { agentId } = useParams<{agentId}>();
-    // const dspr = useSelector<State, DSPR>(state => getDSPRFromProps(state, {dsprId}), shallowEqual);
-    // const agent = useSelector<State, Agent>(state => getAgentFromProps(state,{agentId}), shallowEqual);
-    // const agent = useSelector<State, Agent>(state => getAgents(state));
-    //export const getDSPRServiceAreasFromComponentState = (state: State, props) => Object.values(state.componentState.dsprServiceAreaManagementContainer.dsprServiceAreas).filter(serviceArea => serviceArea.dspr === parseInt(props.dpsrId))
-    // const users = useSelector<State, { value: number, text: string }[]>(getUsersByName, shallowEqual);
-    // const agents = useSelector<State, { [key: number]: Agent }>(getAgents, shallowEqual);
-    const agents = useSelector<State, { [key: number]: Agent }>(getAgentById, shallowEqual);
-    // const transactions = useSelector<State , { value: number, text:string}[]>(getTransactions, shallowEqual);
-    // const transactions = useSelector<State , {[key: number]: Transaction}>(getTransactions, shallowEqual);
-    // const transactions = useSelector<State , {[key: number]: Transaction}>(getTransactions, shallowEqual);
-    // const transactions = useSelector<State , any[] | any | Transaction>(getTransactions, shallowEqual);
     const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactions, shallowEqual);
-    console.log(transactions,"this is transactions")
-    // const agentsByIder = useSelector<State,any>()
-    // const agents = useSelector<State, { value: number, text: string }[] }>(getAgents, shallowEqual);
-    function getIdOfAgent(){
-        // return agents
-    }
-    // console.log(agent,'this is agent');
-
-    // console.log(agentId,'this is agent');
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
-    // useEffect(() => {
-    //     setIsLoading(true);
-    //     // console.log(agentId,"something");
-    //     dispatch<any>(getAgentByToken())//getAgentHere
-    //         .then(() => setIsLoading(false));
-    //     // console.log(agents,"Im here");
-    // }, []);
     useEffect(() => {
         setIsLoading(true);
-        // console.log(agentId,"something");
         dispatch<any>(getTransactionByToken())//getAgentHere
             .then(() => setIsLoading(false));
-        // console.log(agents,"Im here");
     }, []);
-    // useEffect(() => {
-    //     if(!isMount){
-    //         dispatch<any>(getTransaction(1));
-    //     }
-    // }, [isLoading]);
 
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -160,9 +95,6 @@ const READashBoard = (props: Props) => {
             <Grid container direction={"row"}>
                 <Typography  variant={"subtitle2"} style={{marginRight: "10em"}} gutterBottom>Buyers</Typography>
                 <Button component={Link}  to="/rea/create_transaction" color="primary" variant="contained"
-                    // style={{
-                    //     height: 45,
-                    //     width: 100,}}
                         style={{marginBottom: "0.5em"}}
                 >
                     + Invite
@@ -178,19 +110,12 @@ const READashBoard = (props: Props) => {
                     to get started
                 </Typography>
 
-                {/*{isLoading? 'loading': Object.entries(transactions).map(([key, value]) =>*/}
-                {/*    <div>{value.firstName} {value.lastName} {value.id}*/}
-                {/*    <Button*/}
-                {/*    component={Link}  to={`/dashboard/transaction/${value.id}`} color="primary" variant="contained"*/}
-                {/*>View</Button></div> )}*/}
-
                 {isLoading? 'loading': Object.entries(transactions).map(([key, value]) =>
                     <div>{value.firstName} {value.lastName} {value.id}
                     <Button
                     component={Link}  to={`/dashboard/transaction/${value.id}`} color="primary" variant="contained"
                 >View</Button></div> )}
 
-                {/*{isLoading? 'loading': <div>{transactions.id}</div>}*/}
             </Grid>
                 <Grid
                     container

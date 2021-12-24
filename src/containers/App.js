@@ -13,19 +13,13 @@ import { updateLoggedInUserInfo } from "../actions/userActions"
 import Header from "../components/ui/Header"
 
 import SignUp from "./SignUp"
-import Notification from "../components/Notification"
 
 import {getLoggedInUser, getLoggedInUserId} from "../selectors/userSelectors";
 import Login from "./Login";
-import FakeLogin from "./FakeLogin";
-import ClientForm from "./ClientForm";
-import ClientManagement from "./ClientManagement";
 import Home from "../components/Home"
 import ChooseRole from "./ChooseRole";
-import SetUpAgentProfileForm from "./SetUpAgentProfileForm";
 import READashboard from "./READashboard";
 import REABuyerQuantity from "./REABuyerQuantity";
-import REABuyerEmailForm from "./REABuyerEmailForm";
 import REABuyerEmail from "./REABuyerEmailAdd";
 import REACreateTransaction from "./REACreateTransaction";
 import FlowScreen from "./FlowScreen";
@@ -80,11 +74,9 @@ class App extends Component {
             <Header loggedInUser={loggedInUser}/>
             <Switch>
               <Route exact path="/">
-                {/*{loggedIn ? <Redirect to="/profile" /> : <HomePage />}*/}
                 <Redirect to="/about"/>
               </Route>
               <Route path="/login" component={Login} />
-              {/*<Route path="/LOL" component={SetUpAgentProfileForm} />*/}
               <Route exact path="/rea" component={READashboard} />
               <Route exact path="/rea/create_transaction" component={REACreateTransaction}/>
               <Route exact path="/rea/invite_buyer" component={REABuyerEmail}/>
@@ -92,8 +84,6 @@ class App extends Component {
               <Route exact path="/rea/invite_buyer/send_emails" component={REABuyerQuantity} />
               <Route exact path="/about" component={Home} />
               <Route exact path="/role" component={ChooseRole} />
-              <Route exact path="/client" component={ClientManagement} />
-              {/*<Route exact path="/dashboard/flow" component={FlowScreen} />*/}
               <Route path="/dashboard/transaction/:transaction_id" component={FlowScreen} />
               <Route exact path="/home_criteria/transaction/:transaction_id" component={HomeCriteriaScreen} />
               <Route exact path="/pre_approval/transaction/:transaction_id" component={PreApprovalScreen} />

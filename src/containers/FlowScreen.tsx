@@ -1,44 +1,20 @@
-import {Component, useEffect, useState} from 'react';
+import { useEffect, useState} from 'react';
 import * as React from 'react';
-import {Link, RouteComponentProps, withRouter} from 'react-router-dom';
-import {connect, shallowEqual, useDispatch, useSelector} from 'react-redux';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepButton from '@material-ui/core/StepButton';
-import ReactDOM from 'react-dom';
+import { RouteComponentProps} from 'react-router-dom';
+import { shallowEqual, useDispatch, useSelector} from 'react-redux';
 import VerticalNonLinearStepper from "../components/ui/VerticalNonLinearStepper";
 
-import {Card, CardHeader, CardContent, Grid, Typography, Divider, Button, Box} from '@material-ui/core';
+import {Card, Grid, Typography, Divider} from '@material-ui/core';
 
-import { createNewUser } from '../actions/userActions';
-import {createTransaction, getTransaction} from '../actions/transactionActions'
-import { attemptLogin } from '../actions/oauthActions';
-import { getError } from "../selectors/errorSelector";
-import {getLoggedInUser, getLoggedInUserId} from '../selectors/userSelectors';
-// import {window} from 'browser-monads'
+import {getTransaction} from '../actions/transactionActions'
+import {getLoggedInUser} from '../selectors/userSelectors';
 
-import SignUpForm from './SignUpForm';
-import {history} from "../index";
-import REABuyerEmailForm from "./REABuyerEmailForm";
-import REACreateTransactionForm from "./REACreateTransactionForm";
 import {State, Transaction, User} from "../store/reduxStoreState";
 import {useIsMount} from "../hooks/useIsMount";
-import {getTransactionById, getTransactions} from "../selectors/transactionSelectors";
+import {getTransactionById} from "../selectors/transactionSelectors";
 import FlowCurrentProgressCard from "../components/ui/FlowCurrentProgressCard";
 
-
-type newTransactionValues = {
-    firstName: string;
-    lastName: string;
-    reaId: Number;
-}
 interface FlowScreenProps {
-    // createTransaction:(
-    //     firstName: string,
-    //     lastName: string
-    // ) => any;
-
 }
 
 const FlowScreen: React.FC<FlowScreenProps & RouteComponentProps > = props => {
@@ -51,31 +27,16 @@ const FlowScreen: React.FC<FlowScreenProps & RouteComponentProps > = props => {
     const [enableButton, setEnableButton] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [transactionsComplete, setIsTransactionsComplete] = useState(0);
-    // const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactions, shallowEqual);
     const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactionById, shallowEqual);
     const isMount = useIsMount();
     const dispatch = useDispatch();
-    // const isManagerForCurrentDSPR: boolean = activeDSPRManagersForUser && activeDSPRManagersForUser.filter(dsprManager => dsprManager.dspr === parseInt(dsprId)).length > 0;
-    // const loggedInUserId: number = getLoggedInUserId;
     const loggedInUser = useSelector<State, User>(getLoggedInUser);
 
-    console.log(transactions,"WHATSGOINGON")
-    const handleSubmit = values => {
-        const responseFunc = response => {
-            if (!response.error) {
-
-            } else {
-            }
-        };
-
-    };
 
 
     useEffect(() => {
-        // if(!isMount){
             dispatch<any>(getTransaction(transactionId)).then(
                 () => setIsLoading(false))
-        // }
     }, []);
 
     useEffect(()=>{
@@ -83,7 +44,6 @@ const FlowScreen: React.FC<FlowScreenProps & RouteComponentProps > = props => {
             setIsTransactionsComplete(transactions[0].transactionsComplete);
         }
     },[isLoading]);
-    // createTransaction(values.firstName, values.lastName);
 
     return (
         <React.Fragment>
@@ -103,11 +63,8 @@ const FlowScreen: React.FC<FlowScreenProps & RouteComponentProps > = props => {
                         <Typography  variant={"subtitle2"} style={{marginRight: "10em"}} gutterBottom>Click steps to view detail</Typography>
                     </Grid>
                     <Divider style={{marginBottom:"2em"}} />
-                    {/*<Grid container direction={"row"} style={{padding:"2em"}}>*/}
-                    {/*</Grid>*/}
                     <Grid>
                         <VerticalNonLinearStepper transactionId={transactionId}/>
-
                     </Grid>
                     <Grid
                         container

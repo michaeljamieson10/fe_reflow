@@ -1,28 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import {Box, Button, Card, Grid, Typography} from "@material-ui/core";
-import ButtonArrow from "./ButtonArrow";
-import {Link, RouteComponentProps} from "react-router-dom";
+import {Link} from "react-router-dom";
 import Icon from "./ButtonArrow";
 import {shallowEqual, useSelector} from "react-redux";
 import {State, Transaction} from "../../store/reduxStoreState";
-import {getTransactionById, getTransactions} from "../../selectors/transactionSelectors";
+import {getTransactionById} from "../../selectors/transactionSelectors";
 import {useIsMount} from "../../hooks/useIsMount";
 
 
 
 const FlowCurrentProgressCard: React.FC<any> = ({transactionId,isLoading}) => {
-// export default function OutlineSelect() {
-//     const {
-//         transactionId
-//     } = props;
-    console.log(transactionId,"Hello from FCPC")
-    console.log(isLoading,"Hello from FCPC")
     const isMount = useIsMount();
 
     const [transactionsComplete, setIsTransactionsComplete] = useState(0);
@@ -34,8 +21,6 @@ const FlowCurrentProgressCard: React.FC<any> = ({transactionId,isLoading}) => {
         }
     },[isLoading]);
 
-    const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    };
     return (
         <Card style={{marginTop:"2em", marginBottom:"2em"}}>
             <Button
@@ -43,10 +28,8 @@ const FlowCurrentProgressCard: React.FC<any> = ({transactionId,isLoading}) => {
                 to={`/dashboard/transaction/${transactionId}`}
                 variant="outlined"
                 style={{ color: "primary", borderColor: "white" }}
-                // className={classes.learnButton}
-                // onClick={() => props.setValue(4)}
+
             >
-                {/*<ButtonArrow width={10} height={10} fill="black" />*/}
                 <Icon width={10} height={10} />
 
                 <span style={{ marginRight: 10 }}>Back</span>
@@ -65,15 +48,11 @@ const FlowCurrentProgressCard: React.FC<any> = ({transactionId,isLoading}) => {
                         direction="column"
                         alignItems="center"
                         justifyContent="center"
-                        // style={{marginBottom:"3em"}}
                         style={{padding:"2em"}}
                     >
-                        {/*{isLoading? 'loading': console.log(transactions)}*/}
                         {isLoading? 'loading': console.log(transactionsComplete,"I LOVE transactions complete")}
                         <Typography variant={"subtitle2"}>Flow Complete</Typography>
-                        {/*{isLoading? 'loading': Object.entries(transactions).map(([key, value]) => <div>{transactionComplete} /11</div>)}*/}
                         {isLoading? 'loading': <div>{transactionsComplete} /11</div>}
-                        {/*<Typography variant={"h6"}>{Object.keys()}/11</Typography>*/}
                         {/*//TODO: this will have to change dynamically*/}
                     </Grid>
                 </Grid>
@@ -97,7 +76,6 @@ const FlowCurrentProgressCard: React.FC<any> = ({transactionId,isLoading}) => {
                                 direction="column"
                                 alignItems="center"
                                 justifyContent="center"
-                                // style={{marginBottom:"3em"}}
                             >
                                 <Grid item>
                                     Home

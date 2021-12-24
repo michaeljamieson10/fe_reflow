@@ -57,7 +57,6 @@ const REACreateTransactionForm = (props: REACreateTransactionFormProps) => {
                 justifyContent="center"
                 style={{marginTop:"0.8em",marginBottom: "0.5em"}}
             >
-                {/*disabled={!enableButton}  onClick={handleSubmit} */}
                 <Button color="primary" variant="contained" onClick={handleSubmit}>
                     Create Transaction
                 </Button>
@@ -67,6 +66,6 @@ const REACreateTransactionForm = (props: REACreateTransactionFormProps) => {
 };
 
 export default reduxForm<any, REACreateTransactionFormProps>({
-    form: 'reaCreateTransactionForm', // a unique identifier for this form
+    form: 'ReaCreateTransactionForm', // a unique identifier for this form
     validate
 })(REACreateTransactionForm)

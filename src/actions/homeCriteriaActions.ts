@@ -1,6 +1,4 @@
 import { CALL_API, Schemas } from '../middleware/api';
-import { getSpecificUser } from './userActions';
-import {PriceByHundredsType, RoomAmountType, Transaction, TransactionStatusType} from "../store/reduxStoreState";
 
 export const GET_HOME_CRITERIA = 'GET_HOME_CRITERIA';
 export const GET_HOME_CRITERIA_SUCCESS = 'GET_HOME_CRITERIA_SUCCESS';
@@ -29,27 +27,6 @@ export const CREATE_HOME_CRITERIA_SUCCESS = 'CREATE_HOME_CRITERIA_SUCCESS';
 export const CREATE_HOME_CRITERIA_FAILURE = 'CREATE_HOME_CRITERIA_FAILURE';
 
 const homeCriteriaCreator = (values,transactionId) => {
-    // id: number;
-    // transaction: Transaction;
-    // transactionStatusType : TransactionStatusType;
-    // minPrice: PriceByHundredsType;
-    // maxPrice: PriceByHundredsType;
-    // amountOfBed: RoomAmountType;
-    // amountOfBaths: RoomAmountType;
-    // house: boolean;
-    // multifamily: boolean;
-    // condocoop: boolean;
-    // townhome: boolean;
-    // basement: boolean;
-    // centralair: boolean;
-    // pool: boolean;
-    // waterfront: boolean;
-    // cityOne: string;
-    // cityTwo: string;
-    // cityThree: string;
-    // cityFour: string;
-    // cityFive: string;
-    // createdTimestamp: string;
     let homeCriteria = {
         transaction: {id: transactionId},
         minPrice: values.minPrice,
@@ -70,7 +47,6 @@ const homeCriteriaCreator = (values,transactionId) => {
         cityFour: values.cityFour,
         cityFive: values.cityFive
     }
-    console.log("inside homeCriteria creator", homeCriteria)
     return {
         [CALL_API]: {
             httpAction: 'POST',
@@ -85,7 +61,6 @@ const homeCriteriaCreator = (values,transactionId) => {
 export const createHomeCriteria = (values,transactionId) => (dispatch, getState) => {
     console.log(values, transactionId,"lolol");
     return dispatch(homeCriteriaCreator(values,transactionId));
-// .then(() => dispatch(getTransaction(transactionId))
 };
 
 
@@ -100,7 +75,6 @@ const allTransactionsGetter = (agentId) => {
             types: [GET_ALL_TRANSACTION, GET_ALL_TRANSACTION_SUCCESS, GET_ALL_TRANSACTION_FAILURE],
             endPoint: 'transaction/list',
             schema: Schemas.TRANSACTION_ARRAY
-            // queryParamsMap: { agent_id: agentId }
         }
     }
 };

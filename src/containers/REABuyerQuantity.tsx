@@ -1,16 +1,10 @@
 import * as React from 'react';
-import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import {
-    FormControlLabel,
-    TextField,
     Button,
-    Checkbox,
     Grid,
-    InputAdornment,
     Typography,
     Divider, Card, useMediaQuery
 } from '@material-ui/core';
-import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import {connect} from "react-redux";
 import {State, User} from "../store/reduxStoreState";
@@ -19,22 +13,6 @@ import {createClient} from "../actions/clientActions";
 import {createAgent} from "../actions/agentActions";
 import {Link} from "react-router-dom";
 import ControlledOpenSelectQuantityOfBuyers from "./OpenSelectQuantityOfBuyers";
-
-const renderTextField = ({
-                             input,
-                         }) => (
-    <TextField
-        id="input-with-icon-textfield" variant="outlined"
-        InputProps={{
-            startAdornment: (
-                <InputAdornment position="start">
-                    <AlternateEmailIcon />
-                </InputAdornment>
-            ),
-        }}
-    />
-)
-
 const useStyles = makeStyles(theme => ({
     mainContainer: {
 
@@ -54,8 +32,6 @@ interface Props {
 }
 
 function REABuyerQuantity(props: Props) {
-    // const { handleSubmit, enableButton } = props;
-    const { createClient,loggedInUser,createAgent } = props;
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
     const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -102,14 +78,6 @@ function REABuyerQuantity(props: Props) {
                     justifyContent="center"
                     style={{marginTop: "1.5em"}}
                 >
-                    {/*onclick give to next page a integer of how many of the form  to create
-                    <Link
-                      to={{
-                        pathname: "/page",
-                        state: data // your data array of objects
-                      }}
-                    >
-                    */}
                     <Button component={Link} to={{
                         pathname: "/rea/invite_buyers/",
                         state: "lol" // your data array of objects
@@ -129,17 +97,6 @@ const validate = values => {
     }
     return errors;
 };
-//
-// const asyncValidate = (values, dispatch, props, field ) => {
-//     return props.checkIfEmailTaken(values["email"]).then(emailTaken => {
-//         if(emailTaken) throw { email: 'Email is already taken' }
-//     });
-// };
-
-// export default reduxForm<{}, SetUpAgentProfileFormProps>({
-//     form: 'userSignUpForm',
-//     validate
-// })(SetUpAgentProfileForm);
 const mapStateToProps = (state: State) => {
     return {
         loggedInUser: getLoggedInUser(state)

@@ -4,8 +4,7 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import {Grid, StepContent, StepLabel} from "@material-ui/core";
+import {Grid, StepContent} from "@material-ui/core";
 import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -123,22 +122,11 @@ export default function VerticalNonLinearStepper({transactionId}) {
         setActiveStep(0);
         setCompleted({});
     };
-    //     <Stepper nonLinear activeStep={activeStep} >
-    //                 {steps.map((label, index) => (
-    //                     <Step key={label}>
-    //                         <StepButton onClick={handleStep(index)} completed={completed[index]}>
-    //                             {label}
-    //                         </StepButton>
-    //                     </Step>
-    //                 ))}
-    //             </Stepper>
     return (
         <div className={classes.root}>
-            {/*orientation={"vertical"}*/}
             <Stepper nonLinear activeStep={activeStep} orientation="vertical">
                 {steps.map((label, index) => (
                     <Step key={label}>
-                        {/*<StepLabel>{label}</StepLabel>*/}
                         <StepButton onClick={handleStep(index)} completed={completed[index]}>
                                                   {label}
                                                      </StepButton>
