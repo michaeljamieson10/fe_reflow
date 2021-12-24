@@ -24,6 +24,12 @@ import {
     CREATE_HOME_INSPECTION_FAILURE,
     CREATE_HOME_INSPECTION_SUCCESS
 } from "../actions/homeInspectionActions";
+import {
+    CREATE_CONTRACTS_SIGNED,
+    CREATE_CONTRACTS_SIGNED_FAILURE,
+    CREATE_CONTRACTS_SIGNED_SUCCESS
+} from "../actions/contractsSignedActions";
+import {CREATE_APPRAISAL, CREATE_APPRAISAL_FAILURE, CREATE_APPRAISAL_SUCCESS} from "../actions/appraisalActions";
 
 export const initialState = {users: {}, agents:{}, transactions:{} };
 
@@ -98,6 +104,12 @@ export default (state = initialState, action) => {
         case CREATE_HOME_INSPECTION:
         case CREATE_HOME_INSPECTION_SUCCESS:
         case CREATE_HOME_INSPECTION_FAILURE:
+        case CREATE_CONTRACTS_SIGNED:
+        case CREATE_CONTRACTS_SIGNED_SUCCESS:
+        case CREATE_CONTRACTS_SIGNED_FAILURE:
+        case CREATE_APPRAISAL:
+        case CREATE_APPRAISAL_SUCCESS:
+        case CREATE_APPRAISAL_FAILURE:
 
         default:
             return state;

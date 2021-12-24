@@ -27,6 +27,8 @@ import HomeCriteriaScreen from "./HomeCriteriaScreen";
 import PreApprovalScreen from "./PreApprovalScreen";
 import AcceptedOfferScreen from "./AcceptedOfferScreen";
 import HomeInspectionScreen from "./HomeInspectionScreen";
+import ContractsSignedScreen from "./ContractsSignedScreen";
+import AppraisalScreen from "./AppraisalScreen";
 
 class App extends Component {
 
@@ -89,6 +91,8 @@ class App extends Component {
               <Route exact path="/pre_approval/transaction/:transaction_id" component={PreApprovalScreen} />
               <Route exact path="/accepted_offer/transaction/:transaction_id" component={AcceptedOfferScreen} />
               <Route exact path="/home_inspection/transaction/:transaction_id" component={HomeInspectionScreen} />
+              <Route exact path="/contracts_signed/transaction/:transaction_id" component={ContractsSignedScreen} />
+              <Route exact path="/appraisal/transaction/:transaction_id" component={AppraisalScreen} />
               <Route exact path="/signup" component={SignUp} />
             </Switch>
 

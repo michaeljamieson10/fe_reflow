@@ -35,6 +35,7 @@ import {createAcceptedOffer} from "../actions/acceptedOfferActions";
 import HomeInspectionForm from "./HomeInspectionForm";
 import {createHomeInspection} from "../actions/homeInspectionActions";
 import ContractsSignedForm from "./ContractsSignedForm";
+import {createContractsSigned} from "../actions/contractsSignedActions";
 
 interface ContractsSignedProps {
     // priceByHundreds: string[];
@@ -97,9 +98,9 @@ const ContractsSignedScreen: React.FC<ContractsSignedProps & RouteComponentProps
     },[isLoading]);
 
     const handleSubmitParent = values =>{
-        // alert(toTimestamp('02/13/2009 23:31:30'));
-        console.log(toTimestamp(`${values.date} ${values.time}`),"we made it", values,"<-- Values left transactid-->",transactionId)
-        dispatch<any>(createHomeInspection(values,transactionId));
+        // console.log(toTimestamp(`${values.date} ${values.time}`),"we made it", values,"<-- Values left transactid-->",transactionId)
+        console.log(values,"here in parent")
+        dispatch<any>(createContractsSigned(values,transactionId));
     }
 
     return(

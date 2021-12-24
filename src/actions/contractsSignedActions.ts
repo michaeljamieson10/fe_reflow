@@ -1,27 +1,24 @@
 import { CALL_API, Schemas } from '../middleware/api';
 import { getSpecificUser } from './userActions';
 
-
-
-
-export const CREATE_HOME_INSPECTION = 'CREATE_HOME_INSPECTION';
-export const CREATE_HOME_INSPECTION_SUCCESS = 'CREATE_HOME_INSPECTION_SUCCESS';
-export const CREATE_HOME_INSPECTION_FAILURE = 'CREATE_HOME_INSPECTION_FAILURE';
+export const CREATE_CONTRACTS_SIGNED = 'CREATE_CONTRACTS_SIGNED';
+export const CREATE_CONTRACTS_SIGNED_SUCCESS = 'CREATE_CONTRACTS_SIGNED_SUCCESS';
+export const CREATE_CONTRACTS_SIGNED_FAILURE = 'CREATE_CONTRACTS_SIGNED_FAILURE';
 
 const contractsSignedCreator = (values, transactionId) => {
 
     let contractsSigned = {
         transaction: {id: transactionId},
-        homeInspectionStatusType: values.homeInspectionStatusType,
-        scheduledDateTimeMilli: toTimestamp(`${values.date} ${values.time}`)
+        buyerStatus: values.buyerStatus,
+        sellerStatus: values.sellerStatus,
     }
     console.log("inside contractsSigned", contractsSigned)
     return {
         [CALL_API]: {
             httpAction: 'POST',
-            types: [CREATE_HOME_INSPECTION, CREATE_HOME_INSPECTION_SUCCESS, CREATE_HOME_INSPECTION_FAILURE],
-            endPoint: 'home_inspection',
-            schema: Schemas.HOME_INSPECTION,
+            types: [CREATE_CONTRACTS_SIGNED, CREATE_CONTRACTS_SIGNED_SUCCESS, CREATE_CONTRACTS_SIGNED_FAILURE],
+            endPoint: 'contracts_signed',
+            schema: Schemas.CONTRACTS_SIGNED,
             body: contractsSigned
         }
     };

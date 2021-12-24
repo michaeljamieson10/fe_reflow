@@ -1,6 +1,15 @@
 import React, {useState} from 'react';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
-import {Button, TextField, DialogActions, DialogContent, FormControlLabel, Checkbox} from '@material-ui/core';
+import {
+    Button,
+    TextField,
+    DialogActions,
+    DialogContent,
+    FormControlLabel,
+    Checkbox,
+    Radio,
+    RadioGroup, Typography
+} from '@material-ui/core';
 import OutlineSelect from "../components/ui/homecriteria/OutlineSelect";
 import OutlineSelectBedAndBath from "../components/ui/homecriteria/OutlineSelectBedAndBath";
 
@@ -21,6 +30,11 @@ const renderField = ({ input, label, type, users, meta: { touched, error, value,
                error={!!(touched && error)}
                helperText={touched && error ? error : ''} {...custom} />
 }
+const renderRadioGroup = ({ input, ...rest }) => (
+    <RadioGroup {...input} {...rest}
+                valueSelected={input.value}
+                onChange={(event, value) => input.onChange(value)}/>
+)
 
 // const onSubmit = values => {
 //     // const responseFunc = response => {
@@ -67,9 +81,16 @@ const ContractsSignedForm = (props: ContractsSignedFormProps & InjectedFormProps
 
     return (
         <form onSubmit={handleSubmit}>
-            <Field name={'house'} label={'House'} component={renderField} type="checkbox" value={'house'} />
-            <Field name={'multifamily'} label={'Multifamily'} component={renderField} type="checkbox"  value={'multifamily'} />
-
+            <Typography variant={"h6"}>Buyer Status</Typography>
+            <Field name="buyerStatus" component={renderRadioGroup}>
+                <FormControlLabel value="pending" control={<Radio value="pending"/>} label={"Pending"}/>
+                <FormControlLabel value="signed" control={<Radio value="signed"/>} label={"Signed"}/>
+            </Field>
+            <Typography variant={"h6"}>Seller Status</Typography>
+            <Field name="sellerStatus" component={renderRadioGroup}>
+                <FormControlLabel value="pending" control={<Radio value="pending"/>} label={"Pending"}/>
+                <FormControlLabel value="signed" control={<Radio value="signed"/>} label={"Signed"}/>
+            </Field>
             <Button variant="contained" color="primary" onClick={handleSubmit}>create HC</Button>
         </form>
     )
