@@ -63,7 +63,7 @@ function getStepsRoutes(step: number,transactionId){
         case 8:
             return `/clear_to_close/transaction/${transactionId}`;
         case 9:
-            return `/final-walkthrough/transaction/${transactionId}`;
+            return `/final_walkthrough/transaction/${transactionId}`;
         case 10:
             return `/closing/transaction/${transactionId}`;
 

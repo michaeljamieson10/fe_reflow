@@ -30,6 +30,10 @@ import HomeInspectionScreen from "./HomeInspectionScreen";
 import ContractsSignedScreen from "./ContractsSignedScreen";
 import AppraisalScreen from "./AppraisalScreen";
 import LoanCommitmentScreen from "./LoanCommitmentScreen";
+import HomeownersInsuranceScreen from "./HomeownersInsuranceScreen";
+import ClearToCloseScreen from "./ClearToCloseScreen";
+import FinalWalkthroughScreen from "./FinalWalkthroughScreen";
+import ClosingScreen from "./ClosingScreen";
 
 class App extends Component {
 
@@ -95,6 +99,10 @@ class App extends Component {
               <Route exact path="/contracts_signed/transaction/:transaction_id" component={ContractsSignedScreen} />
               <Route exact path="/appraisal/transaction/:transaction_id" component={AppraisalScreen} />
               <Route exact path="/loan_commitment/transaction/:transaction_id" component={LoanCommitmentScreen} />
+              <Route exact path="/homeowners_insurance/transaction/:transaction_id" component={HomeownersInsuranceScreen} />
+              <Route exact path="/clear_to_close/transaction/:transaction_id" component={ClearToCloseScreen} />
+              <Route exact path="/final_walkthrough/transaction/:transaction_id" component={FinalWalkthroughScreen} />
+              <Route exact path="/closing/transaction/:transaction_id" component={ClosingScreen} />
               <Route exact path="/signup" component={SignUp} />
             </Switch>
 

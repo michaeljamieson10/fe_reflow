@@ -13,6 +13,10 @@ interface Form {
     AcceptedOfferForm?: GeneralForm;
     HomeInspectForm?: GeneralForm;
     LoanCommitmentForm?: GeneralForm;
+    HomeownersInsuranceForm?: GeneralForm;
+    ClearToCloseForm?: GeneralForm;
+    FinalWalkthroughForm?: GeneralForm;
+    ClosingForm?: GeneralForm;
     AppraisalForm?: GeneralForm;
     ReaBuyerEmailForm?: GeneralForm;
     UserSignUpForm?: GeneralForm;

@@ -99,6 +99,21 @@ const loanCommitmentSchema = new schema.Entity('loanCommitments', {},{
     idAttribute: loanCommitment => loanCommitment.id
 });
 
+const homeownersInsuranceSchema = new schema.Entity('homeownersInsurance', {},{
+    idAttribute: homeownersInsurance => homeownersInsurance.id
+});
+
+const clearToCloseSchema = new schema.Entity('clearToClose', {},{
+    idAttribute: clearToClose => clearToClose.id
+});
+
+const finalWalkthroughSchema = new schema.Entity('finalWalkthrough', {},{
+    idAttribute: finalWalkthrough => finalWalkthrough.id
+});
+
+const closingSchema = new schema.Entity('closings', {},{
+    idAttribute: closing => closing.id
+});
 
 transactionSchema.define({
     agent: agentSchema
@@ -124,6 +139,10 @@ export const Schemas = {
     CONTRACTS_SIGNED: contractsSignedSchema,
     APPRAISAL: appraisalSchema,
     LOAN_COMMITMENT:loanCommitmentSchema,
+    HOMEOWNERS_INSURANCE: homeownersInsuranceSchema,
+    CLEAR_TO_CLOSE: clearToCloseSchema,
+    FINAL_WALKTHROUGH:finalWalkthroughSchema,
+    CLOSING: closingSchema,
     EMPTY: [],
 };
 
