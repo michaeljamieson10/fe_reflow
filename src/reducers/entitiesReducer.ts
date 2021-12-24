@@ -30,6 +30,11 @@ import {
     CREATE_CONTRACTS_SIGNED_SUCCESS
 } from "../actions/contractsSignedActions";
 import {CREATE_APPRAISAL, CREATE_APPRAISAL_FAILURE, CREATE_APPRAISAL_SUCCESS} from "../actions/appraisalActions";
+import {
+    CREATE_LOAN_COMMITMENT,
+    CREATE_LOAN_COMMITMENT_FAILURE,
+    CREATE_LOAN_COMMITMENT_SUCCESS
+} from "../actions/loanCommitmentActions";
 
 export const initialState = {users: {}, agents:{}, transactions:{} };
 
@@ -110,6 +115,9 @@ export default (state = initialState, action) => {
         case CREATE_APPRAISAL:
         case CREATE_APPRAISAL_SUCCESS:
         case CREATE_APPRAISAL_FAILURE:
+        case CREATE_LOAN_COMMITMENT:
+        case CREATE_LOAN_COMMITMENT_SUCCESS:
+        case CREATE_LOAN_COMMITMENT_FAILURE:
 
         default:
             return state;

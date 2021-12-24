@@ -95,6 +95,10 @@ const appraisalSchema = new schema.Entity('appraisals', {},{
     idAttribute: appraisal => appraisal.id
 });
 
+const loanCommitmentSchema = new schema.Entity('loanCommitments', {},{
+    idAttribute: loanCommitment => loanCommitment.id
+});
+
 
 transactionSchema.define({
     agent: agentSchema
@@ -119,6 +123,7 @@ export const Schemas = {
     HOME_INSPECTION: homeInspectionSchema,
     CONTRACTS_SIGNED: contractsSignedSchema,
     APPRAISAL: appraisalSchema,
+    LOAN_COMMITMENT:loanCommitmentSchema,
     EMPTY: [],
 };
 

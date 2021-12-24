@@ -12,6 +12,7 @@ interface Form {
     PreApprovalForm?: GeneralForm;
     AcceptedOfferForm?: GeneralForm;
     HomeInspectForm?: GeneralForm;
+    LoanCommitmentForm?: GeneralForm;
     AppraisalForm?: GeneralForm;
     ReaBuyerEmailForm?: GeneralForm;
     UserSignUpForm?: GeneralForm;
