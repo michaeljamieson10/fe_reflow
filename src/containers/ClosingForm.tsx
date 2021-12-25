@@ -15,23 +15,8 @@ import { SubmissionError } from 'redux-form'
 
 const validate = (values) => {
     const errors: any = {};
-    // if (!values.userId) {
-    //     errors.userId = 'Required'
-    // }
-    // if (!values.condocoop) {
-    //     errors.condocoop = false
-    // }
-    // const requiredFields = ['code', 'discountType', 'maxDiscountAmount', 'maxPerUserUsageTimes'];
-    // requiredFields.forEach(field => {
-    //     if (!values[field]) {
-    //         errors[field] = 'Required'
-    //     }
-    // });
-    // if (!values['closingStatusType'])
-    console.log("HELLO FROM ERRORS", "values is right",values)
     if (!values.commitmentStatus)
         errors.commitmentStatus = 'Required for complete or pending to submit';
-    console.log("HELLO FROM ERRORS", errors, "values is right",values)
     return errors
 };
 
@@ -117,32 +102,18 @@ const renderField = ({ input, defaultSelected, label, type, users,adornment, val
     }
 };
 
-const errorMessage = ({meta}) =>
-    <>
-        {console.log(meta,"inside meta")}
-    <div>{meta.error && meta.touched && 'Please select an option first'}</div>
-    </>
-const renderTextField = field => (
-    <TextField hintText={field.input.label}
-               floatingLabelText={field.input.label}
-               errorText={field.touched && field.error}
-               {...field.input}
-    />
-)
-//meta: { touched, error, form },
 const renderRadioGroup = ({ input,meta, ...rest }) => (
     <>
-        {console.log(meta)}
+        {console.log(meta,"this works from meta")}
     <RadioGroup {...input} {...rest}
                       valueSelected={input.value}
-
                       onChange={(event, value) => input.onChange(value)}/>
     <div>{meta.error && meta.touched && 'Please select an option first'}</div>
     </>
 )
 
 const ClosingForm = (props: ClosingFormProps & InjectedFormProps<{}, ClosingFormProps>) => {
-    const {handleSubmit, error} = props;
+    const {handleSubmit} = props;
 
     return (
         <form onSubmit={handleSubmit}>
@@ -151,8 +122,7 @@ const ClosingForm = (props: ClosingFormProps & InjectedFormProps<{}, ClosingForm
                 <FormControlLabel value="complete" control={<Radio value="complete"/>} label={"Complete"}/>
                 <FormControlLabel value="pending" control={<Radio value="pending"/>} label={"Pending"}/>
             </Field>
-            <div>{error}</div>
-            <Button variant="contained" color="primary" onClick={handleSubmit(validate)}>Create closing</Button>
+            <Button variant="contained" color="primary" onClick={handleSubmit}>Create closing</Button>
         </form>
     )
 };

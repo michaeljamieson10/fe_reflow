@@ -14,12 +14,8 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 
 const validate = (values) => {
     const errors: any = {};
-    // if (!values.userId) {
-    //     errors.userId = 'Required'
-    // }
-    // if (!values.condocoop) {
-    //     errors.condocoop = false
-    // }
+    if (!values.commitmentStatus)
+        errors.commitmentStatus = 'Required for complete or pending to submit';
     return errors
 };
 
@@ -104,10 +100,14 @@ const renderTextField = field => (
                {...field.input}
     />
 )
-const renderRadioGroup = ({ input, ...rest }) => (
-    <RadioGroup {...input} {...rest}
-                      valueSelected={input.value}
-                      onChange={(event, value) => input.onChange(value)}/>
+const renderRadioGroup = ({ input,meta, ...rest }) => (
+    <>
+        {console.log(meta,"this works from meta")}
+        <RadioGroup {...input} {...rest}
+                    valueSelected={input.value}
+                    onChange={(event, value) => input.onChange(value)}/>
+        <div>{meta.error && meta.touched && 'Please select an option first'}</div>
+    </>
 )
 
 const FinalWalkthroughForm = (props: FinalWalkthroughFormProps & InjectedFormProps<{}, FinalWalkthroughFormProps>) => {

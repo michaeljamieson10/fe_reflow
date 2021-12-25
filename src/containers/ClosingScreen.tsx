@@ -57,7 +57,7 @@ const ClosingScreen: React.FC<ClosingProps & RouteComponentProps> = props => {
     const handleSubmitParent = values =>{
         // console.log(toTimestamp(`${values.date} ${values.time}`),"we made it", values,"<-- Values left transactid-->",transactionId)
         console.log(values,'handlesubmitparent')
-        // dispatch<any>(createClosing(values,transactionId));
+        dispatch<any>(createClosing(values,transactionId));
     }
 
     return(
