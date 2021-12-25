@@ -26,6 +26,7 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
     </div>
 );
 
+
 interface LoginFormProps extends Partial<InjectedFormProps> {
     handleSubmit?: any;
     onSubmit?: any;
@@ -62,6 +63,6 @@ const LoginForm = (props: LoginFormProps) => {
 };
 
 export default reduxForm<any, LoginFormProps>({
-    form: 'loginForm', // a unique identifier for this form
+    form: 'LoginForm', // a unique identifier for this form
     validate
 })(LoginForm)

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Field, reduxForm, InjectedFormProps } from 'redux-form';
+import {Field, reduxForm, InjectedFormProps, getFormSubmitErrors} from 'redux-form';
 import {
     Button,
     TextField,
@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import Select from "@material-ui/core/Select";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import { SubmissionError } from 'redux-form'
 
 
 const validate = (values) => {
@@ -20,6 +21,17 @@ const validate = (values) => {
     // if (!values.condocoop) {
     //     errors.condocoop = false
     // }
+    // const requiredFields = ['code', 'discountType', 'maxDiscountAmount', 'maxPerUserUsageTimes'];
+    // requiredFields.forEach(field => {
+    //     if (!values[field]) {
+    //         errors[field] = 'Required'
+    //     }
+    // });
+    // if (!values['closingStatusType'])
+    console.log("HELLO FROM ERRORS", "values is right",values)
+    if (!values.commitmentStatus)
+        errors.commitmentStatus = 'Required for complete or pending to submit';
+    console.log("HELLO FROM ERRORS", errors, "values is right",values)
     return errors
 };
 
@@ -49,7 +61,10 @@ const renderField = ({ input, defaultSelected, label, type, users,adornment, val
             return <FormControl component="fieldset">
                 <FormLabel component="legend">Gender</FormLabel>
                 <RadioGroup aria-label="gender" name="gender1" value={value} onChange={input.onChange}>
-                    <FormControlLabel value="female" control={<Radio {...input} onChange={input.onChange}/>} label={"female"}/>
+                    <FormControlLabel value="female"
+                                      // error={touched && error ? true : false}
+                                      // helperText={touched && error ? error : ''}
+                                      control={<Radio {...input} onChange={input.onChange}/>} label={"female"}/>
                 </RadioGroup>
             </FormControl>
             // <FormControlLabel label={label} control={<Radio {...input} onChange={input.onChange} />} />
@@ -89,14 +104,24 @@ const renderField = ({ input, defaultSelected, label, type, users,adornment, val
                     id="filled-adornment-amount"
                     value={value}
                     // onChange={handleChange(value)}
+
                     onChange={input.onChange}
                     startAdornment={<InputAdornment position="start">{adornment}</InputAdornment>}
                 />
             </FormControl>
+        default:
+            return <TextField
+                label={label} type={type} {...input} {...custom} error={!!(touched && error)} helperText={touched && error ? error : ''}
+            />;
 
     }
 };
 
+const errorMessage = ({meta}) =>
+    <>
+        {console.log(meta,"inside meta")}
+    <div>{meta.error && meta.touched && 'Please select an option first'}</div>
+    </>
 const renderTextField = field => (
     <TextField hintText={field.input.label}
                floatingLabelText={field.input.label}
@@ -104,14 +129,20 @@ const renderTextField = field => (
                {...field.input}
     />
 )
-const renderRadioGroup = ({ input, ...rest }) => (
+//meta: { touched, error, form },
+const renderRadioGroup = ({ input,meta, ...rest }) => (
+    <>
+        {console.log(meta)}
     <RadioGroup {...input} {...rest}
                       valueSelected={input.value}
+
                       onChange={(event, value) => input.onChange(value)}/>
+    <div>{meta.error && meta.touched && 'Please select an option first'}</div>
+    </>
 )
 
 const ClosingForm = (props: ClosingFormProps & InjectedFormProps<{}, ClosingFormProps>) => {
-    const {handleSubmit} = props;
+    const {handleSubmit, error} = props;
 
     return (
         <form onSubmit={handleSubmit}>
@@ -120,7 +151,8 @@ const ClosingForm = (props: ClosingFormProps & InjectedFormProps<{}, ClosingForm
                 <FormControlLabel value="complete" control={<Radio value="complete"/>} label={"Complete"}/>
                 <FormControlLabel value="pending" control={<Radio value="pending"/>} label={"Pending"}/>
             </Field>
-            <Button variant="contained" color="primary" onClick={handleSubmit}>Create final walkthrough</Button>
+            <div>{error}</div>
+            <Button variant="contained" color="primary" onClick={handleSubmit(validate)}>Create closing</Button>
         </form>
     )
 };

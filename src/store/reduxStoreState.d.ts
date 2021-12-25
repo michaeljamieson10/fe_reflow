@@ -17,6 +17,7 @@ interface Form {
     ClearToCloseForm?: GeneralForm;
     FinalWalkthroughForm?: GeneralForm;
     ClosingForm?: GeneralForm;
+    LoginForm?: GeneralForm;
     AppraisalForm?: GeneralForm;
     ReaBuyerEmailForm?: GeneralForm;
     UserSignUpForm?: GeneralForm;
