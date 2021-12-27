@@ -80,6 +80,7 @@ const renderSelectBathField = ({
                 name: 'bath',
                 id: 'bath'
             }}
+            style={{width:'2.8em'}}
         >
             {children}
         </Select>
@@ -87,7 +88,7 @@ const renderSelectBathField = ({
     </FormControl>
 )
     const OutlineSelectBedAndBath: React.FC = props => {
-    let unitsQuantity = ['one','two','three','four','five'];
+    let unitsQuantity = ['','one','two','three','four','five'];
 
     return (
         <>

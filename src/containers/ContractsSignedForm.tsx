@@ -16,12 +16,12 @@ import OutlineSelectBedAndBath from "../components/ui/homecriteria/OutlineSelect
 
 const validate = (values) => {
     const errors: any = {};
-    // if (!values.userId) {
-    //     errors.userId = 'Required'
-    // }
-    // if (!values.condocoop) {
-    //     errors.condocoop = false
-    // }
+    if (!values.buyerStatus) {
+        errors.buyerStatus = 'Required'
+    }
+    if (!values.sellerStatus) {
+        errors.sellerStatus = 'Required'
+    }
     return errors
 };
 
@@ -30,10 +30,13 @@ const renderField = ({ input, label, type, users, meta: { touched, error, value,
                error={!!(touched && error)}
                helperText={touched && error ? error : ''} {...custom} />
 }
-const renderRadioGroup = ({ input, ...rest }) => (
-    <RadioGroup {...input} {...rest}
+const renderRadioGroup = ({ input,meta, ...rest }) => (
+    <>
+        <RadioGroup {...input} {...rest}
                 valueSelected={input.value}
                 onChange={(event, value) => input.onChange(value)}/>
+        <div>{meta.error && meta.touched && 'Please select an option first'}</div>
+    </>
 )
 
 // const onSubmit = values => {

@@ -72,6 +72,7 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps
 
 
     const handleNewHome = values =>{
+
         dispatch<any>(createHomeCriteria(values,transactionId)).then((response) => {
             if (response.type === CREATE_HOME_CRITERIA_SUCCESS) {
                 setShowSnackbarSuccessAlert(true);

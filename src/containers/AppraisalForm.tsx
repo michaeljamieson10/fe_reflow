@@ -13,12 +13,8 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 
 const validate = (values) => {
     const errors: any = {};
-    // if (!values.userId) {
-    //     errors.userId = 'Required'
-    // }
-    // if (!values.condocoop) {
-    //     errors.condocoop = false
-    // }
+    if (!values.appraisedValue)
+        errors.appraisedValue = 'Required for complete';
     return errors
 };
 
@@ -96,13 +92,19 @@ const renderField = ({ input, defaultSelected, label, type, users,adornment, val
     }
 };
 
-const renderTextField = field => (
-    <TextField hintText={field.input.label}
-               floatingLabelText={field.input.label}
-               type="number"
-               errorText={field.touched && field.error}
-               {...field.input}
+const renderTextField = ({ input, label, type, meta: { touched, error } }) => (
+    // <TextField hintText={field.input.label}
+    //            floatingLabelText={field.input.label}
+    //            type="number"
+    //            errorText={field.touched && field.error}
+    //            {...field.input}
+    // />
+    <TextField label={label} placeholder={label} type={type} {...input}
+               error={touched && error ? true : false}
+               helperText={touched && error ? error : ''}
+               margin="normal"
     />
+
 )
 const renderRadioGroup = ({ input, ...rest }) => (
     <RadioGroup {...input} {...rest}

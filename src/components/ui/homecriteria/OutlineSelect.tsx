@@ -97,41 +97,14 @@ const renderSelectMaxField = ({
     </FormControl>
 )
     const OutlineSelect: React.FC = props => {
-// export default function OutlineSelect() {
-    const classes = useStyles();
-    const [age, setAge] = React.useState('s');
-    let priceByHundreds = ['one_hundred','two_hundred','three_hundred','four_hundred','five_hundred', 'six_hundred','seven_hundred', 'eight_hundred','nine_hundred','one_million'];
-    // const {priceByHundreds} = props;
+    let priceByHundreds = ['','one_hundred','two_hundred','three_hundred','four_hundred','five_hundred', 'six_hundred','seven_hundred', 'eight_hundred','nine_hundred','one_million'];
 
-    const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        setAge(event.target.value as string);
-    };
     return (  <Grid
             container
             spacing={0}
             direction="row"
-            // alignItems="center"
-            // justifyContent="center"
-            // style={{marginBottom:"3em"}}
-            // style={{padding:"2em"}}
         >
-    {/*    <FormControl variant="outlined" className={classes.formControl}>*/}
-    {/*    <InputLabel id="demo-simple-select-outlined-label">Min</InputLabel>*/}
-    {/*    <Select*/}
-    {/*        labelId="demo-simple-select-outlined-label"*/}
-    {/*        id="demo-simple-select-outlined"*/}
-    {/*        value={age}*/}
-    {/*        onChange={handleChange}*/}
-    {/*        label="Min"*/}
-    {/*    >*/}
-    {/*        {priceByHundreds.map((label) => (*/}
-    {/*            <MenuItem value={label}>{getLabel(label)}</MenuItem>*/}
-
-    {/*        ))}*/}
-
-    {/*    </Select>*/}
-    {/*</FormControl>*/}
-            <Field name={"Min"} component={renderSelectMinField}>
+            <Field name={"Min"}  defaultValue={"100k"} component={renderSelectMinField}>
                 {priceByHundreds.map((label) => (
                     <option value={label}>{getLabel(label)}</option>
                 ))}
@@ -141,22 +114,6 @@ const renderSelectMaxField = ({
                     <option value={label}>{getLabel(label)}</option>
                 ))}
             </Field>
-            {/*<FormControl variant="outlined" className={classes.formControl}>*/}
-            {/*    <InputLabel id="demo-simple-select-outlined-label">Max</InputLabel>*/}
-            {/*    <Select*/}
-            {/*        labelId="demo-simple-select-outlined-label"*/}
-            {/*        id="demo-simple-select-outlined"*/}
-            {/*        value={age}*/}
-            {/*        onChange={handleChange}*/}
-            {/*        label="Max"*/}
-            {/*    >*/}
-            {/*        {priceByHundreds.map((label) => (*/}
-            {/*            <MenuItem value={label}>{getLabel(label)}</MenuItem>*/}
-
-            {/*        ))}*/}
-
-            {/*    </Select>*/}
-            {/*</FormControl>*/}
         </Grid>
     )
 }

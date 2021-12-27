@@ -14,9 +14,9 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 
 const validate = (values) => {
     const errors: any = {};
-    // if (!values.userId) {
-    //     errors.userId = 'Required'
-    // }
+    if (!values.homeInspectionStatusType) {
+        errors.homeInspectionStatusType = 'Required'
+    }
     // if (!values.condocoop) {
     //     errors.condocoop = false
     // }
@@ -104,10 +104,14 @@ const renderTextField = field => (
                {...field.input}
     />
 )
-const renderRadioGroup = ({ input, ...rest }) => (
+const renderRadioGroup = ({ input,meta, ...rest }) => (
+    <>
     <RadioGroup {...input} {...rest}
                       valueSelected={input.value}
                       onChange={(event, value) => input.onChange(value)}/>
+    <div>{meta.error && meta.touched && 'Please select an option first'}</div>
+    </>
+
 )
 
 const HomeInspectionForm = (props: HomeInspectionFormProps & InjectedFormProps<{}, HomeInspectionFormProps>) => {

@@ -9,12 +9,18 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 
 const validate = (values) => {
     const errors: any = {};
-    // if (!values.userId) {
-    //     errors.userId = 'Required'
-    // }
-    // if (!values.condocoop) {
-    //     errors.condocoop = false
-    // }
+    if (!values.address) {
+        errors.address = 'Required'
+    }
+    if (!values.purchasePrice) {
+        errors.purchasePrice = 'Required'
+    }
+    if (!values.downPayment) {
+        errors.downPayment = 'Required'
+    }
+    if (!values.propertyTaxes) {
+        errors.propertyTaxes = 'Required'
+    }
     return errors
 };
 
@@ -48,6 +54,7 @@ const renderField = ({ input, defaultSelected, label, type, users,adornment, val
                     onChange={input.onChange}
                     startAdornment={<InputAdornment position="start">{adornment}</InputAdornment>}
                 />
+                {renderFromHelper({ touched, error })}
             </FormControl>
 
     }

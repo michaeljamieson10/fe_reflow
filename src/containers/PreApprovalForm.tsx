@@ -11,9 +11,21 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 
 const validate = (values) => {
     const errors: any = {};
-    // if (!values.userId) {
-    //     errors.userId = 'Required'
-    // }
+    if (!values.maxLoanAmount) {
+        errors.maxLoanAmount = 'Required'
+    }
+    if (!values.maxPropertyTaxes) {
+        errors.maxPropertyTaxes = 'Required'
+    }
+    if (!values.maxPurchasePrice) {
+        errors.maxPurchasePrice = 'Required'
+    }
+    if (!values.downPayment) {
+        errors.downPayment = 'Required'
+    }
+    if (!values.loanType) {
+        errors.loanType = 'Required'
+    }
     // if (!values.condocoop) {
     //     errors.condocoop = false
     // }
@@ -61,29 +73,33 @@ const renderSelectLoanTypeField = ({
         {renderFromHelper({ touched, error })}
     </FormControl>
 )
+const renderField = ({ input, defaultSelected, label, type, users,adornment, value,
+                         meta: { touched, error, form }, children, ...custom }) => {
+    switch (type) {
+        case 'textfield':
+            return <FormControl variant="filled">
+                <InputLabel htmlFor="filled-adornment-amount">{label}</InputLabel>
+                <FilledInput
+                    id="filled-adornment-amount"
+                    value={value}
+                    // onChange={handleChange(value)}
+                    error={touched && error ? true : false}
+                    // helperText={touched && error ? error : ''}
+                    onChange={input.onChange}
+                    startAdornment={<InputAdornment position="start">{adornment}</InputAdornment>}
+                />
+                {renderFromHelper({ touched, error })}
+            </FormControl>
+
+    }
+};
+
 
 const PreApprovalForm = (props: PreApprovalFormProps & InjectedFormProps<{}, PreApprovalFormProps>) => {
     const {handleSubmit} = props;
     let loanType = ['','conventional','FHA','VA','USDA'];
 
 
-    const renderField = ({ input, defaultSelected, label, type, users,adornment, value,
-                             meta: { touched, error, form }, children, ...custom }) => {
-        switch (type) {
-            case 'textfield':
-                return <FormControl variant="filled">
-                    <InputLabel htmlFor="filled-adornment-amount">{label}</InputLabel>
-                    <FilledInput
-                        id="filled-adornment-amount"
-                        value={value}
-                        // onChange={handleChange(value)}
-                        onChange={input.onChange}
-                        startAdornment={<InputAdornment position="start">{adornment}</InputAdornment>}
-                    />
-                </FormControl>
-
-        }
-    };
 
     return (
         <form onSubmit={handleSubmit}>

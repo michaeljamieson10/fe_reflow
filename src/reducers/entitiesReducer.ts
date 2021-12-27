@@ -72,55 +72,53 @@ export default (state = initialState, action) => {
         case LOGGED_IN_USER_INFO_SUCCESS:
             state = {...state, users: {}};
             return appendAndUpdateEntitiesFromResponse(state, responseEntities);
-        case GET_CLIENT:
-        case GET_CLIENT_SUCCESS:
-        case GET_CLIENT_FAILURE:
-        case CREATE_CLIENT:
-        case CREATE_CLIENT_SUCCESS:
-        case CREATE_CLIENT_FAILURE:
-        case CREATE_TRANSACTION:
-        case CREATE_TRANSACTION_SUCCESS:
-        case CREATE_TRANSACTION_FAILURE:
-        case GET_AGENT_BY_TOKEN:
-        case GET_AGENT_FAILURE_BY_TOKEN:
+        case GET_CLIENT:break;
+        case GET_CLIENT_SUCCESS:break;
+        case GET_CLIENT_FAILURE:break;
+        case CREATE_CLIENT:break;
+        case CREATE_CLIENT_SUCCESS:break;
+        case CREATE_CLIENT_FAILURE:break;
+        case CREATE_TRANSACTION:break;
+        case CREATE_TRANSACTION_SUCCESS:break;
+        case CREATE_TRANSACTION_FAILURE:break;
+        case GET_AGENT_BY_TOKEN:break;
+        case GET_AGENT_FAILURE_BY_TOKEN:break;
         case GET_AGENT_SUCCESS_BY_TOKEN:
             // state = {...state, agent: {}};
             return appendAndUpdateEntitiesFromResponse(state, responseEntities);
-        case GET_ALL_TRANSACTION:
+        case GET_ALL_TRANSACTION:break;
         case GET_ALL_TRANSACTION_SUCCESS:
             state = {...state, transactions: {}};
             return appendAndUpdateEntitiesFromResponse(state, responseEntities);
-        case GET_ALL_TRANSACTION_FAILURE:
-        case GET_TRANSACTION:
+        case GET_ALL_TRANSACTION_FAILURE:break;
+        case GET_TRANSACTION:break;
         case GET_TRANSACTION_SUCCESS:
             state = {...state, transactions: {}};
             return appendAndUpdateEntitiesFromResponse(state, responseEntities);
-        case GET_TRANSACTION_FAILURE:
-        case CREATE_HOME_CRITERIA:
-        case CREATE_HOME_CRITERIA_SUCCESS:
-        case CREATE_HOME_CRITERIA_FAILURE:
-        case GET_TRANSACTIONS_BY_TOKEN:
-        case GET_TRANSACTIONS_FAILURE_BY_TOKEN:
+        case GET_TRANSACTION_FAILURE:break;
+        case CREATE_HOME_CRITERIA:break;
+        case CREATE_HOME_CRITERIA_SUCCESS:break;
+        case CREATE_HOME_CRITERIA_FAILURE:break;
+        case GET_TRANSACTIONS_BY_TOKEN: break;
+        case GET_TRANSACTIONS_FAILURE_BY_TOKEN: break;
         case GET_TRANSACTIONS_SUCCESS_BY_TOKEN:
             // state = {...state, transactions: {}};
-            console.log(state,"state",responseEntities,"response ENTITY REDUCER");
             return appendAndUpdateEntitiesFromResponse(state, responseEntities);
             // return appendAndUpdateEntitiesFromResponseWithArrayOverwrite(state, responseEntities);
-        case CREATE_HOME_INSPECTION:
-        case CREATE_HOME_INSPECTION_SUCCESS:
-        case CREATE_HOME_INSPECTION_FAILURE:
-        case CREATE_CONTRACTS_SIGNED:
-        case CREATE_CONTRACTS_SIGNED_SUCCESS:
-        case CREATE_CONTRACTS_SIGNED_FAILURE:
-        case CREATE_APPRAISAL:
-        case CREATE_APPRAISAL_SUCCESS:
-        case CREATE_APPRAISAL_FAILURE:
-        case CREATE_LOAN_COMMITMENT:
-        case CREATE_LOAN_COMMITMENT_SUCCESS:
-        case CREATE_LOAN_COMMITMENT_FAILURE:
+        case CREATE_HOME_INSPECTION:break;
+        case CREATE_HOME_INSPECTION_SUCCESS:break;
+        case CREATE_HOME_INSPECTION_FAILURE:break;
+        case CREATE_CONTRACTS_SIGNED:break;
+        case CREATE_CONTRACTS_SIGNED_SUCCESS:break;
+        case CREATE_CONTRACTS_SIGNED_FAILURE:break;
+        case CREATE_APPRAISAL:break;
+        case CREATE_APPRAISAL_SUCCESS:break;
+        case CREATE_APPRAISAL_FAILURE:break;
+        case CREATE_LOAN_COMMITMENT:break;
+        case CREATE_LOAN_COMMITMENT_SUCCESS:break;
+        case CREATE_LOAN_COMMITMENT_FAILURE:break;
 
         default:
             return state;
-            break;
     }
 }

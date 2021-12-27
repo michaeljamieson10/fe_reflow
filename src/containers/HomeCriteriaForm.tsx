@@ -7,68 +7,29 @@ import OutlineSelectBedAndBath from "../components/ui/homecriteria/OutlineSelect
 
 const validate = (values) => {
     const errors: any = {};
-    // if (!values.userId) {
-    //     errors.userId = 'Required'
-    // }
-    // if (!values.condocoop) {
-    //     errors.condocoop = false
-    // }
+    if (!values.Max) {
+        errors.Max = 'Required'
+    }
+    if (!values.Min) {
+        errors.Min = 'Required'
+    }
+    if (!values.Bath) {
+        errors.Bath = 'Required'
+    }
+    if (!values.Bed) {
+        errors.Bed = 'Required'
+    }
+
     return errors
 };
 
-const renderField = ({ input, label, type, users, meta: { touched, error, value, form }, ...custom }) => {
-    return <TextField label={label} type={type} {...input}
-               error={!!(touched && error)}
-               helperText={touched && error ? error : ''} {...custom} />
-}
-
-// const onSubmit = values => {
-//     // const responseFunc = response => {
-//     //     if (!response.error) {
-//     //
-//     //     } else {
-//     //     }
-//     // console.log(response,"FROM INSIDE HANDLE SUBMIT OF HCF");
-//     //
-//     // };
-//     // alert(values);
-//
-//     console.log(values,"FROM INSIDE HANDLE SUBMIT OF HCF");
-//
-//     // dispatch<any>(createHomeCriteria(transactionId));
-//     createHomeCriteria(values);
-//
-//     // history.push(`/dashboard/transaction/${transactionId}`);
-//
-// };
 interface HomeCriteriaFormProps {
-    // onCancel: () => any,
-    // users: { value: number, text: string }[],
-    // usersLoaded?: boolean;
     onSubmit?: (values) => any;
-
 }
 
 const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, HomeCriteriaFormProps>) => {
     const {handleSubmit} = props;
-    const initialFilterDiscountTypeState = {house: false, multifamily: false, condocoop: false, townhome: false, basement: false, centralair: false, pool: false, waterfront: false};
-
-    let priceByHundreds = ['one_hundred','two_hundred','three_hundred','four_hundred','five_hundred', 'six_hundred','seven_hundred', 'eight_hundred','nine_hundred','one_million'];
-
-    const [filterDiscountTypeChecked, setFilterDiscountTypeChecked] = useState(initialFilterDiscountTypeState);
-    const [filterDiscountType, setFilterDiscountType] = useState(initialFilterDiscountTypeState);
-    const [filterDiscountTypeRadioSelection, setFilterDiscountTypeRadioSelection] = useState<'lol' | 'pewpew'>('lol');
-    const handleChangeCheckboxDiscountType = (evt) => {
-        const selection = evt.target.value;
-        const isChecked = evt.target.checked;
-
-        if (filterDiscountTypeRadioSelection === 'lol') setFilterDiscountTypeRadioSelection('pewpew');
-
-        //update checked state for the checkbox that was just checked
-        setFilterDiscountTypeChecked({...filterDiscountTypeChecked, [selection]: isChecked});
-        //update state to filter by selected discount value
-        setFilterDiscountType({...filterDiscountType, [selection]: isChecked});
-    }
+    // const initialFilterDiscountTypeState = {house: false, multifamily: false, condocoop: false, townhome: false, basement: false, centralair: false, pool: false, waterfront: false};
 
     const renderField = ({ input, defaultSelected, label, type, users,
                              meta: { touched, error, form }, children, ...custom }) => {
@@ -76,9 +37,14 @@ const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, H
             case 'checkbox':
                 return <FormControlLabel label={label} control={<Checkbox {...input} onChange={input.onChange} />} />
             default:
-                return <TextField
-                    label={label} type={type} {...input} {...custom} error={!!(touched && error)} helperText={touched && error ? error : ''}
-                />;
+                // return <TextField
+                //     label={label} type={type} {...input} {...custom} error={!!(touched && error)} helperText={touched && error ? error : ''}
+                // />;
+                return     <TextField label={label} placeholder={label} type={type} {...input}
+                                      error={touched && error ? true : false}
+                                      helperText={touched && error ? error : ''}
+                                      margin="normal"
+                />
         }
     };
 
