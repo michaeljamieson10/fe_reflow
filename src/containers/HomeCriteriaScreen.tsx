@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {HomeCriteria, State, Transaction} from "../store/reduxStoreState";
-import {createHomeCriteria} from "../actions/homeCriteriaActions";
+import {
+    CREATE_HOME_CRITERIA_FAILURE,
+    CREATE_HOME_CRITERIA_SUCCESS,
+    createHomeCriteria
+} from "../actions/homeCriteriaActions";
 import {
     Card,
     Grid,
@@ -12,6 +16,8 @@ import {getTransactionById} from "../selectors/transactionSelectors";
 import {getTransaction} from "../actions/transactionActions";
 import {useIsMount} from "../hooks/useIsMount";
 import HomeCriteriaForm from "./HomeCriteriaForm";
+import SuccessErrorSnackBar from "../components/SuccessErrorSnackBar";
+import {CREATE_CONTRACTS_SIGNED_FAILURE, CREATE_CONTRACTS_SIGNED_SUCCESS} from "../actions/contractsSignedActions";
 
 interface HomeCriteriaScreenProps {
     homeCriteria: HomeCriteria;
@@ -40,7 +46,11 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps
     const {match} = props;
     const transactionId = match.params['transaction_id'];
     const isMount = useIsMount();
-
+    const [showSnackbarSuccessAlert, setShowSnackbarSuccessAlert] = useState<boolean>(false);
+    const [snackbarSuccessAlertText, setSnackbarSuccessAlertText] = useState<string>("Success!");
+    const [showSnackbarErrorAlert, setShowSnackbarErrorAlert] = useState<boolean>(false);
+    const [snackbarErrorAlertTitle, setSnackbarErrorAlertTitle] = useState<string>('Error Encountered!')
+    const [snackbarErrorAlertText, setSnackbarErrorAlertText] = useState<string>('Please Try Again');
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(true);
     const [transactionsComplete, setIsTransactionsComplete] = useState(0);
@@ -62,7 +72,17 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps
 
 
     const handleNewHome = values =>{
-        dispatch<any>(createHomeCriteria(values,transactionId));
+        dispatch<any>(createHomeCriteria(values,transactionId)).then((response) => {
+            if (response.type === CREATE_HOME_CRITERIA_SUCCESS) {
+                setShowSnackbarSuccessAlert(true);
+                setSnackbarSuccessAlertText('Created!');
+            }
+            if (response.type === CREATE_HOME_CRITERIA_FAILURE) {
+                setShowSnackbarErrorAlert(true);
+                setSnackbarErrorAlertTitle('Failed to Update!');
+                setSnackbarErrorAlertText(response.error || 'Please try again or contact support');
+            }
+        });
     }
 
     return(
@@ -73,6 +93,14 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps
             alignItems="center"
             justifyContent="center"
         >
+            <SuccessErrorSnackBar   showSnackbarSuccessAlert={showSnackbarSuccessAlert}
+                                    setShowSnackbarSuccessAlert={setShowSnackbarSuccessAlert}
+                                    showSnackbarErrorAlert={showSnackbarErrorAlert}
+                                    setShowSnackbarErrorAlert={setShowSnackbarErrorAlert}
+                                    snackbarErrorAlertText={snackbarErrorAlertText}
+                                    snackbarErrorAlertTitle={snackbarErrorAlertTitle}
+                                    snackbarSuccessAlertText={snackbarSuccessAlertText} />
+
             <FlowCurrentProgressCard transactionId={transactionId}  isLoading={isLoading} transactions={transactions} transactionsComplete={transactionsComplete}/>
 
             <Card className="card-with-form" style={{marginTop:"2em",padding:"2em", boxShadow: 'none' }}>

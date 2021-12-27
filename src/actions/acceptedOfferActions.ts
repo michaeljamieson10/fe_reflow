@@ -45,9 +45,9 @@ export const getTransaction = (transactionId, signal?: any) => (dispatch, getSta
 };
 
 
-export const CREATE_PREAPPROVAL = 'CREATE_PREAPPROVAL';
-export const CREATE_PREAPPROVAL_SUCCESS = 'CREATE_PREAPPROVAL_SUCCESS';
-export const CREATE_PREAPPROVAL_FAILURE = 'CREATE_PREAPPROVAL_FAILURE';
+export const CREATE_ACCEPTED_OFFER = 'CREATE_ACCEPTED_OFFER';
+export const CREATE_ACCEPTED_OFFER_SUCCESS = 'CREATE_ACCEPTED_OFFER_SUCCESS';
+export const CREATE_ACCEPTED_OFFER_FAILURE = 'CREATE_ACCEPTED_OFFER_FAILURE';
 
 const acceptedOfferCreator = (values, transactionId) => {
     //    private String address;
@@ -66,7 +66,7 @@ const acceptedOfferCreator = (values, transactionId) => {
     return {
         [CALL_API]: {
             httpAction: 'POST',
-            types: [CREATE_PREAPPROVAL, CREATE_PREAPPROVAL_SUCCESS, CREATE_PREAPPROVAL_FAILURE],
+            types: [CREATE_ACCEPTED_OFFER, CREATE_ACCEPTED_OFFER_SUCCESS, CREATE_ACCEPTED_OFFER_FAILURE],
             endPoint: 'accepted_offer',
             schema: Schemas.PRE_APPROVAL,
             body: acceptedOffer

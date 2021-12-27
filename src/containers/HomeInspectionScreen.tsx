@@ -11,7 +11,13 @@ import {getTransactionById} from "../selectors/transactionSelectors";
 import {getTransaction} from "../actions/transactionActions";
 import {useIsMount} from "../hooks/useIsMount";
 import HomeInspectionForm from "./HomeInspectionForm";
-import {createHomeInspection} from "../actions/homeInspectionActions";
+import {
+    CREATE_HOME_INSPECTION_FAILURE,
+    CREATE_HOME_INSPECTION_SUCCESS,
+    createHomeInspection
+} from "../actions/homeInspectionActions";
+import {CREATE_CONTRACTS_SIGNED_FAILURE, CREATE_CONTRACTS_SIGNED_SUCCESS} from "../actions/contractsSignedActions";
+import SuccessErrorSnackBar from "../components/SuccessErrorSnackBar";
 
 interface HomeInspectionProps {
     preApproval: PreApproval;
@@ -24,7 +30,11 @@ const HomeInspectionScreen: React.FC<HomeInspectionProps & RouteComponentProps> 
     const {match} = props;
     const transactionId = match.params['transaction_id'];
     const isMount = useIsMount();
-
+    const [showSnackbarSuccessAlert, setShowSnackbarSuccessAlert] = useState<boolean>(false);
+    const [snackbarSuccessAlertText, setSnackbarSuccessAlertText] = useState<string>("Success!");
+    const [showSnackbarErrorAlert, setShowSnackbarErrorAlert] = useState<boolean>(false);
+    const [snackbarErrorAlertTitle, setSnackbarErrorAlertTitle] = useState<string>('Error Encountered!')
+    const [snackbarErrorAlertText, setSnackbarErrorAlertText] = useState<string>('Please Try Again');
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(true);
     const [transactionsComplete, setIsTransactionsComplete] = useState(0);
@@ -46,7 +56,17 @@ const HomeInspectionScreen: React.FC<HomeInspectionProps & RouteComponentProps> 
 
     const handleSubmitParent = values =>{
         console.log(toTimestamp(`${values.date} ${values.time}`),"we made it", values,"<-- Values left transactid-->",transactionId)
-        dispatch<any>(createHomeInspection(values,transactionId));
+        dispatch<any>(createHomeInspection(values,transactionId)).then((response) => {
+            if (response.type === CREATE_HOME_INSPECTION_SUCCESS) {
+                setShowSnackbarSuccessAlert(true);
+                setSnackbarSuccessAlertText('Created!');
+            }
+            if (response.type === CREATE_HOME_INSPECTION_FAILURE ) {
+                setShowSnackbarErrorAlert(true);
+                setSnackbarErrorAlertTitle('Failed to Update!');
+                setSnackbarErrorAlertText(response.error || 'Please try again or contact support');
+            }
+        });
     }
 
     return(
@@ -57,6 +77,13 @@ const HomeInspectionScreen: React.FC<HomeInspectionProps & RouteComponentProps> 
             alignItems="center"
             justifyContent="center"
         >
+            <SuccessErrorSnackBar   showSnackbarSuccessAlert={showSnackbarSuccessAlert}
+                                    setShowSnackbarSuccessAlert={setShowSnackbarSuccessAlert}
+                                    showSnackbarErrorAlert={showSnackbarErrorAlert}
+                                    setShowSnackbarErrorAlert={setShowSnackbarErrorAlert}
+                                    snackbarErrorAlertText={snackbarErrorAlertText}
+                                    snackbarErrorAlertTitle={snackbarErrorAlertTitle}
+                                    snackbarSuccessAlertText={snackbarSuccessAlertText} />
             <FlowCurrentProgressCard transactionId={transactionId}  isLoading={isLoading} transactions={transactions} transactionsComplete={transactionsComplete}/>
 
             <Card className="card-with-form" style={{marginTop:"2em",padding:"2em", boxShadow: 'none' }}>

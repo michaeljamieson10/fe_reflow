@@ -22,22 +22,20 @@ import {
 } from "../actions/appraisalActions";
 import AcceptedOfferForm from "./AcceptedOfferForm";
 import AppraisalForm from "./AppraisalForm";
+import ErrorSnackBar from "../components/SuccessErrorSnackBar";
+import SuccessErrorSnackBar from "../components/SuccessErrorSnackBar";
 
-interface HomeInspectionProps {
+interface AppraisalProps {
     preApproval: PreApproval;
 }
 function toTimestamp(strDate){
     var datum = Date.parse(strDate);
     return datum;
 }
-const AppraisalScreen: React.FC<HomeInspectionProps & RouteComponentProps> = props => {
+const AppraisalScreen: React.FC<AppraisalProps & RouteComponentProps> = props => {
     const {match} = props;
     const transactionId = match.params['transaction_id'];
     const isMount = useIsMount();
-    const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
-    const [errorModalTitle, setErrorModalTitle] = useState<string>('');
-    const [errorModalText, setErrorModalText] = useState<string>('');
-
     const [showSnackbarSuccessAlert, setShowSnackbarSuccessAlert] = useState<boolean>(false);
     const [snackbarSuccessAlertText, setSnackbarSuccessAlertText] = useState<string>("Success!");
     const [showSnackbarErrorAlert, setShowSnackbarErrorAlert] = useState<boolean>(false);
@@ -69,7 +67,7 @@ const AppraisalScreen: React.FC<HomeInspectionProps & RouteComponentProps> = pro
         dispatch<any>(createAppraisal(values,transactionId)).then((response) => {
             if (response.type === CREATE_APPRAISAL_SUCCESS) {
                 setShowSnackbarSuccessAlert(true);
-                setSnackbarSuccessAlertText(' Updated!');
+                setSnackbarSuccessAlertText('Created!');
             }
             if (response.type === CREATE_APPRAISAL_FAILURE) {
                 setShowSnackbarErrorAlert(true);
@@ -87,32 +85,14 @@ const AppraisalScreen: React.FC<HomeInspectionProps & RouteComponentProps> = pro
             alignItems="center"
             justifyContent="center"
         >
-            <Snackbar open={showSnackbarSuccessAlert} autoHideDuration={3000} onClose={() => setShowSnackbarSuccessAlert(false)} anchorOrigin={{vertical: 'top', horizontal: 'center'}} className={'snackbar-alert-container'}>
-                <Alert severity={'success'} onClose={() => setShowSnackbarSuccessAlert(false)} className={'snackbar-alert'}>
-                    <div className={'snackbar-alert-message'}>
-                        {snackbarSuccessAlertText}
-                    </div>
-                </Alert>
-            </Snackbar>
+            <SuccessErrorSnackBar   showSnackbarSuccessAlert={showSnackbarSuccessAlert}
+                                    setShowSnackbarSuccessAlert={setShowSnackbarSuccessAlert}
+                                    showSnackbarErrorAlert={showSnackbarErrorAlert}
+                                    setShowSnackbarErrorAlert={setShowSnackbarErrorAlert}
+                                    snackbarErrorAlertText={snackbarErrorAlertText}
+                                    snackbarErrorAlertTitle={snackbarErrorAlertTitle}
+                                    snackbarSuccessAlertText={snackbarSuccessAlertText} />
 
-            {/*Error Snackbar Alert for creating*/}
-            <Snackbar
-                open={showSnackbarErrorAlert}
-                anchorOrigin={{vertical: 'top', horizontal: 'center'}}
-                className={'snackbar-alert-container'}
-                onClose={(evt, reason) => {
-                    //prevent alert from being closed when clicking outside of alert
-                    if (reason === 'clickaway') return;
-                    setShowSnackbarErrorAlert(false);
-                }}
-            >
-                <Alert severity={'error'} onClose={() => setShowSnackbarErrorAlert(false)} className={'snackbar-alert'}>
-                    <div className={'snackbar-alert-message'}>
-                        <AlertTitle>{snackbarErrorAlertTitle}</AlertTitle>
-                        {snackbarErrorAlertText}
-                    </div>
-                </Alert>
-            </Snackbar>
             <FlowCurrentProgressCard transactionId={transactionId}  isLoading={isLoading} transactions={transactions} transactionsComplete={transactionsComplete}/>
 
             <Card className="card-with-form" style={{marginTop:"2em",padding:"2em", boxShadow: 'none' }}>

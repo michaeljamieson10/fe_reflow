@@ -17,11 +17,16 @@ import LoanCommitmentForm from "./LoanCommitmentForm";
 import HomeownersInsuranceForm from "./HomeownersInsuranceForm";
 import {createHomeownersInsurance} from "../actions/homeownersInsuranceActions";
 import ClearToCloseForm from "./ClearToCloseForm";
-import {createClearToClose} from "../actions/clearToCloseActions";
+import {
+    CREATE_CLEAR_TO_CLOSE_FAILURE,
+    CREATE_CLEAR_TO_CLOSE_SUCCESS,
+    createClearToClose
+} from "../actions/clearToCloseActions";
 import FinalWalkthroughForm from "./FinalWalkthroughForm";
 import {createFinalWalkthrough} from "../actions/finalWalkthroughActions";
 import ClosingForm from "./ClosingForm";
-import {createClosing} from "../actions/closingActions";
+import {CREATE_CLOSING_FAILURE, CREATE_CLOSING_SUCCESS, createClosing} from "../actions/closingActions";
+import SuccessErrorSnackBar from "../components/SuccessErrorSnackBar";
 
 interface ClosingProps {
     preApproval: PreApproval;
@@ -35,6 +40,11 @@ const ClosingScreen: React.FC<ClosingProps & RouteComponentProps> = props => {
     const transactionId = match.params['transaction_id'];
     const isMount = useIsMount();
 
+    const [showSnackbarSuccessAlert, setShowSnackbarSuccessAlert] = useState<boolean>(false);
+    const [snackbarSuccessAlertText, setSnackbarSuccessAlertText] = useState<string>("Success!");
+    const [showSnackbarErrorAlert, setShowSnackbarErrorAlert] = useState<boolean>(false);
+    const [snackbarErrorAlertTitle, setSnackbarErrorAlertTitle] = useState<string>('Error Encountered!')
+    const [snackbarErrorAlertText, setSnackbarErrorAlertText] = useState<string>('Please Try Again');
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(true);
     const [transactionsComplete, setIsTransactionsComplete] = useState(0);
@@ -57,7 +67,17 @@ const ClosingScreen: React.FC<ClosingProps & RouteComponentProps> = props => {
     const handleSubmitParent = values =>{
         // console.log(toTimestamp(`${values.date} ${values.time}`),"we made it", values,"<-- Values left transactid-->",transactionId)
         console.log(values,'handlesubmitparent')
-        dispatch<any>(createClosing(values,transactionId));
+        dispatch<any>(createClosing(values,transactionId)).then((response) => {
+            if (response.type === CREATE_CLOSING_SUCCESS) {
+                setShowSnackbarSuccessAlert(true);
+                setSnackbarSuccessAlertText('Created!');
+            }
+            if (response.type === CREATE_CLOSING_FAILURE ) {
+                setShowSnackbarErrorAlert(true);
+                setSnackbarErrorAlertTitle('Failed to Update!');
+                setSnackbarErrorAlertText(response.error || 'Please try again or contact support');
+            }
+        });
     }
 
     return(
@@ -68,6 +88,15 @@ const ClosingScreen: React.FC<ClosingProps & RouteComponentProps> = props => {
             alignItems="center"
             justifyContent="center"
         >
+            <SuccessErrorSnackBar   showSnackbarSuccessAlert={showSnackbarSuccessAlert}
+                                    setShowSnackbarSuccessAlert={setShowSnackbarSuccessAlert}
+                                    showSnackbarErrorAlert={showSnackbarErrorAlert}
+                                    setShowSnackbarErrorAlert={setShowSnackbarErrorAlert}
+                                    snackbarErrorAlertText={snackbarErrorAlertText}
+                                    snackbarErrorAlertTitle={snackbarErrorAlertTitle}
+                                    snackbarSuccessAlertText={snackbarSuccessAlertText} />
+
+
             <FlowCurrentProgressCard transactionId={transactionId}  isLoading={isLoading} transactions={transactions} transactionsComplete={transactionsComplete}/>
 
             <Card className="card-with-form" style={{marginTop:"2em",padding:"2em", boxShadow: 'none' }}>

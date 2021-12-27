@@ -17,9 +17,18 @@ import LoanCommitmentForm from "./LoanCommitmentForm";
 import HomeownersInsuranceForm from "./HomeownersInsuranceForm";
 import {createHomeownersInsurance} from "../actions/homeownersInsuranceActions";
 import ClearToCloseForm from "./ClearToCloseForm";
-import {createClearToClose} from "../actions/clearToCloseActions";
+import {
+    CREATE_CLEAR_TO_CLOSE_FAILURE,
+    CREATE_CLEAR_TO_CLOSE_SUCCESS,
+    createClearToClose
+} from "../actions/clearToCloseActions";
 import FinalWalkthroughForm from "./FinalWalkthroughForm";
-import {createFinalWalkthrough} from "../actions/finalWalkthroughActions";
+import {
+    CREATE_FINAL_WALKTHROUGH_FAILURE,
+    CREATE_FINAL_WALKTHROUGH_SUCCESS,
+    createFinalWalkthrough
+} from "../actions/finalWalkthroughActions";
+import SuccessErrorSnackBar from "../components/SuccessErrorSnackBar";
 
 interface FinalWalkthroughProps {
     preApproval: PreApproval;
@@ -34,6 +43,12 @@ const FinalWalkthroughScreen: React.FC<FinalWalkthroughProps & RouteComponentPro
     const isMount = useIsMount();
 
     const dispatch = useDispatch();
+
+    const [showSnackbarSuccessAlert, setShowSnackbarSuccessAlert] = useState<boolean>(false);
+    const [snackbarSuccessAlertText, setSnackbarSuccessAlertText] = useState<string>("Success!");
+    const [showSnackbarErrorAlert, setShowSnackbarErrorAlert] = useState<boolean>(false);
+    const [snackbarErrorAlertTitle, setSnackbarErrorAlertTitle] = useState<string>('Error Encountered!')
+    const [snackbarErrorAlertText, setSnackbarErrorAlertText] = useState<string>('Please Try Again');
     const [isLoading, setIsLoading] = useState(true);
     const [transactionsComplete, setIsTransactionsComplete] = useState(0);
     const {
@@ -55,7 +70,17 @@ const FinalWalkthroughScreen: React.FC<FinalWalkthroughProps & RouteComponentPro
     const handleSubmitParent = values =>{
         // console.log(toTimestamp(`${values.date} ${values.time}`),"we made it", values,"<-- Values left transactid-->",transactionId)
         console.log(values,'handlesubmitparent')
-        dispatch<any>(createFinalWalkthrough(values,transactionId));
+        dispatch<any>(createFinalWalkthrough(values,transactionId)).then((response) => {
+            if (response.type === CREATE_FINAL_WALKTHROUGH_SUCCESS) {
+                setShowSnackbarSuccessAlert(true);
+                setSnackbarSuccessAlertText('Created!');
+            }
+            if (response.type === CREATE_FINAL_WALKTHROUGH_FAILURE ) {
+                setShowSnackbarErrorAlert(true);
+                setSnackbarErrorAlertTitle('Failed to Update!');
+                setSnackbarErrorAlertText(response.error || 'Please try again or contact support');
+            }
+        });
     }
 
     return(
@@ -66,6 +91,14 @@ const FinalWalkthroughScreen: React.FC<FinalWalkthroughProps & RouteComponentPro
             alignItems="center"
             justifyContent="center"
         >
+            <SuccessErrorSnackBar   showSnackbarSuccessAlert={showSnackbarSuccessAlert}
+                                    setShowSnackbarSuccessAlert={setShowSnackbarSuccessAlert}
+                                    showSnackbarErrorAlert={showSnackbarErrorAlert}
+                                    setShowSnackbarErrorAlert={setShowSnackbarErrorAlert}
+                                    snackbarErrorAlertText={snackbarErrorAlertText}
+                                    snackbarErrorAlertTitle={snackbarErrorAlertTitle}
+                                    snackbarSuccessAlertText={snackbarSuccessAlertText} />
+
             <FlowCurrentProgressCard transactionId={transactionId}  isLoading={isLoading} transactions={transactions} transactionsComplete={transactionsComplete}/>
 
             <Card className="card-with-form" style={{marginTop:"2em",padding:"2em", boxShadow: 'none' }}>

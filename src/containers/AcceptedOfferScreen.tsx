@@ -12,7 +12,13 @@ import {getTransactionById, getTransactions} from "../selectors/transactionSelec
 import {getTransaction} from "../actions/transactionActions";
 import {useIsMount} from "../hooks/useIsMount";
 import AcceptedOfferForm from "./AcceptedOfferForm";
-import {createAcceptedOffer} from "../actions/acceptedOfferActions";
+import {
+    CREATE_ACCEPTED_OFFER_FAILURE,
+    CREATE_ACCEPTED_OFFER_SUCCESS,
+    createAcceptedOffer
+} from "../actions/acceptedOfferActions";
+import SuccessErrorSnackBar from "../components/SuccessErrorSnackBar";
+import {CREATE_APPRAISAL_FAILURE, CREATE_APPRAISAL_SUCCESS} from "../actions/appraisalActions";
 
 interface AcceptedOfferProps {
     preApproval: PreApproval;
@@ -23,6 +29,12 @@ const AcceptedOfferScreen: React.FC<AcceptedOfferProps & RouteComponentProps> = 
     const {match} = props;
     const transactionId = match.params['transaction_id'];
     const isMount = useIsMount();
+
+    const [showSnackbarSuccessAlert, setShowSnackbarSuccessAlert] = useState<boolean>(false);
+    const [snackbarSuccessAlertText, setSnackbarSuccessAlertText] = useState<string>("Success!");
+    const [showSnackbarErrorAlert, setShowSnackbarErrorAlert] = useState<boolean>(false);
+    const [snackbarErrorAlertTitle, setSnackbarErrorAlertTitle] = useState<string>('Error Encountered!')
+    const [snackbarErrorAlertText, setSnackbarErrorAlertText] = useState<string>('Please Try Again');
 
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(true);
@@ -45,7 +57,17 @@ const AcceptedOfferScreen: React.FC<AcceptedOfferProps & RouteComponentProps> = 
 
     const handleSubmitParent = values =>{
         console.log("we made it", values,"tridright",transactionId)
-        dispatch<any>(createAcceptedOffer(values,transactionId));
+        dispatch<any>(createAcceptedOffer(values,transactionId)).then((response) => {
+            if (response.type === CREATE_ACCEPTED_OFFER_SUCCESS) {
+                setShowSnackbarSuccessAlert(true);
+                setSnackbarSuccessAlertText('Created!');
+            }
+            if (response.type === CREATE_ACCEPTED_OFFER_FAILURE) {
+                setShowSnackbarErrorAlert(true);
+                setSnackbarErrorAlertTitle('Failed to Update!');
+                setSnackbarErrorAlertText(response.error || 'Please try again or contact support');
+            }
+        });
     }
 
     return(
@@ -56,6 +78,13 @@ const AcceptedOfferScreen: React.FC<AcceptedOfferProps & RouteComponentProps> = 
             alignItems="center"
             justifyContent="center"
         >
+            <SuccessErrorSnackBar   showSnackbarSuccessAlert={showSnackbarSuccessAlert}
+                                    setShowSnackbarSuccessAlert={setShowSnackbarSuccessAlert}
+                                    showSnackbarErrorAlert={showSnackbarErrorAlert}
+                                    setShowSnackbarErrorAlert={setShowSnackbarErrorAlert}
+                                    snackbarErrorAlertText={snackbarErrorAlertText}
+                                    snackbarErrorAlertTitle={snackbarErrorAlertTitle}
+                                    snackbarSuccessAlertText={snackbarSuccessAlertText} />
             <FlowCurrentProgressCard transactionId={transactionId}  isLoading={isLoading} transactions={transactions} transactionsComplete={transactionsComplete}/>
 
             <Card className="card-with-form" style={{marginTop:"2em",padding:"2em", boxShadow: 'none' }}>
