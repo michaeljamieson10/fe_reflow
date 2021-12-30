@@ -64,7 +64,7 @@ const FlowScreen: React.FC<FlowScreenProps & RouteComponentProps > = props => {
                     </Grid>
                     <Divider style={{marginBottom:"2em"}} />
                     <Grid>
-                        <VerticalNonLinearStepper transactionId={transactionId}/>
+                        {isLoading? 'loading': <VerticalNonLinearStepper transactionId={transactionId} transactions={transactions}/>}
                     </Grid>
                     <Grid
                         container

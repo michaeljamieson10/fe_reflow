@@ -4,32 +4,47 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
-import {Grid, StepContent} from "@material-ui/core";
+import {Grid, StepContent, StepLabel} from "@material-ui/core";
 import {Link} from "react-router-dom";
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            width: '100%',
-            // width: '50em',
+// const useStyles = makeStyles((theme: Theme) =>
+//     createStyles({
+//         root: {
+//             width: '100%',
+//             // width: '50em',
+//             color: 'pink',
+//         },
+//         button: {
+//             marginRight: theme.spacing(1),
+//         },
+//         completed: {
+//             display: 'inline-block',
+//         },
+//         instructions: {
+//             marginTop: theme.spacing(1),
+//             marginBottom: theme.spacing(1),
+//         },
+//     }),
+// );
+const useStyles = makeStyles(theme => ({
+    // root: {
+    //     "& .MuiStepIcon-active": { color: "primary" },
+    //     "& .MuiStepIcon-completed": { color: "green" },
+    //     "& .Mui-disabled .MuiStepIcon-root": { color: "cyan" }
+    // }
+    stepIconRoot: {
+        color: "grey",
+        "&.MuiStepIcon-active": {
+            color: "primary"
         },
-        button: {
-            marginRight: theme.spacing(1),
-        },
-        completed: {
-            display: 'inline-block',
-        },
-        instructions: {
-            marginTop: theme.spacing(1),
-            marginBottom: theme.spacing(1),
-        },
-    }),
-);
-
+        "&.MuiStepIcon-completed": {
+            color: "green"
+        }
+    }
+}));
 function getSteps() {
     return ['Home Criteria', 'Pre-Approval', 'Accepted Offer', 'Home Inspection', 'Contracts Signed','Appraisal','Loan Commitment','Homeowners Insurance','Clear to Close','Final Walkthrough','Closing'];
 }
-
 function getStepContent(step: number) {
     switch (step) {
         case 0:
@@ -71,7 +86,59 @@ function getStepsRoutes(step: number,transactionId){
 
 }
 
-export default function VerticalNonLinearStepper({transactionId}) {
+function getStepsStatus(step: number,transactions){
+    switch(step){
+        case 0:
+            if(typeof transactions[0].homeCriteria === 'undefined')return false;
+            if(transactions[0].homeCriteria.transactionStatusType === "completed") return true;
+            return false;
+        case 1:
+            if(typeof transactions[0].preApproval === 'undefined')return false;
+            if(transactions[0].preApproval.transactionStatusType === "completed") return true;
+            return false;
+        case 2:
+            if(typeof transactions[0].acceptedOffer === 'undefined')return false;
+            if(transactions[0].acceptedOffer.transactionStatusType === "completed") return true;
+            return false;
+        case 3:
+            if(typeof transactions[0].homeInspection === 'undefined')return false;
+            if(transactions[0].homeInspection.transactionStatusType === "completed") return true;
+            return false;
+        case 4:
+            if(typeof transactions[0].contractsSigned === 'undefined')return false;
+            if(transactions[0].contractsSigned.transactionStatusType === "completed") return true;
+            return false;
+        case 5:
+            if(typeof transactions[0].appraisal === 'undefined')return false;
+            if(transactions[0].appraisal.transactionStatusType === "completed") return true;
+            return false;
+        case 6:
+            if(typeof transactions[0].loanCommitment === 'undefined')return false;
+            if(transactions[0].loanCommitment.transactionStatusType === "completed") return true;
+            return false;
+        case 7:
+            if(typeof transactions[0].homeownersInsurance === 'undefined')return false;
+            if(transactions[0].homeownersInsurance.transactionStatusType === "completed") return true;
+            return false;
+        case 8:
+            if(typeof transactions[0].clearToClose === 'undefined')return false;
+            if(transactions[0].clearToClose.transactionStatusType === "completed") return true;
+            return false;
+        case 9:
+            if(typeof transactions[0].finalWalkthrough === 'undefined')return false;
+            if(transactions[0].finalWalkthrough.transactionStatusType === "completed") return true;
+            return false;
+        case 10:
+            if(typeof transactions[0].closing === 'undefined')return false;
+            if(transactions[0].closing.transactionStatusType === "completed") return true;
+            return false;
+
+    }
+
+}
+
+
+export default function VerticalNonLinearStepper({transactionId,transactions}) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const [completed, setCompleted] = React.useState<{ [k: number]: boolean }>({});
@@ -123,24 +190,47 @@ export default function VerticalNonLinearStepper({transactionId}) {
         setCompleted({});
     };
     return (
-        <div className={classes.root}>
-            <Stepper nonLinear activeStep={activeStep} orientation="vertical">
-                {steps.map((label, index) => (
-                    <Step key={label}>
-                        <StepButton onClick={handleStep(index)} completed={completed[index]}>
-                                                  {label}
-                                                     </StepButton>
+        <div >
+            <Stepper nonLinear
+                     activeStep={activeStep}
+                     // className={classes.stepIconRoot}
+                     // style={{color: "green" ? "green" : "green"}}
+                     orientation="vertical">
+                {steps.map((label, index) => {
+                    const stepProps: { completed?: boolean } = {};
+                    // stepProps.completed=false;
+                    // console.log(stepProps,index,"stepProps",completed)
+                    // if (isStepCompleted(index)) {
+                    //     stepProps.completed = true;
+                    // }else{
+                    //     stepProps.completed = false;
+                    // }
+                    return(
+                        <Step key={label}>
 
-                        <StepContent>
-                            <Grid container direction={"row"}>
-                            <Button component={Link} to={getStepsRoutes(index, transactionId)} color="primary" variant="contained"  >
-                                View Details
-                            </Button>
-                            </Grid>
+                            {/*we need to base completed on the index that it is completed so lets pass in that completed*/}
+                            {/*<StepButton onClick={handleStep(index)} completed={completed[index]}>*/}
+                            <StepButton onClick={handleStep(index)} completed={getStepsStatus(index,transactions)}>
+                                <StepLabel
+                                    StepIconProps={{ classes: {
+                                        root: classes.stepIconRoot
+                                    } }}
+                                >
+                                    {label}
+                                </StepLabel>
+                                                         </StepButton>
 
-                        </StepContent>
-                    </Step>
-                ))}
+                            <StepContent>
+                                <Grid container direction={"row"}>
+                                <Button component={Link} to={getStepsRoutes(index, transactionId)} color="primary" variant="contained"  >
+                                    View Details
+                                </Button>
+                                </Grid>
+
+                            </StepContent>
+                        </Step>
+                );
+                })}
             </Stepper>
             <div>
                 {allStepsCompleted() ? (
