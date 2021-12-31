@@ -53,8 +53,8 @@ const renderSelectBedField = ({
             {...input}
             {...custom}
             inputProps={{
-                name: 'Min',
-                id: 'min'
+                name: 'amountOfBed',
+                id: 'amountOfBed'
             }}
         >
             {children}
@@ -77,8 +77,8 @@ const renderSelectBathField = ({
             {...input}
             {...custom}
             inputProps={{
-                name: 'bath',
-                id: 'bath'
+                name: 'amountOfBath',
+                id: 'amountOfBath'
             }}
             style={{width:'2.8em'}}
         >
@@ -95,14 +95,14 @@ const renderSelectBathField = ({
         <Grid
             item
         >
-            <Field name={"Bath"} component={renderSelectBathField}>
+            <Field name={"amountOfBath"} component={renderSelectBathField}>
                 {unitsQuantity.map((label) => (
                     <option value={label}>{getLabel(label)}</option>
                 ))}
             </Field>
     </Grid>
             <Grid item>
-                <Field name={"Bed"} component={renderSelectBedField}>
+                <Field name={"amountOfBed"} component={renderSelectBedField}>
                             {unitsQuantity.map((label) => (
                                 <option value={label}>{getLabel(label)}</option>
                             ))}

@@ -64,7 +64,7 @@ const renderSelectMinField = ({
             {...input}
             {...custom}
             inputProps={{
-                name: 'Min',
+                name: 'minPrice',
                 id: 'minPrice'
             }}
         >
@@ -87,7 +87,7 @@ const renderSelectMaxField = ({
             {...input}
             {...custom}
             inputProps={{
-                name: 'Max',
+                name: 'maxPrice',
                 id: 'maxPrice'
             }}
         >
@@ -104,12 +104,12 @@ const renderSelectMaxField = ({
             spacing={0}
             direction="row"
         >
-            <Field name={"Min"}  defaultValue={"100k"} component={renderSelectMinField}>
+            <Field name={"minPrice"}  defaultValue={"100k"} component={renderSelectMinField}>
                 {priceByHundreds.map((label) => (
                     <option value={label}>{getLabel(label)}</option>
                 ))}
             </Field>
-            <Field name={"Max"} value={"maxPrice"}component={renderSelectMaxField}>
+            <Field name={"maxPrice"} value={"maxPrice"}component={renderSelectMaxField}>
                 {priceByHundreds.map((label) => (
                     <option value={label}>{getLabel(label)}</option>
                 ))}

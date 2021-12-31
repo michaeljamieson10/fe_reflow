@@ -36,23 +36,12 @@ interface HomeCriteriaFormProps {
 
 const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, HomeCriteriaFormProps>) => {
     const {handleSubmit} = props;
-    // const initialFilterDiscountTypeState = {house: false, multifamily: false, condocoop: false, townhome: false, basement: false, centralair: false, pool: false, waterfront: false};
-    const [address, setAddress] = useState("");
-    const handleSelect = async (value) => {
-        console.log(value,"value");
-        // const results = await geocodeByAddress(value);
-        // console.log(results,"results");
-    };
-
     const renderField = ({ input, defaultSelected, label, type, users,
                              meta: { touched, error, form }, children, ...custom }) => {
         switch (type) {
             case 'checkbox':
                 return <FormControlLabel label={label} control={<Checkbox {...input} onChange={input.onChange} />} />
             default:
-                // return <TextField
-                //     label={label} type={type} {...input} {...custom} error={!!(touched && error)} helperText={touched && error ? error : ''}
-                // />;
                 return     <TextField label={label} placeholder={label} type={type} {...input}
                                       error={touched && error ? true : false}
                                       helperText={touched && error ? error : ''}
@@ -73,8 +62,11 @@ const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, H
             <Field name={'centralair'} label={'Central Air'} component={renderField} type="checkbox" value={'centralair'} />
             <Field name={'pool'} label={'Pool'} component={renderField} type="checkbox" value={'pool'} />
             <Field name={'waterfront'} label={'Waterfront'} component={renderField} type="checkbox" value={'waterfront'} />
-            <Field name="location" component={PlacesAutoCompleteGoogleMaps} />
-            {/*<PlacesAutoCompleteGoogleMaps/>*/}
+            <Field name="cityOne" component={PlacesAutoCompleteGoogleMaps} />
+            <Field name="cityTwo" component={PlacesAutoCompleteGoogleMaps} />
+            <Field name="cityThree" component={PlacesAutoCompleteGoogleMaps} />
+            <Field name="cityFour" component={PlacesAutoCompleteGoogleMaps} />
+            <Field name="cityFive" component={PlacesAutoCompleteGoogleMaps} />
             <Button variant="contained" color="primary" onClick={handleSubmit}>create HC</Button>
         </form>
     )

@@ -32,7 +32,7 @@ const homeCriteriaCreator = (values,transactionId) => {
         minPrice: values.minPrice,
         maxPrice: values.maxPrice,
         amountOfBed: values.amountOfBed,
-        amountOfBaths: values.amountOfBaths,
+        amountOfBath: values.amountOfBath,
         house: values.house,
         multifamily: values.multifamily,
         condocoop: values.condocoop,

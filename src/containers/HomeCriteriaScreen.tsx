@@ -58,7 +58,7 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps
         homeCriteria
     } = props;
 
-    const transactions = useSelector<State , { [key: number]:Transaction}>(getTransactionById, shallowEqual);
+    const transactions = useSelector<State, { [key: number]:Transaction}>(getTransactionById, shallowEqual);
 
     useEffect(() => {
         dispatch<any>(getTransaction(transactionId)).then(() => setIsLoading(false));
@@ -72,7 +72,6 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps
 
 
     const handleNewHome = values =>{
-
         dispatch<any>(createHomeCriteria(values,transactionId)).then((response) => {
             if (response.type === CREATE_HOME_CRITERIA_SUCCESS) {
                 setShowSnackbarSuccessAlert(true);
