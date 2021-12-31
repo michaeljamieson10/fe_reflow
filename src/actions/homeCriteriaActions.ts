@@ -59,7 +59,7 @@ const homeCriteriaCreator = (values,transactionId) => {
 };
 
 export const createHomeCriteria = (values,transactionId) => (dispatch, getState) => {
-    console.log(values, transactionId,"lolol");
+    console.log(values, transactionId,"inside home criter create");
     return dispatch(homeCriteriaCreator(values,transactionId));
 };
 

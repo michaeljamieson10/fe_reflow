@@ -10,6 +10,7 @@ import {
     geocodeByPlaceId,
     getLatLng,
 } from 'react-places-autocomplete';
+import PlacesAutoCompleteGoogleMaps from "../components/PlacesAutoCompleteGoogleMaps";
 
 const validate = (values) => {
     const errors: any = {};
@@ -72,40 +73,8 @@ const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, H
             <Field name={'centralair'} label={'Central Air'} component={renderField} type="checkbox" value={'centralair'} />
             <Field name={'pool'} label={'Pool'} component={renderField} type="checkbox" value={'pool'} />
             <Field name={'waterfront'} label={'Waterfront'} component={renderField} type="checkbox" value={'waterfront'} />
-            <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
-                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                    <div>
-                        <input
-                            {...getInputProps({
-                                placeholder: 'Search Places ...',
-                                className: 'location-search-input',
-                            })}
-                        />
-                        <div className="autocomplete-dropdown-container">
-                            {loading && <div>Loading...</div>}
-                            {suggestions.map(suggestion => {
-                                const className = suggestion.active
-                                    ? 'suggestion-item--active'
-                                    : 'suggestion-item';
-                                // inline style for demonstration purpose
-                                const style = suggestion.active
-                                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                                return (
-                                    <div
-                                        {...getSuggestionItemProps(suggestion, {
-                                            className,
-                                            style,
-                                        })}
-                                    >
-                                        <span>{suggestion.description}</span>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-                )}
-            </PlacesAutocomplete>
+            <Field name="location" component={PlacesAutoCompleteGoogleMaps} />
+            {/*<PlacesAutoCompleteGoogleMaps/>*/}
             <Button variant="contained" color="primary" onClick={handleSubmit}>create HC</Button>
         </form>
     )
