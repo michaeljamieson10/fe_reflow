@@ -4,6 +4,12 @@ import {Button, TextField, DialogActions, DialogContent, FormControlLabel, Check
 import OutlineSelect from "../components/ui/homecriteria/OutlineSelect";
 import OutlineSelectBedAndBath from "../components/ui/homecriteria/OutlineSelectBedAndBath";
 
+import PlacesAutocomplete from 'react-places-autocomplete';
+import {
+    geocodeByAddress,
+    geocodeByPlaceId,
+    getLatLng,
+} from 'react-places-autocomplete';
 
 const validate = (values) => {
     const errors: any = {};
@@ -30,6 +36,12 @@ interface HomeCriteriaFormProps {
 const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, HomeCriteriaFormProps>) => {
     const {handleSubmit} = props;
     // const initialFilterDiscountTypeState = {house: false, multifamily: false, condocoop: false, townhome: false, basement: false, centralair: false, pool: false, waterfront: false};
+    const [address, setAddress] = useState("");
+    const handleSelect = async (value) => {
+        console.log(value,"value");
+        // const results = await geocodeByAddress(value);
+        // console.log(results,"results");
+    };
 
     const renderField = ({ input, defaultSelected, label, type, users,
                              meta: { touched, error, form }, children, ...custom }) => {
@@ -60,7 +72,40 @@ const HomeCriteriaForm = (props: HomeCriteriaFormProps & InjectedFormProps<{}, H
             <Field name={'centralair'} label={'Central Air'} component={renderField} type="checkbox" value={'centralair'} />
             <Field name={'pool'} label={'Pool'} component={renderField} type="checkbox" value={'pool'} />
             <Field name={'waterfront'} label={'Waterfront'} component={renderField} type="checkbox" value={'waterfront'} />
-
+            <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
+                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                    <div>
+                        <input
+                            {...getInputProps({
+                                placeholder: 'Search Places ...',
+                                className: 'location-search-input',
+                            })}
+                        />
+                        <div className="autocomplete-dropdown-container">
+                            {loading && <div>Loading...</div>}
+                            {suggestions.map(suggestion => {
+                                const className = suggestion.active
+                                    ? 'suggestion-item--active'
+                                    : 'suggestion-item';
+                                // inline style for demonstration purpose
+                                const style = suggestion.active
+                                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                                return (
+                                    <div
+                                        {...getSuggestionItemProps(suggestion, {
+                                            className,
+                                            style,
+                                        })}
+                                    >
+                                        <span>{suggestion.description}</span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
+            </PlacesAutocomplete>
             <Button variant="contained" color="primary" onClick={handleSubmit}>create HC</Button>
         </form>
     )
