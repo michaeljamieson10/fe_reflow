@@ -50,7 +50,8 @@ const REACreateTransaction: React.FC<REACreateTransactionProps> = props => {
         };
 
         createTransaction(values.firstName, values.lastName);
-        history.push("/dashboard/flow");
+        history.push("/rea");
+        // history.push("/dashboard/flow");
 
     };
 
