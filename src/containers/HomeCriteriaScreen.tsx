@@ -102,7 +102,6 @@ const HomeCriteriaScreen: React.FC<HomeCriteriaScreenProps & RouteComponentProps
                                     snackbarSuccessAlertText={snackbarSuccessAlertText} />
 
             <FlowCurrentProgressCard transactionId={transactionId}  isLoading={isLoading} transactions={transactions} transactionsComplete={transactionsComplete}/>
-
             <Card className="card-with-form" style={{marginTop:"2em",padding:"2em", boxShadow: 'none' }}>
                 <HomeCriteriaForm onSubmit={(values) => handleNewHome(values)}/>
             </Card>

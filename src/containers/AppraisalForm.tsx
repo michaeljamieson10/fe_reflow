@@ -117,13 +117,17 @@ const AppraisalForm = (props: AppraisalFormProps & InjectedFormProps<{}, Apprais
 
     return (
         <form onSubmit={handleSubmit}>
+            <Grid
+                container
+                direction="column"
+            >
             <Typography variant={"h6"}>Appraisal Schedule</Typography>
             <Field name={'date'} label={'Date Made'} component={renderField} type="date" value={'date'} />
             <Field name={'time'} label={'Time Made'} component={renderField} type="time" value={'time'} />
-            <Typography variant={"h6"}>Appraisal Status</Typography>
+            <Typography style={{marginTop:"1em"}} variant={"h6"}>Appraisal Status</Typography>
             <Field name={'appraisedValue'} label={'Appraised Value'} component={renderTextField} type="appraisedValue" value={'appraisedValue'} />
-
-            <Button variant="contained" color="primary" onClick={handleSubmit}>Create Appraised Value</Button>
+            <Button style={{marginTop:"1em"}} variant="contained" color="primary" onClick={handleSubmit}>Complete</Button>
+            </Grid>
         </form>
     )
 };

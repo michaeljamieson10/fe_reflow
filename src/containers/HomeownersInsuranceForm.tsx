@@ -50,7 +50,7 @@ const HomeownersInsuranceForm = (props: HomeownersInsuranceFormProps & InjectedF
                 <FormControlLabel value="commitment_received" control={<Radio value="complete"/>} label={"Complete & Have Insurance Binder"}/>
                 <FormControlLabel value="pending" control={<Radio value="pending"/>} label={"Pending"}/>
             </Field>
-            <Button variant="contained" color="primary" onClick={handleSubmit}>Create Accepted Offer</Button>
+            <Button variant="contained" color="primary" onClick={handleSubmit}>Complete</Button>
         </form>
     )
 };

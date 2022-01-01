@@ -53,7 +53,7 @@ const LoanCommitmentForm = (props: LoanCommitmentFormProps & InjectedFormProps<{
                 <FormControlLabel value="commitment_received" control={<Radio value="commitment_received"/>} label={"Commitment Received"}/>
                 <FormControlLabel value="commitment_not_given" control={<Radio value="commitment_not_given"/>} label={"Commitment Not Given"}/>
             </Field>
-            <Button variant="contained" color="primary" onClick={handleSubmit}>Create Accepted Offer</Button>
+            <Button variant="contained" color="primary" onClick={handleSubmit}>Complete</Button>
         </form>
     )
 };

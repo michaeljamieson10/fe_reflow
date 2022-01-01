@@ -127,16 +127,21 @@ const HomeInspectionForm = (props: HomeInspectionFormProps & InjectedFormProps<{
 
     return (
         <form onSubmit={handleSubmit}>
+            <Grid
+                container
+                direction="column"
+            >
             <Typography variant={"h6"}>Inspection Schedule</Typography>
             <Field name={'date'} label={'Date Made'} component={renderField} type="date" value={'date'} />
             <Field name={'time'} label={'Time Made'} component={renderField} type="time" value={'time'} />
-            <Typography variant={"h6"}>Inspection Status</Typography>
+            <Typography style={{marginTop:"1em"}}variant={"h6"}>Inspection Status</Typography>
             <Field name="homeInspectionStatusType" component={renderRadioGroup}>
                 <FormControlLabel value="complete_moving_to_contracts" control={<Radio value="complete_moving_to_contracts"/>} label={"Complete & Moving to Contracts"}/>
                 <FormControlLabel value="complete_not_moving_to_contracts" control={<Radio value="complete_not_moving_to_contracts"/>} label={"Complete & Not Moving to Contracts"}/>
                 <FormControlLabel value="no_inspection" control={<Radio value="no_inspection"/>} label={"No Inspection Done & Moving to Contracts"}/>
             </Field>
-            <Button variant="contained" color="primary" onClick={handleSubmit}>Create Accepted Offer</Button>
+            <Button style={{marginTop:"1em"}} variant="contained" color="primary" onClick={handleSubmit}>Complete</Button>
+            </Grid>
         </form>
     )
 };

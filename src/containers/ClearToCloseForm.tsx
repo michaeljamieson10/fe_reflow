@@ -48,7 +48,7 @@ const ClearToCloseForm = (props: ClearToCloseFormProps & InjectedFormProps<{}, C
                 <FormControlLabel value="complete" control={<Radio value="complete"/>} label={"We are Clear to Close!"}/>
                 <FormControlLabel value="pending" control={<Radio value="pending"/>} label={"Pending"}/>
             </Field>
-            <Button variant="contained" color="primary" onClick={handleSubmit}>Create clear to close</Button>
+            <Button variant="contained" color="primary" onClick={handleSubmit}>Complete</Button>
         </form>
     )
 };

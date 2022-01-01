@@ -16,7 +16,7 @@ const PlacesAutoCompleteGoogleMaps = ({input, meta}) => {
     return(<PlacesAutocomplete value={input.value} onChange={input.onChange} onSelect={input.onSelect}>
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
             <div>
-                <input
+                <input style={{paddingTop:"1em", marginTop:"1em"}}
                     {...getInputProps({
                         placeholder: 'Search Places ...',
                         className: 'location-search-input',

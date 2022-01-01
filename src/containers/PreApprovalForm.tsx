@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import {
     Button,
-    FormControl, InputLabel, FilledInput, InputAdornment
+    FormControl, InputLabel, FilledInput, InputAdornment, Grid
 } from '@material-ui/core';
 import {LoanType} from "../store/reduxStoreState";
 import Select from "@material-ui/core/Select";
@@ -103,6 +103,14 @@ const PreApprovalForm = (props: PreApprovalFormProps & InjectedFormProps<{}, Pre
 
     return (
         <form onSubmit={handleSubmit}>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                style={{marginBottom:"3em"}}
+            >
             <Field name={'maxPurchasePrice'} label={'Max Purchase Price'} component={renderField} type="textfield" adornment={"$"} value={'maxPurchasePrice'} />
             {/*<Field name={'maxPurchasePrice'} label={'Max Purchase Price'} component={renderField} type="textfield" adornment={"$"} value={values.maxPurchasePrice} />*/}
             <Field name={'maxLoanAmount'} label={'Max Loan Amount'} component={renderField} type="textfield" adornment={"$"} value={'maxLoanAmount'} />
@@ -113,8 +121,8 @@ const PreApprovalForm = (props: PreApprovalFormProps & InjectedFormProps<{}, Pre
                     <option value={label}>{label}</option>
                 ))}
             </Field>
-
-            <Button variant="contained" color="primary" onClick={handleSubmit}>create pre approval</Button>
+            <Button style={{marginTop:"1em"}}variant="contained" color="primary" onClick={handleSubmit}>Complete</Button>
+            </Grid>
         </form>
     )
 };

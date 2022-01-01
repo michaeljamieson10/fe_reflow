@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import {
     Button,
-    FormControl, InputLabel, FilledInput, InputAdornment
+    FormControl, InputLabel, FilledInput, InputAdornment, Grid
 } from '@material-ui/core';
 import FormHelperText from "@material-ui/core/FormHelperText";
 
@@ -66,13 +66,21 @@ const AcceptedOfferForm = (props: AcceptedOfferFormProps & InjectedFormProps<{},
 
     return (
         <form onSubmit={handleSubmit}>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                style={{marginBottom:"3em"}}
+            >
             <Field name={'address'} label={'Address'} component={renderField} type="textfield"  value={'propertyTaxes'} />
             <Field name={'purchasePrice'} label={'Purchase Price'} component={renderField} type="textfield" value={'purchasePrice'} />
             <Field name={'propertyTaxes'} label={'Property Tax'} component={renderField} type="textfield" adornment={"%"} value={'propertyTaxes'} />
             <Field name={'downPayment'} label={'Down Payment'} component={renderField} type="textfield" adornment={"%"} value={'downPayment'} />
 
-            <Button variant="contained" color="primary" onClick={handleSubmit}>Create Accepted Offer</Button>
-
+            <Button style={{marginTop:"1em"}}variant="contained" color="primary" onClick={handleSubmit}>Complete</Button>
+            </Grid>
         </form>
     )
 };

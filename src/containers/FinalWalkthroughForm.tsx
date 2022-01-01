@@ -120,7 +120,7 @@ const FinalWalkthroughForm = (props: FinalWalkthroughFormProps & InjectedFormPro
                 <FormControlLabel value="complete" control={<Radio value="complete"/>} label={"Walkthrough complete!"}/>
                 <FormControlLabel value="pending" control={<Radio value="pending"/>} label={"Pending"}/>
             </Field>
-            <Button variant="contained" color="primary" onClick={handleSubmit}>Create final walkthrough</Button>
+            <Button variant="contained" color="primary" onClick={handleSubmit}>Complete</Button>
         </form>
     )
 };

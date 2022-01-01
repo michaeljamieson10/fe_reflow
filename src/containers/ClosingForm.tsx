@@ -53,7 +53,7 @@ const ClosingForm = (props: ClosingFormProps & InjectedFormProps<{}, ClosingForm
                 <FormControlLabel value="complete" control={<Radio value="complete"/>} label={"Complete"}/>
                 <FormControlLabel value="pending" control={<Radio value="pending"/>} label={"Pending"}/>
             </Field>
-            <Button variant="contained" color="primary" onClick={handleSubmit}>Create closing</Button>
+            <Button variant="contained" color="primary" onClick={handleSubmit}>Complete</Button>
         </form>
     )
 };

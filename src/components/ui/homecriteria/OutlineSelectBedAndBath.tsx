@@ -92,21 +92,21 @@ const renderSelectBathField = ({
 
     return (
         <>
-        <Grid
-            item
-        >
-            <Field name={"amountOfBath"} component={renderSelectBathField}>
+        <Grid container direction={"row"}>
+            <Grid item style={{marginRight: "5em"}}>
+            <Field name={"amountOfBed"} component={renderSelectBedField}>
                 {unitsQuantity.map((label) => (
                     <option value={label}>{getLabel(label)}</option>
                 ))}
             </Field>
-    </Grid>
+            </Grid>
             <Grid item>
-                <Field name={"amountOfBed"} component={renderSelectBedField}>
-                            {unitsQuantity.map((label) => (
-                                <option value={label}>{getLabel(label)}</option>
-                            ))}
-                </Field>
+        <Field name={"amountOfBath"} component={renderSelectBathField}>
+            {unitsQuantity.map((label) => (
+                    <option value={label}>{getLabel(label)}</option>
+                ))}
+        </Field>
+        </Grid>
         </Grid>
     </>
     )

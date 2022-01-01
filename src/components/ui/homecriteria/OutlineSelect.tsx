@@ -101,14 +101,15 @@ const renderSelectMaxField = ({
 
     return (  <Grid
             container
-            spacing={0}
             direction="row"
         >
+            <Grid item style={{marginRight:"2em"}}>
             <Field name={"minPrice"}  defaultValue={"100k"} component={renderSelectMinField}>
                 {priceByHundreds.map((label) => (
                     <option value={label}>{getLabel(label)}</option>
                 ))}
             </Field>
+            </Grid>
             <Field name={"maxPrice"} value={"maxPrice"}component={renderSelectMaxField}>
                 {priceByHundreds.map((label) => (
                     <option value={label}>{getLabel(label)}</option>

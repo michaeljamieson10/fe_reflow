@@ -94,7 +94,7 @@ const ContractsSignedForm = (props: ContractsSignedFormProps & InjectedFormProps
                 <FormControlLabel value="pending" control={<Radio value="pending"/>} label={"Pending"}/>
                 <FormControlLabel value="signed" control={<Radio value="signed"/>} label={"Signed"}/>
             </Field>
-            <Button variant="contained" color="primary" onClick={handleSubmit}>create HC</Button>
+            <Button variant="contained" color="primary" onClick={handleSubmit}>Complete</Button>
         </form>
     )
 };
